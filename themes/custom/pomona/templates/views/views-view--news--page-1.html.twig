@@ -1,0 +1,30 @@
+{% embed "@fractal/with-sidebar.twig" %}
+  {% block with_sidebar_main %}
+    <div class="bg-pttrn-lt-grey py-25 lg:py-50 lg:-ml-75 lg:pr-50 lg:pl-25">
+      {% if not empty %}
+        <div class="ml-25 -mt-25 lg:pt-20">
+          {{ drupal_view('news','news_events_landing_slideshow') }}
+        </div>
+        <div class="mt-60 pl-25 pb-25 list-of-items feed-listing">
+          {% for row in rows %}
+            {{ row }}
+          {% endfor %}
+        </div>
+        <div class="flex flex-row flex-wrap justify-between align-center pl-25">
+          {{ footer }}
+          {{ pager }}
+        </div>
+      {% else %}
+        {{ empty }}
+      {% endif %}
+      
+    </div>
+  {% endblock %}
+  {% block with_sidebar_aside %}
+    <div class="box">
+      <h3 class="font-sans uppercase text-xl mb-15">FILTER NEWS BY</h3>
+      {{ exposed }}
+    </div>
+    {{ drupal_region('sidebar_first') }}
+  {% endblock %}
+{% endembed %}

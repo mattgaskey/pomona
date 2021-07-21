@@ -1,0 +1,7 @@
+name: Office Hours Box
+context:
+  items:
+    - label: Tuesday
+      slots: "12:00pm-2:00pm"
+    - label: Thursday
+      slots: "12:00pm-2:00pm"

@@ -1,0 +1,14 @@
+<div class="{{ container|default('c-container') }} lg:flex {{ variant }}">
+  <div class="with-sidebar-main flex-{{ major|default('3/4') }} font-serif text-xl lg:max-w-{{ major|default('3/4') }}" {% if main_id %}id="{{ main_id }}"{% endif %}>
+    <div class="lg:pr-40">
+    {% block with_sidebar_main %}
+      {% include '@editorial' %}
+    {% endblock %}
+    </div>
+  </div>
+  <div class="with-sidebar-aside flex-{{ minor|default('1/4') }} pt-40 lg:pt-0 lg:max-w-{{ minor|default('1/4') }}" {% if aside_id %}id="{{ aside_id }}"{% endif %}>
+    {% block with_sidebar_aside %}
+      {% include '@section-nav' %}
+    {% endblock %}  
+  </div>
+</div>

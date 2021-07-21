@@ -1,0 +1,3 @@
+default: plain
+context:
+  variant: text-5xl

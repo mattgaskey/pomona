@@ -1,0 +1,33 @@
+collated: true
+context:
+  label: Plus
+  variant: btn-plus
+variants:
+  - name: more
+    context:
+      label: More
+      variant: btn-more
+  - name: search
+    context:
+      label: Search
+      variant: btn-search
+  - name: next
+    context:
+      label: Next
+      variant: btn-next
+  - name: prev
+    context:
+      label: Prev
+      variant: btn-prev
+  - name: Feed
+    context:
+      label: feed
+      variant: btn-feed
+  - name: Arrow
+    context:
+      label: arrow
+      variant: btn-arrow
+  - name: Download
+    context:
+      label: download
+      variant: btn-download

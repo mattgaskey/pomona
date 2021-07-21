@@ -1,0 +1,38 @@
+{% embed '@clamp' with { variant: 'content article'} %}
+  {% block main_content %}
+    
+      {% include '@content-header' with { pages: ['News & Events','News'], title: 'Women\'s Soccer Heads to NCAA Final Four' } %}
+      {% include '@picture' %}
+      <div class="c-container mx-auto my-0 md:max-w-3/4 p-40 border-t-6 border-brown-100 bg-white editorial font-serif text-xl article__wrapper">
+        {% include '@article-meta' with { label: 'Published: ', content: 'Friday, December 27, 2019' } %}
+        {% include '@article-meta' with { content: 'The Pomona-Pitzer women\'s soccer team celebrates after edging Washington University to reach the Final Four.' } %}
+        {% include '@article-meta' with { label: 'Photo by: ', content: 'Danny Reise/WUSTL Photo' } %}
+        <div class="article__content pt-40 pb-20">
+          <p>Every senior on the Pomona-Pitzer women’s soccer team that has reached the Final Four of the NCAA Division III Championship for the first time knows exactly how slender a sliver the margin between winning and losing could be.</p>
+          <p>It could be a single goal by <a href="https://example.com">first-team All-American</a> Bria VarnBuhler ’20, who has set a Pomona-Pitzer record with 21 this season—including nine game-winners, tied for third-most among all Division III players.</p>
+          <p>It could be a game-saving stop by third-team All-American Isa Berardo PZ ’20, the starting goalkeeper for a strong overall defense that has shut out 20 of 23 opponents on the way to a 20-1-2 record. After leading Division III in goals-against average and save percentage last season, Berardo is in the top three in both national categories again.</p>
+          <p>Or it could be as slim a margin as a single penalty kick settling into the back of the net—or tipped away by a finger.</p>
+          <p>Close games have become a Pomona-Pitzer specialty. The Sagehens advanced to the Final Four by winning their last three games by scores of 1-0, 1-0, and finally by settling a scoreless tie against No. 3-ranked Washington University in penalty kicks, with Berardo making the save that set off a celebration.</p>
+          <p>It was a reversal of what happened three years ago, when these seniors were playing in their first NCAA postseason and a loss to the University of Chicago in penalty kicks sent them home, one step shy of the Final Four.</p>
+          <p>“I mean, gosh, it was heartbreaking after losing that,” remembers VarnBuhler. “Coming back and having our season potentially end the same way as it did freshman year—that was just not really an option. We had just worked too hard for that to happen.”</p>
+          <p>It didn’t. The Sagehens got payback against Chicago this time with a 1-0 overtime victory in the regional semifinal on a golden goal by Anna Ponzio PZ ’22. Then they edged Washington in the final, thanks in part to weeks of practicing penalty kicks in anticipation of the possibility advancing could come down to that, and partly because of what Coach Jen Scanlon calls “this pretty amazing group of seniors.”</p>
+          <p>That group includes VarnBuhler, the Southern California Intercollegiate Athletic Conference women’s soccer <a href="https://www.sagehens.com/sports/wsoc/2019-20/releases/20191107l8ts7z">athlete of the year</a>, and first-team All-SCIAC players Berardo and <a href="https://www.sagehens.com/sports/wsoc/2019-20/bios/lau_brianna_ctwj">Brianna Lau</a> PZ ’20. (The three also were named first-team <a href="https://sagehens.com/sports/wsoc/2019-20/releases/20191202p6vmzp">All-West Region</a>.) The other two players in a senior fab five are <a href="https://www.sagehens.com/sports/wsoc/2019-20/bios/gane_lily_dmhd">Lily Gane</a> PZ ’20 and <a href="https://www.sagehens.com/sports/wsoc/2019-20/bios/kuo_megan_65fs">Megan Kuo</a> ’20. Together they have won more games than any other class in the history of the program.</p>
+          <p>“They knew that in their last chance and their senior year, they were going to find a way to get it done, and that's why it's been fun to watch,” Scanlon says. “We've worked really hard in the last couple of years to build a championship culture, and now we see what all that work was for. We've gone up against the top teams and gone toe-to-toe and come out on the winning side.”</p>
+          <p>When the margin is so thin, every little boost helps.</p>
+        </div>
+        <div class="article__footer border-t-2 border-brown-100">
+          <a href="/news" class="btn btn-more btn-uppercase btn-lavender overlap float-right">View More News</a>
+          <div class="pt-20">
+            {% include '@article-meta' with { label: 'Story by: ', content: 'Robyn Norwood' } %}
+            <div class="article-meta">
+              <span>Category: </span>
+              <a href="#">Life at Pomona</a>,
+              <a href="#">Athletics</a>,
+              <a href="#">Student Activities</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  {% endblock %}
+{% endembed %}

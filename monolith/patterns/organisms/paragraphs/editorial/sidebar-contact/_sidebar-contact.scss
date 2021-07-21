@@ -1,0 +1,34 @@
+.sidebar-contact {
+  &__details {
+    a {
+      @apply text-lg font-serif text-blue inline-block mb-5 border-b-2 border-brown-100;
+      &:hover {
+        @apply border-transparent;
+      }
+      &.sidebar-contact__location {
+        @apply relative;
+        left: 1rem;
+        &:before {
+          @include fa-icon;
+          @extend .fas;
+          @apply text-lavender bg-transparent absolute;
+          content: fa-content($fa-var-map-marker-alt);
+          top: 4px;
+          left: -18px;
+        }
+      }
+    }
+  }
+  &__social {
+    @apply mt-10;
+    a {
+      @apply inline-block mr-10;
+      &:hover {
+        @apply opacity-75;
+      }
+      &:last-of-type {
+        @apply mr-0;
+      }
+    }
+  }
+}

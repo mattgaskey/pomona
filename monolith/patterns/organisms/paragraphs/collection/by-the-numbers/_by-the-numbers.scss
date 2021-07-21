@@ -1,0 +1,120 @@
+.by-the-numbers--row {
+  @apply flex flex-wrap;
+
+  > div:nth-child(n) {
+    &.bg- {
+      @apply bg-lavender border-lavender-100;
+    }
+  }
+  > div:nth-child(2n) {
+    &.bg- {
+      @apply bg-orange border-orange-100;
+    }
+  }
+  > div:nth-child(3n) {
+    &.bg- {
+      @apply bg-green border-green-100;
+    }
+  }
+  > div:nth-child(4n) {
+    &.bg- {
+      @apply bg-red border-red-100;
+    }
+  }
+
+  @screen xl {
+    @apply flex-no-wrap;
+  }
+
+  > * {
+
+    width: 100%;
+    @apply mb-25;
+
+    @screen md {
+      @apply flex-1 flex-wrap items-stretch content-between mr-25;
+      min-width: calc(50% - 12.5px);
+      max-width: calc(50% - 12.5px);
+
+      &:nth-child(2n),
+      &:last-child {
+        @apply mr-0;
+      }
+
+    }
+
+    @screen lg {
+      
+      min-width: calc(33% - 13.5px);
+      max-width: calc(33% - 13.5px);
+
+      &:nth-child(2n) {
+        @apply mr-25;
+      }
+
+      &:nth-child(3n),
+      &:last-child {
+        @apply mr-0;
+      }
+    }
+
+    @screen xl {
+      @apply flex-1 items-stretch content-between mb-0 min-w-0 max-w-full;
+
+      &:nth-child(3n) {
+        @apply mr-25;
+      }
+
+      &:last-child {
+        @apply mr-0;
+      }  
+    }
+  }  
+}
+
+.by-the-numbers--list {
+  .stats-box {
+    div {
+      @apply p-6 mb-10 border-t-3 flex items-center bg-white;
+      & > span {
+        @apply text-lg font-bold text-center flex-none min-w-110 leading-tight;
+      }
+      
+      & > p {
+        @apply leading-tight py-15 pr-15;
+      }
+    }
+    div:nth-child(n) {
+      @apply border-cyan;
+      span {
+        @apply text-cyan;
+      }
+    }
+    div:nth-child(2n) {
+      @apply border-lavender;
+      span {
+        @apply text-lavender;
+      }
+    }
+    div:nth-child(3n) {
+      @apply border-green;
+      span {
+        @apply text-green-700;
+      }
+    }
+    div:nth-child(4n) {
+      @apply border-orange;
+      span {
+        @apply text-orange-700;
+      }
+    }
+    div:nth-child(5n) {
+      @apply border-red;
+      span {
+        @apply text-red;
+      }
+    }
+    
+  }
+
+}

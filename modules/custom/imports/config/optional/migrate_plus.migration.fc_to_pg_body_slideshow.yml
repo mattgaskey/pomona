@@ -1,0 +1,43 @@
+id: fc_to_pg_body_slideshow
+label: Body Slideshow
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/fc_to_pg_body_slideshow_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'fc_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      CAPTION: 'caption'
+    3:
+      MEDIA: 'media'
+    4:
+      LINKTITLE: 'link_title'
+    5:
+      LINKURL: 'link_url'
+process:
+  field_caption: CAPTION
+  field_link/title: LINKTITLE
+  field_link/uri: 
+    plugin: str_replace
+    source: LINKURL
+    search: d7-pomona.lndo.site
+    replace: www.pomona.edu
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: MEDIA
+    no_stub: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: body_slideshow

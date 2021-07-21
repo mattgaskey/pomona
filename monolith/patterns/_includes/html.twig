@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link media="all" rel="stylesheet" href="{{ '/css/pattern-scaffolding.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/css/main.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/css/hiraku.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/css/magnific.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/css/slick.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/css/slick-theme.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/js/lib/rtResponsiveTables/jquery.rtResponsiveTables.css'|path }}">
+    <link media="all" rel="stylesheet" href="{{ '/js/lib/fancybox/jquery.fancybox.css'|path }}" />
+    
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+    <script defer src="{{ '/js/googleTranslate.js'|path }}"></script>
+    <script defer src="{{ '/js/fetch-trumba-data.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/hiraku.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/slick/slick.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/atAccordionOrTabs/jquery.bbq.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/atAccordionOrTabs/jquery.atAccordionOrTabs.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/jquery-accessible-accordion.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/jquery.magnific-popup.min.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/jquery.fitvids.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/rtResponsiveTables/jquery.rtResponsiveTables.js'|path }}"></script>
+    <script defer src="{{ '/js/slideshows.js'|path }}"></script>
+    <script defer src="{{ '/js/toggle-button.js'|path }}"></script>
+    <script defer src="{{ '/js/share-button.js'|path }}"></script>
+    <script defer src="{{ '/js/main.js'|path }}"></script>
+    <script defer src="{{ '/js/lib/fancybox/jquery.fancybox.js'|path }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    {% for js in _target.resources.js %}
+        {% set pattern_js_path = '/js/patterns/' ~ js.base %}
+        <script defer src="{{ pattern_js_path|path }}"></script>
+    {% endfor %}
+    <title>Preview Layout</title> 
+</head>
+<body>
+
+{% block main %}
+{{ yield }}
+{% endblock %}
+
+<script>
+  window.frontback = {
+    repo: 'https://gitlab.com/newcity/pomona-d8',
+    postUrl: 'https://magicyeti.us/frontback'
+  };
+  var script = document.createElement('script');
+  script.src = frontback.postUrl + '/assets/js/frontback.js';
+  document.body.appendChild(script);
+</script>
+
+</body>
+</html>

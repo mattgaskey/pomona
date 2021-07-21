@@ -1,0 +1,42 @@
+{% embed '@fractal/highlight-region-slide.twig' %}
+	{% block slide_media %}
+		<div{{ attributes.addClass(['feature-video','mx-auto','relative']) }}>
+      {% if linktouri %}
+			<a class="block" href="{{ linktouri }}" target="_blank" tabindex="-1">
+      {% endif %}
+				{{ content.field_media }}
+				{{ content.field_slide_video }}
+      {% if linktouri %}
+			</a>
+      {% endif %}
+      {% if has_video %}
+			<button class="absolute text-lg hover:bg-yellow text-gray-900 p-10 bg-white bottom-0 right-0 shadow-lg rounded-lg mr-20 mb-20" class="play_pause" aria-label="Pause/Play background video"><span class="fas fa-pause"></span><span class="label sr-only">Pause</span></button>
+      {% endif %}
+		</div>
+	{% endblock %}
+    {% block slide_caption %}
+      {% if content.field_caption|render is not empty or content.field_link|render is not empty %}
+        <figcaption class="bg-blue text-2xl text-white lg:text-4xl lg:font-serif">
+        {{ content.field_caption }}
+        {{ content.field_link }}
+        {% if linked %}
+          <a href="http://www.example.com/" class="
+            btn
+            btn-lavender
+            btn-uppercase
+            lg:ml-10
+            block
+          ">
+              {{ label }} 
+              <span class="
+                text-yellow 
+                ml-4 
+                fas 
+                fa-chevron-right
+              "></span>
+          </a>
+        {% endif %}
+        </figcaption>
+      {% endif %}
+    {% endblock %}
+  {% endembed %}

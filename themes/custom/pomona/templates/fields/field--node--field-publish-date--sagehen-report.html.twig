@@ -1,0 +1,3 @@
+{% for item in items %}
+  <span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="{{ item.content['#attributes'].datetime|date("Y-m-d h:i:sP") }}">{{ item.content['#attributes'].datetime|date('F j, Y') }}</span>
+{% endfor %}

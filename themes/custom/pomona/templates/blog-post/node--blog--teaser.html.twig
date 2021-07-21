@@ -1,0 +1,12 @@
+{% set has_media = content.field_media|children is not empty %}
+<div class="item border-t-10 border-gray-500 bg-white flex flex-row mb-25">
+  {% if has_media %}
+  <div class="item__media flex-1/4">
+    <a href="{{ url }}" tabindex="-1">{{ content.field_media }}</a>
+  </div>
+  {% endif %}
+  <div class="item__content underline-links flex {% if has_media %}flex-3/4 {% endif %}flex-col pl-20 pr-50">
+    <div class="mb-10"><a href="{{ url }}" class="font-sans text-xl text-blue border-b-2 border-brown-100 mb-25 hover:border-transparent">{{ label }}</a></div>
+    <div class="font-serif text-lg mb-10">{{ content.field_summary }}</div>
+  </div>
+</div>

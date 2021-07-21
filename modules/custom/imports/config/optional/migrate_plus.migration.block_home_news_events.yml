@@ -1,0 +1,61 @@
+id: block_home_news_events
+label: Home Event News Block
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/block_home_news_events_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'block_id'
+    1:
+      LABEL: 'label'
+    2:
+      DATE: 'date'
+    3:
+      LINKURL: 'link_url'
+    4:
+      MOREURL: 'more_url'
+    5:
+      IMAGE: 'image'
+    6:
+      LINKTITLE: 'link_title'
+    7:
+      MORETITLE: 'more_title'
+process:
+  info: LABEL
+  field_event_date_string: DATE
+  field_image/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+  field_main_link/uri: 
+    - plugin: skip_on_empty
+      method: process
+      source: LINKURL
+    - plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_main_link/title: LINKTITLE
+  field_more_link/uri: 
+    - plugin: skip_on_empty
+      method: process
+      source: MOREURL
+    - plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_more_link/title: 
+    plugin: skip_on_empty
+    method: process
+    source: MORETITLE
+destination:
+  plugin: entity:block_content
+  default_bundle: spotlight

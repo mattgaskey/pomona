@@ -1,0 +1,9 @@
+{% for item in items %}
+  {% include '@fractal/social-media-link.twig' with {
+    sml: {
+      icon: "fa-twitter",
+      label: "Twitter",
+      url: item.content['#url']
+    }
+  } %}
+{% endfor %}

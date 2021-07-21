@@ -1,0 +1,11 @@
+<div aria-labelledby="{{ aria_label }}" class="{{ variant }} collapsing-block">
+  {% block collapsing_control %}
+    <button class="toggle {{ button_variant }}"  aria-expanded="false"><span>{{ toggle_button }}</span></button>
+  {% endblock %}
+  <div class="reveal" hidden>
+    <h2 class="{{ label_variant }}" id="{{ aria_label }}">{{ label }}</h2>
+    {% block collapsing_content %}
+      This is content in the collapsing region
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<figure{{ attributes|without('role')|without('id') }}>
+  {% block teaser_image %}
+    {% include '@picture' with { width: 368, height: 208 } %}
+  {% endblock %}
+  <figcaption class="font-sans px-25 pt-25 border-t-{{ teaser.border|default('15') }} border-{{ teaser.color }}">
+    {% block teaser_caption %}
+    {% if teaser.date %}
+    <div class="text-3xl italic font-serif font-bold text-{{ teaser.textColor|default(teaser.color) }}">{{ teaser.date }}</div>
+    {% endif %}
+    <a class="text-xl border-b-1 border-{{ teaser.color|default('green') }} hover:border-transparent text-blue" href="{{ teaser.link|default('http://www.example.com') }}">{{ teaser.sentence|default(sentence) }}</a>
+    {% endblock %}
+  </figcaption>
+</figure>

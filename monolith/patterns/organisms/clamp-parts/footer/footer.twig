@@ -1,0 +1,34 @@
+<footer id="mainFooter" class="footer" role="contentinfo">
+  <div class="footer__wrapper font-serif">
+    <a class="btn btn-cyan overlap btn-uppercase btn-more" href="http://social.pomona.edu/">Social Media Hub</a>
+    <div class="footer__columns">
+      <div class="footer__col footer__col--a">
+        {% block footer_a %}
+        {% include '@address' %}
+        {% include '@menu' with { items: contactNavigation.items|default() } %}
+        {% endblock %}
+      </div>
+      <div class="footer__col footer__col--b">
+        {% block footer_b %}
+        {% include '@menu' with { items: footerNavigation.items } %}
+        <div id="google_translate_element"></div>
+        <p>
+          Part of the<br />
+          <a class="btn btn-cyan btn-more" href="http://www.example.com">Claremont Colleges Consortium</a>
+        </p>
+        {% endblock %}
+      </div>
+      <div class="footer__col footer__col--c">
+        {% block footer_c %}
+        {% include '@testimonial' %}
+        {% endblock %}
+      </div>
+    </div>
+    <div class="footer__ribbon">
+      {% block footer_ribbon %}
+        {% include '@copyright' %}
+        {% include '@menu' with { items: legal.items } %}
+      {% endblock %}
+    </div>
+  </div>
+</footer>

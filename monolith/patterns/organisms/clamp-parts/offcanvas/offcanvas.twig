@@ -1,0 +1,5 @@
+<div class="offcanvas offcanvas-{{ direction|default('left') }}">
+  {% block offcanvas_menu %}
+    {% include '@menu' with { items: items, variant: 'menu--vertical' } %}
+  {% endblock offcanvas_menu %}
+</div>

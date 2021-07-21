@@ -1,0 +1,16 @@
+<h2>Colors</h2> 
+
+<div class="color-grid">
+  {% for i in colors %}
+    <div class="color-grid__swatch bg-{{ i.name }}">
+      <div class="color-grid__label">
+      <p class="leading-snug">
+        bg-{{ i.name }}<br />
+        text-{{ i.name }}<br />
+        border-{{ i.name }}<br />
+        {{i.value}}
+      </p>
+      </div>
+    </div>
+  {% endfor %}
+</div> 

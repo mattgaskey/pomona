@@ -1,0 +1,47 @@
+<table role="presentation" dir="rtl" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
+  <tbody>
+    <tr style="padding: 0; text-align: left; vertical-align: top;">
+      <th dir="ltr" valign="top" style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 100%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 15px; padding-right: 30px; text-align: left; width: 300px;">
+        <table role="presentation" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+          <tbody>
+            <tr style="padding: 0; text-align: left; vertical-align: top;">
+            <th style=" color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 100%; margin: 0; padding: 0; text-align: left;">
+              <a href="{{ link|default('http://www.example.com/') }}" style="margin: 0; color: #20438f; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 150%; margin: 0; padding: 0; text-align: left; text-decoration: none; border: none;">
+                {% block image %}
+                  <img style="-ms-interpolation-mode: bicubic; clear: both; display: block; outline: none; text-decoration: none; width: 100%; max-width: 300px; height: auto;" border="0" align="right" typeof="foaf:Image" src="https://dummyimage.com/294x165" width="294" height="165" alt="On Sagecast, a Conversation on Writing and Mentorship">									
+                {% endblock %}
+              </a>
+            </th>
+            <th style=" color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
+          </tbody>
+        </table>
+      </th>
+      <th dir="ltr" valign="top" style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 30px; padding-right: 15px; text-align: left; width: 390px;">
+        <table role="presentation" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+          <tbody>
+            <tr style="padding: 0; text-align: left; vertical-align: top;">
+              <th style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0; text-align: left;">
+                {% block title_link %}
+                  {% include '@title-with-link' %}
+                {% endblock %}
+                <table role="presentation" aria-hidden="true" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+                  <tbody>
+                    <tr style="padding: 0; text-align: left; vertical-align: top;">
+                      <td height="12px" style="-moz-hyphens: auto; -webkit-hyphens: auto;  border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 12px; font-weight: normal; hyphens: auto; line-height: 12px; margin: 0; mso-line-height-rule: exactly; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table> 
+                <p style="Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;">
+                  {% block description %}
+                    {{ paragraph }}
+                  {% endblock %}
+                </p>
+              </th>
+              <th style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
+            </tr>
+          </tbody>
+        </table>
+      </th>
+    </tr>
+  </tbody>
+</table>

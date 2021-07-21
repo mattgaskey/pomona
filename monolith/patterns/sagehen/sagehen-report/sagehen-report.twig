@@ -1,0 +1,97 @@
+<table class="body" role="presentation" style="Margin: 0; background: #f3f3f3 !important; border-collapse: collapse; border-spacing: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; height: 100%; line-height: 150%; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+	<tbody>
+		<tr style="padding: 0; text-align: left; vertical-align: top;">
+			<td class="float-center" align="center" valign="top" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0 auto; border-collapse: collapse !important; color: #0a0a0a; float: none; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: auto; line-height: 150%; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; word-wrap: break-word;">
+				<center data-parsed="" style="min-width: 780px; width: 100%;">
+
+					<table class="container float-center" role="presentation"
+						style="Margin: 0 auto; background: #fefefe; border-collapse: collapse; border-spacing: 0; float: none; margin: 0 auto; padding: 0; text-align: center; vertical-align: top; width: 780px;">
+						<tbody>
+							<tr style="padding: 0; text-align: left; vertical-align: top;">
+								<td
+									style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; hyphens: auto; line-height: 150%; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word;">
+
+									{% include '@sagehen-header' %}
+									
+									
+									{% block features %}
+										{% include '@sagehen-features' %}
+									{% endblock %}
+									{% include '@sagehen-spacer' with { height: '14px' } only %}
+									{% block headlines %}
+										{% include '@sagehen-headlines' %}
+									{% endblock %}
+
+									<table class="row" role="presentation" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
+										<tbody>
+											<tr style="padding: 0; text-align: left; vertical-align: top;">
+												<th class="small-12 large-7 columns first" valign="top" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 30px; padding-right: 15px; text-align: left; width: 390px;">
+													<table role="presentation" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+														<tbody>
+															<tr style="padding: 0; text-align: left; vertical-align: top;">
+																<th style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0; text-align: left;">
+																	{% include '@sagehen-section-head' with { title: "Accomplishments" } only %}
+																	{% block accomplishments %}
+																	<div class="paragraphs-items paragraphs-items-field-accomplishments paragraphs-items-field-accomplishments-full paragraphs-items-full">
+																		{% for i in 0 .. 3 %}
+																			{% include '@long-text' %}
+																			{% include '@sagehen-spacer' with { height: '12px' } %}
+																		{% endfor %}
+																	</div>
+																	{% endblock %}
+																	{% include '@sagehen-more' with { title:"Faculty & Staff Accomplishments" } %}
+																	{% include '@sagehen-spacer' with { height: '14px' } %}
+																</th>
+																<th class="expander" style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;">
+																</th>
+															</tr>
+														</tbody>
+													</table>
+												</th>
+												<th class="small-12 large-5 columns last" valign="top" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 15px; padding-right: 30px; text-align: left; width: 300px;">
+													<table role="presentation" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+														<tbody>
+															<tr style="padding: 0; text-align: left; vertical-align: top;">
+																<th style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0; text-align: left;">
+																	{% include '@sagehen-section-head' with { title: "Events" } only %}
+																	{% block events %}                
+																	<div class="paragraphs-items paragraphs-items-field-events paragraphs-items-field-events-full paragraphs-items-full">
+																		{% for i in 0..5 %}
+																			{% include '@title-with-link' %}
+																			{% include '@sagehen-spacer' with { height: '12px' } %}
+																		{% endfor %}
+																	</div>
+																	{% endblock %}
+																	{% include '@sagehen-more' with { title:"Calendar" } %}
+																	{% include '@sagehen-spacer' with { height:"30px" } %}
+																	{% include '@sagehen-section-head' with { title: "Athletics" } only %}
+																	{% block athletics %}
+																	<div class="paragraphs-items paragraphs-items-field-titles-and-links paragraphs-items-field-titles-and-links-full paragraphs-items-full">
+																		{% for i in 0..3 %}
+																			{% include '@title-with-link' %}
+																			{% include '@sagehen-spacer' with { height: '12px' } %}
+																		{% endfor %}
+																		{% include '@sagehen-more' with { title:"Sagehen Athletics" } %}
+																	</div>
+																	{% endblock %}
+																	{% include '@sagehen-spacer' with { height: '14px' } %}
+																</th>
+																<th class="expander" style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
+															</tr>
+														</tbody>
+													</table>
+												</th>
+											</tr>
+										</tbody>
+									</table>
+
+									{% include '@sagehen-footer' %}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</center>
+			</td>
+		</tr>
+	</tbody>
+</table>

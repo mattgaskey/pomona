@@ -1,0 +1,196 @@
+main {
+  form {
+    label {
+      @apply font-bold text-brown-300 block mb-5;
+
+      &.form-required {
+        &::after {
+          content: '*';
+          @apply text-red;
+        }
+      }
+    }
+    [type=text],
+    [type=password],
+    [type=number],
+    [type=date],
+    [type=time] {
+      @apply p-15 leading-none border-gray-500 border-1;
+    }
+    select {
+      @apply inline-block p-15 pr-30 appearance-none bg-white border-1 border-gray-500 rounded-none shadow leading-tight;
+    }
+    textarea {
+      @apply p-15 leading-normal border-gray-500 border-1;
+    }
+    [type=submit] {
+      @apply text-white uppercase text-base font-normal bg-lavender p-10 font-sans leading-none inline-block whitespace-no-wrap;
+      cursor: pointer;
+    
+      &:hover {
+        @apply bg-lavender-100 border-lavender-100;
+      }      
+    }
+    .description {
+      @apply text-sm text-gray-800 mt-5;
+    }
+    .form-item {
+      @apply mb-15;
+    }
+  }
+
+  .people-directory-page {
+    form {
+      button {
+        &[type=submit] {
+          background-image: none;
+          @apply bg-green text-white h-30 w-30 mt-4;
+          &:hover {
+            @apply bg-green-300;
+          }
+          &:after {
+            @apply text-white;
+            margin-right: -2px;
+          }
+        }
+      }
+    }
+    .letter {
+      h2 {
+        @apply relative;
+        flex: 0 0 100%;
+        flex-wrap: wrap;
+        &:before {
+          content: '';
+          @apply block bg-orange w-50 h-50 absolute left-0;
+          top: 3px;
+          z-index: -15;
+        }
+      }
+    }
+  }
+
+  .access-denied {
+    form {
+      [type=text],
+      [type=password] {
+        width: 300px;
+      }
+    }
+  }
+
+  .field-group-fieldset {
+    > legend {
+      @apply text-xl font-bold text-brown-300 block mb-5 border-b-1 border-gray-800 mb-10;
+    }
+  }
+
+  fieldset.form-item {
+    > legend {
+      @apply font-bold text-brown-300 block mb-5;
+    }
+    
+    label {
+      @apply text-black inline-block mr-5;
+    }
+  }
+
+  [type="checkbox"] + label,
+  [type="radio"] + label {
+    @apply inline-block ml-5;
+    &:not([class]) {
+      @apply text-black;
+    }
+  }
+
+}
+
+.saml-login-cancel {
+  @apply text-blue border-b-2 border-brown-100 text-lg cursor-pointer;
+  &:hover {
+    @apply border-transparent;
+  }
+}
+
+.exposed-form {
+  &__keys {
+    height: 40px;
+    .exposed-form {
+      &__input {
+        width: 253px;
+        .form-item {
+          @apply m-0;
+        }
+        input {
+          @apply w-full;
+          height: 27px;
+          padding: 14px;
+        }
+      }
+      &__button {
+        input {
+          width: 30px;
+          height: 30px;
+          background: url('../images/search-icon.png') no-repeat 57% 7px;
+          background-color: #96d837;
+          border: #96d837;
+          &:hover {
+            background-color: #96d837;
+            border: #96d837;
+            opacity: 80%;
+          }
+        }
+      }
+    }
+  }
+  &__category {
+    .accordion {
+      &__header {
+        height: 34px;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin-bottom: 0 !important;
+        font-size: 16px !important;
+        @apply font-sans tracking-wider leading-none;
+        &::after {
+          @apply text-sm;
+        }
+      }
+    }
+    .form-item {
+      label {
+        @apply text-xl font-normal pl-3;
+        display: contents;
+        &::before {
+          content: '';
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+  &__letter {
+    ul {
+      @apply grid;
+      grid-template-columns: repeat(6, 1fr);
+      column-gap: 5px;
+      row-gap: 5px;
+      li {
+        @apply font-sansblack;
+        a {
+          @apply block p-5 text-center;
+          &:hover {
+            @apply bg-green text-white;
+          }
+          &.bef-link--selected {
+            @apply bg-green text-white;
+          }
+        }
+        span {
+          @apply block p-5 text-center text-gray;
+        }
+      }
+    }
+  }
+}

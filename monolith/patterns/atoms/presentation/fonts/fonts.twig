@@ -1,0 +1,10 @@
+<div class="{{ family }}">
+  {% for size in sizes %}
+  <h1 class="font-sans text-6xl">.{{ size }}</h1>
+  <p class="{{ size }}">The quick onyx goblin jumps over the lazy dwarf.</p>
+  <p class="font-bold {{ size }}">The quick onyx goblin jumps over the lazy dwarf.</p>
+  <p class="italic {{ size }}">The quick onyx goblin jumps over the lazy dwarf.</p>
+  <p class="font-bold italic {{ size }}">The quick onyx goblin jumps over the lazy dwarf.</p>
+  <hr />
+  {% endfor %}
+</div>

@@ -1,0 +1,25 @@
+{% embed '@with-sidebar' with { major: '3/4', minor: '1/4' } %}
+  {% block with_sidebar_main %}
+    <h2 class="italic text-orange font-serif font-bold text-3xl mb-20">Education</h2>
+    <div class="editorial editorial-main">
+      <p>Magistère<br >
+      Université de Paris IV, Sorbonne</p>
+
+      <p>Ph.D.<br />
+      University of California, Davis</p>
+    </div>
+  {% endblock %}
+  {% block with_sidebar_aside %}
+
+    <div class="editorial editorial-main bg-white p-20 border-t-6 border-offwhite">
+      <h3 class="font-sans uppercase text-lg mb-20">Recent Courses Taught</h3>
+      <ul class="bullets bullets-blue">
+        <li>Intro to French Lit Analysis</li>
+        <li>Le Fantastique</li>
+        <li>Philosophes, Paradoxes of Nature</li>
+        <li>Topics in Thought & Cognition</li>
+        <li>Lit, Cinema & the Cognitive Sciences</li>
+      </ul>
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,8 @@
+context:
+  pages:
+    - Lorem
+    - Ipsum
+    - Dolor
+    - Sit
+  current:
+    - Amet

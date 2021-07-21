@@ -1,0 +1,7 @@
+<div class="list-of-items border-t-6 border-green bg-gray-100 p-25">
+{% block items %}
+  {% for item in items  %}
+    {% include '@item' %}
+  {% endfor %}
+{% endblock %}
+</div>

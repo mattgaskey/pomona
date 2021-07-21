@@ -1,0 +1,7 @@
+name: 'NewCity Customizations'
+type: module
+description: 'Admin customizations, plugins, and extensions'
+core: 8.x
+package: 'NewCity'
+dependencies:
+  - paragraphs:paragraphs

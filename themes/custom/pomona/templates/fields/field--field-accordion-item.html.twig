@@ -1,0 +1,10 @@
+{{ attach_library('pomona/accordion') }}
+<div {{ content_attributes }}>
+{% embed '@fractal/accordion.twig' %}
+  {% block accordion_panes %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}
+</div>

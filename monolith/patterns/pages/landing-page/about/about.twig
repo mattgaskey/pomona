@@ -1,0 +1,14 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+{% include '@content-header' with { pages: [], title: 'About' } %}
+<div class="c-container">
+  {% embed '@with-sidebar' %}
+    {% block with_sidebar_main %}
+      {% include '@slideshow' with { variant: 'top', pattern: '@top-of-content' } %}
+      {% include '@editorial' %}
+    {% endblock %}
+  {% endembed %}
+</div>
+
+{% endblock %}
+{% endembed %}

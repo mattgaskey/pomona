@@ -1,0 +1,56 @@
+//sass-lint:disable no-ids
+
+.sr-only.focusable {
+  display: block;
+  color: c(white1);
+
+  &:link,
+  &:visited {
+    color: c(white1);
+  }
+
+  &:focus,
+  &:active {
+    display: block;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    background-color: c(blue1);
+    overflow: visible;
+    z-index: 9999;
+    clip: initial;
+  }
+}
+
+#page {
+
+  
+  @media (min-width: $desktop) {
+    min-height: calc(100vh - 8rem);
+  }
+
+  // The masthead isn't fixed when a toolbar is present,
+  // so get rid of the padding in that case.
+  @at-root .toolbar-horizontal #{&} {
+    padding-top: 0;
+  }
+}
+
+$background-tint-start: rgba(229, 229, 229, 1);
+$background-tint-end: rgba(229, 229, 229, 0);
+$hash-color-start: rgba(0, 0, 0, 1);
+$hash-color-end: rgba(0, 0, 0, 0);
+
+
+#main-content {
+  flex: 1 1 100%;
+}
+
+#mainFooter {
+  flex: 0 1 auto;
+}
+
+body.not-logged-in #skip-link {
+  @apply fixed;
+}

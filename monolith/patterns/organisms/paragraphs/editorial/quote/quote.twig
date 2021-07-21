@@ -1,0 +1,7 @@
+<div class="quote text-xl">
+  {% if img %}
+  <img class="float-right ml-20 mb-20" src="{{ img }}" alt="FPO">
+  {% endif %}
+  <cite class="quote__name uppercase font-sans not-italic">{{ cite|default('John Smith, 1963') }}</cite>
+  <div class="quote__quote bg-quote border-t-2 pt-25 border-gray-500 font-serif">{{ quote|default('Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium') }}</div>
+</div>

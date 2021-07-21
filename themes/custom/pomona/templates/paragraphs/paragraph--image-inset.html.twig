@@ -1,0 +1,21 @@
+{#
+  The "has_lightbox" property below is added in a paragraph 
+  preprocessor in the theme's paragraph.inc
+#}
+{% embed '@fractal/figure.twig' %}
+  {% block figure_media %}
+    <div class="relative">
+      {% if has_lightbox %}
+      {% set image_url = file_url(content.field_media[0]['#media'].field_media_image.entity.uri.value) %}
+      <a href="{{ image_url }}" class="lightbox-trigger lightbox-image">{{ content.field_media }}</a>
+      <a href="{{ image_url }}" class="lightbox-trigger lightbox-icon text-3xl leading-none p-10 text-yellow bg-cyan block absolute bottom-0 left-0 opacity-75 hover:opacity-100" ><span class="fas fa-expand-alt"></span><span class="sr-only"> Open Lightbox </span></a>
+      {% else %}
+      {{ content.field_media }}
+      {% endif %}
+    </div>
+  {% endblock %}
+  {% block figure_caption %}
+    {{ content.field_media_caption }}
+    {{ content.field_link }}
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,18 @@
+collated: true
+variants:
+  - name: green
+    context:
+      color: green
+      morebutton: All the things
+  - name: blue
+    context:
+      color: blue
+  - name: lavender
+    context:
+      color: lavender
+      morebutton: All the things
+      morebuttonstyles: btn-small btn-more btn-uppercase btn-blue
+  - name: cyan
+    context:
+      color: cyan
+

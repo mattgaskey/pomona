@@ -1,0 +1,13 @@
+{% set show_wrapper = content.field_link|children or content.field_title|children %}
+
+{{ content.field_link }}
+<div class="grid-of-items {% if show_wrapper %}border-t-6{% endif %} border-{{ raw_accent_color|default('green') }} bg-pttrn-lt-grey p-25 pt-0 mt-50">
+  <div class="px-20 pb-20 lg:px-40 lg:pb-40 relative">
+    {% if show_wrapper %}
+    <h2 class="overlap font-serif leading-none inline-block px-15 py-10 text-4xl text-white bg-{{ raw_accent_color|default('green') }}">{{ content.field_title|children }}</h2>
+    {% endif %}
+  </div>
+  <div class="md:flex md:flex-wrap md:items-stretch md:space-between bg-transparent md:-m-10">
+    {{ content.field_grid_items }}
+  </div>
+</div>

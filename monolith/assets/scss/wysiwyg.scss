@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+
+@import 'mixins/mixins';
+@import 'includes/inc';
+
+@import '../../patterns/atoms/links-and-buttons/a/a';
+@import '../../patterns/atoms/links-and-buttons/button/button';
+
+body {
+  @apply font-serif;
+}
+
+h2 {
+  @apply text-4xl leading-normal;
+}
+
+h3 {
+  @apply text-3xl leading-normal text-orange;
+}
+
+h4 {
+  @apply text-2xl leading-normal font-sansblack font-black;
+}
+
+h5 {
+  @apply text-2xl leading-normal font-sans font-bold;
+}
+
+h6 {
+  @apply text-xl leading-normal font-bold;
+}
+
+.text-brown {
+  @apply font-sans;
+}
+
+a:not(.btn) {
+  @apply ln;
+}
+
+p {
+  @apply mb-10;
+
+  &:last-child {
+    @apply mb-0;
+  }
+
+  li {
+    @apply mb-10;
+  }
+}
+
+ul,
+ol {
+  @apply mb-40;
+
+  &:last-child {
+    @apply mb-0;
+  }
+
+  li {
+    @apply mb-10;
+  }
+}
+
+ul {
+  @include imageBullets('blue');
+  ul {
+    @include imageBullets('lavender');
+    ul {
+      @include imageBullets('blue-hollow');
+      ul {
+        @include imageBullets('lavender-hollow');
+      }
+    }
+  }
+}
+
+.two-col {
+  columns: 2;
+}
+
+.three-col {
+  columns: 3;
+}
+
+.four-col {
+  columns: 4;
+}
+
+@tailwind utilities;

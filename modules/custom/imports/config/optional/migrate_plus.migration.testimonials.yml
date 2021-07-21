@@ -1,0 +1,53 @@
+id: testimonials
+label: Testimonials
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/testimonials-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      QUOTE: 'Quote'
+    3:
+      POSTED: 'Post date'
+    4:
+      UPDATED: 'Updated'
+    5:
+      PUBLISHED: 'Published'
+process:
+  title: TITLE
+  body/value: 
+    plugin: str_replace
+    source: QUOTE
+    search: '"'
+    replace: ''
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  created: 
+  - 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+  -
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  status: PUBLISHED
+  field_legacy_nid: NID
+destination:
+  plugin: entity:node
+  default_bundle: testimonial

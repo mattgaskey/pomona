@@ -1,0 +1,9 @@
+default: Simple
+variants:
+  - name: Caption
+    context:
+      caption: <p>This is a caption for the image above.</p>
+  - name: With Link
+    context:
+      caption: <p>This is a caption for the image above.</p>
+      morelink: "More"

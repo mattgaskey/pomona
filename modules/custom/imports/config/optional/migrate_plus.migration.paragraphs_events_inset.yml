@@ -1,0 +1,79 @@
+id: paragraphs_events_inset
+label: Events Inset
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_events_inset_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      INSETALIGN: 'inset_alignment'
+    3:
+      INSETPLACE: 'paragraph_placement'
+    4:
+      MORELINK: 'more_link_url'
+    5:
+      TITLE: 'title'
+    6:
+      NUMPOSTS: 'number_of_posts'
+    7:
+      TERMCAT: 'term_category'
+    8:
+      TITLECOLOR: 'title_color'
+    9:
+      MORELINKTITLE: 'more_link_title'
+process:
+  field_accent_color/value: 
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TITLECOLOR
+    -
+      plugin: static_map
+      map:
+        Green: green
+        Yellow: yellow
+        Purple: lavender
+        Red: red
+        Blue: blue
+  field_media_alignment/value: INSETALIGN
+  field_media_paragraph_placement/value: INSETPLACE
+  field_link/uri: 
+    plugin: str_replace
+    source: MORELINK
+    search: d7-pomona.lndo.site
+    replace: www.pomona.edu
+  field_link/title: MORELINKTITLE
+  field_num_posts: NUMPOSTS
+  field_title: TITLE
+  field_inset_title_color: TITLECOLOR
+  field_term_category:
+  -
+    plugin: explode
+    source: TERMCAT
+    delimiter: '|'
+  - 
+    plugin: entity_lookup_multi
+    value_key: name
+    bundle_key: vid
+    bundles: 
+    - areas_of_expertise
+    - article_categories
+    - blogs
+    - event_audience
+    - event_types
+    - group
+    - topic
+    entity_type: taxonomy_term
+    ignore_case: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: events_inset

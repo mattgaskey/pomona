@@ -1,0 +1,51 @@
+id: paragraphs_twitter_inset
+label: Twitter Inset
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_twitter_inset_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      INSETALIGN: 'inset_alignment'
+    3:
+      TITLE: 'title'
+    4:
+      NUMTWEETS: 'number_of_tweets'
+    5:
+      TITLECOLOR: 'title_color'
+    6:
+      TWITTERUN: 'twitter_username'
+    7:
+      TWITTERID: 'twitter_widget_id'
+    8:
+      INSETPLACE: 'inset_paragraph_placement'
+process:
+  field_accent_color/key: 
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TITLECOLOR
+    -
+      plugin: static_map
+      map:
+        Green: green
+        Yellow: yellow
+        Purple: lavender
+        Red: red
+        Blue: blue
+  field_media_alignment/value: INSETALIGN
+  field_media_paragraph_placement/value: INSETPLACE
+  field_title: TITLE
+  field_twitter: TWITTERUN
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: twitter_inset

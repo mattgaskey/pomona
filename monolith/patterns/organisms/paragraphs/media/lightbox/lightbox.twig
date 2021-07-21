@@ -1,0 +1,8 @@
+{% embed '@figure' with { figure_classes: 'relative' } %}
+  {% block figure_media %}
+    <div class="relative">
+      {% include '@picture' %}
+      <a href="https://magicyeti.us/2600/1300/*/gray" class="lightbox-trigger text-3xl leading-none p-10 text-yellow bg-cyan block absolute bottom-0 left-0 opacity-75 hover:opacity-100" ><span class="fas fa-expand-alt"></span><span class="sr-only"> Open Lightbox </span></a>
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,12 @@
+{% embed '@fractal/detail-slide.twig' %}
+  {% block slide_media %}
+    {{ content.field_media }}
+  {% endblock %}
+  {% block slide_caption %}
+    {% embed '@fractal/button-feature.twig' with { buttons: buttons, button_feature_headline : caption_title } %}  
+      {% block button_feature_desc %}
+        {{ content.field_caption }}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

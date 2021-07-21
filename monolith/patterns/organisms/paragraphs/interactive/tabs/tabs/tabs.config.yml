@@ -1,0 +1,12 @@
+context:
+  countTabs: 5
+variants:
+  - name: doubleTabs
+    context:
+      countTabs: 10
+  - name: hugeTabs
+    context:
+      countTabs: 60
+  - name: shortTabs
+    context:
+      countTabs: 3

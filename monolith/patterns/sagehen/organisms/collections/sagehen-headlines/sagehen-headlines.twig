@@ -1,0 +1,26 @@
+<table class="row" role="presentation" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
+	<tbody>
+		<tr style="padding: 0; text-align: left; vertical-align: top;">
+			<th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 30px; padding-right: 30px; text-align: left; width: 720px;">
+				<table role="presentation" style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%;">
+					<tbody>
+						<tr style="padding: 0; text-align: left; vertical-align: top;">
+							<th style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0; padding: 0; text-align: left;">
+								<div class="paragraphs-items paragraphs-items-field-headlines-without-images paragraphs-items-field-headlines-without-images-full paragraphs-items-full">
+                  {% block headlines %}
+                    {% for i in 0..10 %}
+                    <div>
+                      {% include '@title-with-link' %}
+                      {% include '@sagehen-spacer' with { height: '12px' } only %}
+                    </div>
+                    {% endfor %}
+                  {% endblock %}
+								</div>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</th>
+		</tr>
+	</tbody>
+</table>

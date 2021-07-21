@@ -1,0 +1,7 @@
+{% set office = content.field_office[0]['#plain_text'] %}
+{% set type = content.field_staff_listing_type[0]['#markup'] %}
+{% if type == 'With Photos' %}
+{{ drupal_view('staff_listing', 'block_1', office) }}
+{% else %}
+{{ drupal_view('staff_listing', 'block_2', office) }}
+{% endif %}

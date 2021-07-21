@@ -1,0 +1,18 @@
+default: YouTube Direct
+context:
+  link: https://www.youtube.com/watch?v=Zz6oob45faU
+  text: Youtube Video demo, direct link (does not work in iframe)
+variants:
+  - name: YouTube Lightbox
+    context:
+      text: Youtube Video demo, lightbox
+      player_classes: video-trigger
+  # name: Soundcloud Direct
+  #  context:
+  #    text: Soundcloud audio, direct link
+  #    link: https://soundcloud.com/wavesourcemusic/ethereal-adventure-ambient-music-healing-432hz-sleep-yoga-meditation-and-study
+  # name: Soundcloud Lightbox
+  # context:
+  #   text: Soundcloud audio, lightbox
+  #   link: https://soundcloud.com/wavesourcemusic/ethereal-adventure-ambient-music-healing-432hz-sleep-yoga-meditation-and-study
+  #   player_classes: video-trigger

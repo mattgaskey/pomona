@@ -1,0 +1,3 @@
+{% for item in items %}
+  {% include '@fractal/article-meta.twig' with { label: "#{label}: ", content: item.content } %}
+{% endfor %}

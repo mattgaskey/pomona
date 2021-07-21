@@ -1,0 +1,6 @@
+collated: true
+variants:
+  - name: inverse
+    context: 
+      variant: logo-horizontal--inverse
+

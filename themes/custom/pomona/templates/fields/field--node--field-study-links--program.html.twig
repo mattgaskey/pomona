@@ -1,0 +1,7 @@
+{% if items %}
+  <div class="lg:w-1/4 lg:flex-none">
+    {% for item in items %}
+        {{ item.content|injectclass("btn btn-lavender btn-more btn-uppercase btn-block mb-10") }}
+    {% endfor %}
+  </div>
+{% endif %}

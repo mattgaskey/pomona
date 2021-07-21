@@ -1,0 +1,47 @@
+id: block_sidebar_contact
+label: Sidebar Contact Block
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/block_sidebar_contact_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'block_id'
+    1:
+      LABEL: 'label'
+    2:
+      CONTACT: 'contact'
+    3:
+      TITLE: 'title'
+process:
+  info: LABEL
+  field_title: TITLE
+  field_primary_contact:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CONTACT
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        target_id:
+          -
+            plugin: migration_lookup
+            migration: 
+              - people
+              - offices
+            no_stub: true
+            source: value
+destination:
+  plugin: entity:block_content
+  default_bundle: sidebar_contact

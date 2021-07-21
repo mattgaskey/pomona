@@ -1,0 +1,6 @@
+<div class="takeover flex flex-col justify-center">
+  <div class="logo bg-blue text-gray-800 mx-auto mb-4 border-b-4 border-cyan">{% include "@fractal/logo-horizontal.twig" with { variant: "takeover" } %}</div>
+  <h1 class="banner w-full bg-red text-yellow font-sansblack text-7xl p-10 text-center uppercase">attention: campus alert</h1>
+  <div class="content font-sans c-container-sm my-20">{{ content }}</div>
+  {% include "@fractal/copyright.twig" with { variant: 'font-serif text-xl mx-auto my-20' } %}
+</div>

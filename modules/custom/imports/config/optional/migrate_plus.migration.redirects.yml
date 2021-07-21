@@ -1,0 +1,90 @@
+id: redirects
+label: Redirects
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/redirect-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      REDIRECT: 'Redirect'
+    3:
+      AZLISTINGTITLE: 'A-Z Listing Title'
+    4:
+      AZTAGS: 'A-Z Tags'
+    5:
+      DIRECTORY: 'Directory'
+    6:
+      ALPHABETICALLETTERLISTING: 'Alphabetical Letter Listing'
+    7:
+      PUBLISHED: 'Published'
+    8:
+      POSTED: 'Post date'
+    9:
+      UPDATED: 'Updated'
+    10:
+      PATH: 'Path'
+process:
+  title: TITLE
+  'field_link/uri': 
+    - plugin: str_replace
+      source: REDIRECT
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  'field_glossary_listing_title': AZLISTINGTITLE
+  'field_directory': 
+  -
+    plugin: explode
+    source: DIRECTORY
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: a_z_directory
+    entity_type: taxonomy_term
+    ignore_case: true
+  status: PUBLISHED
+  field_glossary_tags:
+  -
+    plugin: explode
+    source: AZTAGS
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: a_z_tags
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_glossary: ALPHABETICALLETTERLISTING
+  created:
+  - 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+  - 
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  field_legacy_nid: NID
+  path/pathauto: 
+   plugin: default_value
+   default_value: 0 # Disable pathauto
+  path/alias: PATH
+destination:
+  plugin: entity:node
+  default_bundle: redirect

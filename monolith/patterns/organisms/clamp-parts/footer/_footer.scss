@@ -1,0 +1,238 @@
+.footer {
+  @include color-scheme(c(blue1));
+  position: relative;
+  border-top: rem-calc(5px) c(cyan1) solid;
+  background: url('../images/bkg-bttm-texture-right2.jpg') no-repeat bottom right, c(blue1) url('../images/bkg-bttm-texture-left.jpg') no-repeat bottom left;
+  font-size: rem-calc(16px);
+
+  a:not(.btn) {
+    @apply ln ln-white;
+    @apply border-b-2 text-white border-cyan;
+    &:hover {
+      @apply border-transparent;
+    }
+  }
+
+  @media (max-width: $tablet) {
+    .testimonial {
+      .meta {
+        display: block;
+        margin-top: 0;
+      }
+
+      .content-button {
+        margin: 1rem auto;
+      }
+    }
+  }
+}
+
+.footer__wrapper {
+  position: relative;
+  max-width: $width-page;
+  margin: 0 auto;
+
+  @media (min-width: $tablet) {
+    text-align: left;
+  }
+
+  @media (min-width: $desktop) {
+    padding: 0;
+    text-align: left;
+  }
+
+  > a.btn-sm {
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: 1rem;
+    transform: translateY(-50%);
+
+    @media (min-width: $desktop) {
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.footer__columns {
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: $desktop) {
+    flex-wrap: nowrap;
+  }
+}
+
+.footer__col {
+  margin-bottom: rem-calc(20);
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+
+  @media (min-width: $tablet) {
+    display: block;
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+
+  @media (min-width: $desktop) {
+    margin-top: rem-calc(36px);
+    padding: 0 rem-calc(16px) 0 rem-calc(36px);
+  }
+
+  // Drupal injects contextual links as uls; make sure we don't touch those
+  ul:not(.contextual-links) { //sass-lint:disable-line force-pseudo-nesting
+    @include list-vertical;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem -1rem;
+
+    @media (min-width: $tablet) {
+      display: block;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    li {
+      flex: 1 1 calc(50% - 2rem);
+      margin: .6rem 1rem;
+      text-align: left;
+
+      @media (min-width: $tablet) {
+        margin: 0 1rem .6rem;
+      }
+    }
+  }
+
+  &.footer__col--a {
+    border-bottom: 2px solid c(blue2);
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      border-right: 2px solid c(blue2);
+      border-bottom-width: 0;
+      text-align: left;
+      padding-top: 15px;
+    }
+
+    @media (min-width: $desktop) {
+      width: 17%;
+      max-width: 18%;
+      padding-left: 0;
+      padding-top: 15px;
+    }
+  }
+
+  &.footer__col--b {
+    border-bottom: 2px solid c(blue2);
+
+    ul {
+      columns: 2;
+    }
+
+    @media (min-width: $tablet) {
+      max-width: 100%;
+      border-bottom-width: 0;
+    }
+
+    @media (min-width: $desktop) {
+      width: 30%;
+      max-width: 30%;
+      padding-right: rem-calc(36);
+      border-right: 2px solid c(blue2);
+    }
+  }
+
+  &.footer__col--c {
+    @media (min-width: $tablet) and (max-width: $desktop) {
+      margin-right: 1rem;
+      margin-left: 1rem;
+      padding-top: 1rem;
+      padding-right: 0;
+      padding-left: 0;
+      border-top: 2px solid c(blue2);
+    }
+
+    @media (min-width: $tablet) {
+      max-width: 100%;
+      border-right-width: 0;
+
+      .testimonial {
+        text-align: left;
+      }
+    }
+
+    @media (min-width: $desktop) {
+      flex: 1 1 calc(50% + #{rem-calc(36)});
+      width: calc(50% + #{rem-calc(36)});
+      padding-right: 0;
+      padding-left: rem-calc(36);
+    }
+  }
+
+}
+
+.footer__ribbon {
+  padding: 0 2rem 1rem;
+  text-align: center;
+
+  @media (min-width: $tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem 1rem;
+  }
+
+  @media (min-width: $desktop) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  ul {
+    @include list-piped;
+    justify-content: center;
+
+    @media (min-width: $tablet) {
+      justify-content: flex-end;
+    }
+  }
+}
+
+// This is not visible in the pattern library but is present in Drupal
+.gtranslate {
+  margin: 1rem 0 2rem;
+}
+
+#google_translate_element {
+  @apply mb-20;
+
+  .goog-te-gadget {
+    @apply font-bold text-white;
+  }
+
+  .goog-te-combo {
+    -webkit-appearance: none;
+    @apply border-5 border-green inline-block rounded-none p-10 text-base text-black mb-10 bg-gray-100;
+    background-image: url(../images/select_down.png); 
+    background-repeat: no-repeat;
+    background-position: right center;
+    border-radius: 0 !important;
+    line-height: 1.3em;
+  }
+
+  a {
+    @apply border-b-2 border-cyan;
+
+    &:hover {
+      @apply border-brown;
+    }
+  }
+  img {
+    display: inline;
+  }
+}

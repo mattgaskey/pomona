@@ -1,0 +1,44 @@
+<header id="header" class="main-header bg-white border-b-6 border-solid border-blue" role="banner">
+  {% if is_render_array(mainNavigation) %}
+    {{ mainNavigation }}
+  {% else %}
+  <nav id="main-menu" class="main-navigation flex items-center justify-between px-4" aria-label="desktop main navigation">
+    <div class="main-navigation__offcanvas-ctrl flex-1 lg:hidden">
+      <button id="offcanvas-btn-left" data-toggle-offcanvas="#js-hiraku-offcanvas-1" class="hiraku-open-btn btn btn-ghost btn-ghost--blue"><span class="fa fa-bars"></span> Menu</button>
+    </div>
+    {% include '@menu' with { items: mainNavigation.items } %}
+    <div class="main-navigation__offcanvas-ctrl flex-1 text-right lg:hidden">
+      <button id="offcanvas-btn-right" data-toggle-offcanvas="#js-hiraku-offcanvas-2" class="hiraku-open-btn btn btn-ghost btn-ghost--blue"><span class="fa fa-plus text-cyan"></span> <span class="sr-only">Quicklinks</span> / <span class="sr-only">Search</span> <span class="fa fa-search text-grass"></span></button>
+    </div>
+  </nav>
+  {% endif %}
+
+  <div class="auxiliary-navigation mx-auto hidden lg:block">
+    {% embed '@collapsing-block' with { aria_label: 'searchbar-menu', variant: 'searchbar', label: 'Search Site', label_variant: 'sr-only' } %}
+      {% block collapsing_control %}
+        <button class="btn btn-sm btn-plus btn-no-label toggle" data-focus-on="#search-query" aria-expanded="false"><span>Search Site</span></button>
+      {% endblock %}
+      {% block collapsing_content %}
+        {% if is_render_array(searchbar_block) %}
+          {{ searchbar_block }}
+        {% else %}
+          {% include '@search-form' %}
+        {% endif %}
+      {% endblock %}      
+    {% endembed %}
+    {% embed '@collapsing-block' with { aria_label: 'quicklinks-menu', variant: 'quicklinks', label:'Quicklinks', label_variant: 'sr-only' } %}
+      {% block collapsing_control %}
+        <button class="btn btn-sm btn-plus btn-cyan btn-uppercase toggle" aria-expanded="false"><span>Quicklinks</span></button>
+      {% endblock %}
+      {% block collapsing_content %}
+        {% if is_render_array(quicklinks_block) %}
+          {{ quicklinks_block }}
+        {% else %}
+          {% include '@menu' with { items: quicklinks.items } only %}
+          <h3>Pages For…</h3>
+          {% include '@menu' with { items: pagesFor.items } only %}
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+</header>

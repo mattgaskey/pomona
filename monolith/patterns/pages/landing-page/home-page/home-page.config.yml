@@ -1,0 +1,11 @@
+order: 0
+context:
+  teasers:
+    - headline: Spotlight
+      color: green-400
+    - headline: Featured Event
+      date: Jan 21, 2020
+      textColor: orange
+      color: orange-400
+    - headline: Featured News
+      color: lavender

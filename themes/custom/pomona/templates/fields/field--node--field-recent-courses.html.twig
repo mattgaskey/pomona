@@ -1,0 +1,6 @@
+<div class="editorial editorial-main bg-white p-20 border-t-6 border-offwhite mt-40">
+  <h3 class="font-sans uppercase text-lg mb-20">Recent Courses Taught</h3>
+{% for item in items %}
+  <div{{ item.attributes }}>{{ item.content }}</div>
+{% endfor %}
+</div>

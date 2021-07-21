@@ -1,0 +1,67 @@
+// Google CSE customizations
+.gsc-control-cse {
+  border: 0 !important;
+  padding-left: 0 !important;
+
+  .gsc-result-info,
+  .gsc-orderby,
+  .gsc-expansionArea,
+  .gs-bidi-start-align.gs-snippet {
+    @apply font-sans;
+  }
+
+  .gsc-orderby {
+    @apply text-lg;
+  }
+
+  .gsc-expansionArea {
+    .gsc-thumbnail-inside {
+      a.gs-title {
+        @apply text-lg text-blue border-b-2 border-brown-100;
+        &:hover {
+          @apply border-transparent;
+        }
+      }
+    }
+    .gsc-table-result {
+      @apply mt-10;
+    }
+  }
+
+  .gsc-cursor-box.gs-bidi-start-align {
+    .gsc-cursor-page {
+      @apply text-gray-800 border-b-2 border-brown-100 text-base;
+      &:hover {
+        @apply border-transparent;
+      }
+      &.gsc-cursor-current-page {
+        @apply text-black font-bold border-transparent;
+        &:hover {
+          text-decoration: none !important;
+        }
+      }
+    }
+  }
+
+  .gcsc-find-more-on-google {
+    @apply inline-block text-blue border-b-2 border-brown-100;
+    svg.gcsc-find-more-on-google-magnifier {
+      @apply inline-block mr-5;
+    }
+    span {
+      @apply mr-2;
+    }
+    &:hover {
+      @apply border-transparent;
+    }
+  }
+
+  .gcsc-find-more-on-google-branding {
+    a.gcsc-branding-clickable {
+      @apply border-b-2 border-brown-100;
+      &:hover {
+        @apply border-transparent;
+      }
+    }
+  }
+}

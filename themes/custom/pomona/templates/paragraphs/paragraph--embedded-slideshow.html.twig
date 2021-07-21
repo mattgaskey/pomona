@@ -1,0 +1,14 @@
+{% set has_sidebar = content.field_show_slideshow_sidebar|render|striptags|trim == 1 ? true : false %}
+{{ attach_library('pomona/slideshows') }}
+{% if has_sidebar %}
+  <div class="slideshow-with-sidebar self-stretch xl:flex">
+    <div class="bg-bttm-texture-left bg-cover sidebar p-10 lg:p-20 xl:w-1/4 bg-blue text-white">
+      {{ content.field_slideshow_sidebar_content }}
+    </div>
+    <div class="slideshow self-end xl:w-3/4">{{- content.field_paragraphs -}}</div>
+  </div>
+{% else %}
+<div{{ attributes }}>
+  {{ content.field_paragraphs }}
+</div>
+{% endif %}

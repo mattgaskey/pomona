@@ -1,0 +1,39 @@
+id: document
+label: Document
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/document_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - FID
+  column_names:
+    0:
+      FID: 'id'
+    1:
+      PATH: 'filepath'
+process:
+  source_filename:
+    plugin: str_replace
+    source: PATH
+    search: 'public://'
+    replace: ''
+  source_host:
+    plugin: default_value
+    default_value: 'https://www.pomona.edu/sites/default/files/'
+  source_path:
+    plugin: concat
+    source:
+      - '@source_host'
+      - '@source_filename'
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_path'
+      - PATH
+    file_exists: 'use existing'
+    move: false
+destination:
+  plugin: entity:file

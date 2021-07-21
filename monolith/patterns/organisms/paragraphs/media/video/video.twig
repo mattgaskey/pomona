@@ -1,0 +1,8 @@
+{% embed '@figure' with { figure_classes: 'relative' } %}
+  {% block figure_media %}
+    <div class="relative">
+      {% include '@picture' %}
+      <a href="https://www.youtube.com/watch?v=Zz6oob45faU" class="video-trigger inset-0 flex justify-center items-center text-red-900 text-7xl leading-none block absolute opacity-75 hover:opacity-100" ><span class="fab fa-youtube"></span><span class="sr-only"> Watch Video </span></a>
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,21 @@
+{% embed '@fractal/footer.twig' %}
+  {% block footer_a %}
+    {% include '@fractal/address.twig' %}
+    {{  page.footer_a }}
+  {% endblock %}
+  {% block footer_b %}
+    {{  page.footer_b }}
+    <div id="google_translate_element"></div>
+    <p>
+      Part of the<br />
+      <a class="btn btn-cyan btn-more" href="http://www.claremont.edu/">Claremont Colleges Consortium</a>
+    </p>
+  {% endblock %}
+  {% block footer_c %}
+    {{  page.footer_c }}
+  {% endblock %}
+  {% block footer_ribbon %}
+    {% include "@fractal/copyright.twig" %}
+    {{ drupal_menu('legal') }}
+  {% endblock %}
+{% endembed %}

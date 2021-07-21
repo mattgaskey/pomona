@@ -1,0 +1,24 @@
+context:
+  bkgs:
+  - admissions-block
+  - arts-intro-block
+  - bttm-texture-left
+  - bttm-texture-right
+  - bttm-texture-right2
+  - major-atom
+  - major-binary
+  - major-brain
+  - major-earth
+  - major-pi
+  - major-undergrad-research-beaker
+  - major-undergrad-research-book
+  - major-undergrad-research-brush
+  - major-undergrad-research-circle
+  - major-undergrad-research-mask
+  - major-undergrad-research-musicnote
+  - major-undergrad-research
+  - pattern-brwn
+  - pttrn-lt-grey
+  - simple-content-slide
+  - title-pattern
+

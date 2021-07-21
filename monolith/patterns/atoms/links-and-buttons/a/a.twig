@@ -1,0 +1,13 @@
+<div class="flex -mx-10">
+{% for font in ['sans','serif'] %}
+  <div class="px-10">
+{% for size in ['base','lg','xl','2xl','3xl','4xl'] %}
+{% for icon in ['', 'ln-more', 'ln-arrow'] %}
+<div class="p-10 text-{{ size }} font-{{ font }} bg-{{ backgroundColor|default('transparent') }}">
+  <a href="http://www.example.com" class="ln {{ icon }} {{variant}}">Click here</a>
+</div>
+{% endfor %}
+{% endfor %}
+  </div>
+{% endfor %}
+</div>

@@ -1,0 +1,42 @@
+context:
+  items:
+  - classes: md:border-t-6 md:border-gray-600 bg-white mb-25 
+    media_classes: border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-25 md:max-w-25 
+    description: true
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+  - classes: md:border-t-6 md:border-gray-600 bg-white mb-25
+    media_classes: border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-25 md:max-w-25 
+    description: true
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+  - classes: md:border-t-6 md:border-gray-600 bg-white mb-25
+    media_classes: border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-25 md:max-w-25 
+    description: true
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+  - classes: md:border-t-6 md:border-gray-600 bg-white mb-25
+    media_classes: border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-25 md:max-w-25 
+    description: true
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+  - classes: md:border-t-6 md:border-gray-600 bg-white mb-25
+    media_classes: border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-25 md:max-w-25 
+    description: true
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+  - classes: border-t-6 border-gray-600 bg-white
+    content_classes: p-25
+    media: false
+    description: true
+    link: false

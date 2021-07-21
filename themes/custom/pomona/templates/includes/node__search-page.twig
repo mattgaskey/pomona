@@ -1,0 +1,36 @@
+<div class="c-container">
+  <div class="font-serif text-xl" id="cse-search-terms">Results for <span class="font-bold" id="cse-search-term-text">&nbsp;</span></div>
+  <!-- nks added div -->
+  <gcse:searchresults-only newwindow="true" queryparametername="query"></gcse:searchresults-only>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+  function parseQueryFromUrl () {
+    var queryParamName = "query";
+    var search = window.location.search.substr(1);
+    var parts = search.split('&');
+    for (var i = 0; i < parts.length; i++) {
+      var keyvaluepair = parts[i].split('=');
+      if (decodeURIComponent(keyvaluepair[0]) == queryParamName) {
+        return decodeURIComponent(keyvaluepair[1].replace(/\+/g, ' '));
+      }
+    }
+    return '';
+  }
+  
+
+  var querySearch = jQuery.url.param("query"); //nks added variable
+  jQuery('#cse-search-term-text').text(querySearch); //nks added statement
+
+  (function() {
+    var cx = '016998130110691331936:f6bg4e4zxps';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+//]]>
+</script>

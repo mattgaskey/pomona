@@ -1,0 +1,9 @@
+<div class="grid-of-items overflow-hidden">
+  <div class="md:flex md:flex-wrap md:items-stretch md:space-between bg-gray-100 md:-m-10">
+    {% for item in items %}
+      <div class="mb-20 md:my-10 md:px-10 md:w-1/3 flex items-stretch">
+      {% include '@item' with {item: item} %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

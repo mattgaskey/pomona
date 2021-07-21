@@ -1,0 +1,8 @@
+{% if content.field_people[0] %}
+<div class="border-t-6 border-orange-400 mt-30 mb-75">
+  <h2 class="overlap bg-orange p-10 font-sans leading-none text-white inline-block text-3xl">{{ label }}</h2>
+  {{ content.field_people }}
+</div>
+{% elseif content.field_offices[0] %}
+{{ content.field_offices }}
+{% endif %}

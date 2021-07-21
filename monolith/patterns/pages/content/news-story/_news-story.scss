@@ -1,0 +1,39 @@
+.article {
+  img {
+    width: 100%;
+  }
+  .article__content {
+    p {
+      @apply mb-20;
+    }
+    h2 {
+      @apply text-4xl font-bold mb-15;
+    }
+    p:first-of-type {
+      &::first-letter {
+        @apply text-8xl font-bold text-blue float-left pr-5;
+        line-height: 0.83;
+      }
+    }
+    .inset {
+      p:first-of-type {
+        &::first-letter {
+          @apply float-none pr-0;
+          font-size: inherit;
+          line-height: inherit;
+          font-weight: inherit;
+          color: inherit;
+        }
+      }
+      p {
+        @apply mb-0;
+      }
+    }
+    
+  }
+  @screen md {
+    .inset--right {
+      margin-right: -15%;
+    }
+  }
+}

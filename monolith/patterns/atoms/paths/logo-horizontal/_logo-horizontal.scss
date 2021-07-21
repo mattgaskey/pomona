@@ -1,0 +1,42 @@
+.logo-horizontal {
+  display: block;
+  width: rem-calc(207px);
+  height: rem-calc(110px);
+
+  .shield {
+    fill: black;
+  }
+
+  .wordmark {
+    fill: black;
+  }
+  .column {
+    fill: white;
+  }
+
+  &.logo-horizontal--inverse {
+    background-color: black;
+
+    .shield,
+    .wordmark {
+      fill: white;
+    }
+
+    .column {
+      fill: black;
+    }
+  }
+
+  &.takeover {
+    background-color: #20438f;
+    .wordmark,
+    .column {
+      fill: #cfd2aa;
+    }
+
+    .shield {
+      fill: #20438f;
+    }
+  }
+}
+

@@ -1,0 +1,44 @@
+{% embed '@fractal/box.twig' with { box_classes: attributes.class|join(' ') } %}
+  {% block box_header %}
+  {% endblock %}
+  {% block box_content %}
+    {% embed "@fractal/content-footer.twig" %}
+      {% block content_footer_content %}
+        <div class="mb-20"><a href="/events" class="btn btn-uppercase btn-more btn-lavender">Event Calendar</a></div>
+        <div class="grid-of-items overflow-hidden hidden" id="arts-page-events">
+          <div class="md:flex md:-mr-25 md:flex-wrap md:items-stretch md:space-between">
+            {% for i in 0..2 %}
+              <div class="md:pr-25 md:w-1/2 lg:w-1/3 flex flex-col justify-stretch">
+                <div class="h-full bg-white event-teaser">
+                  {% embed "@fractal/front-teaser.twig" with { 
+                    teaser: { 
+                      color: 'gray',
+                      date: FALSE,
+                      link: '#',
+                      sentence: 'Loading...',
+                      border: '5'
+                    } 
+                  } %}
+                    {% block teaser_image %}
+                      <a href="#" class="block event-teaser__image"><img src="/sites/default/files/2020-10/blue__16x9.png" alt="Pomona placeholder image"></a>
+                    {% endblock %}
+                    {% block teaser_caption %}
+                      <div class="pb-30">
+                        <a class="text-xl border-b-1 border-{{ teaser.color }} hover:border-transparent text-blue event-teaser__link" href="{{ teaser.link }}">{{ teaser.sentence }}</a>
+                        <div class="pt-20 text-brown-300 font-sans text-base">
+                          <p class="event-date hidden"></p>
+                          <p class="event-time hidden"></p>
+                          <p class="event-more hidden">(view event for more dates)</p>
+                        </div>
+                      </div>
+                    {% endblock %}
+                  {% endembed %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,4 @@
+context:
+  aria_label: menu_label
+  menu_label: Menu Label
+  toggle_button: Collapsing Menu

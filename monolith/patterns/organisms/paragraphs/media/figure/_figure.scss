@@ -1,0 +1,12 @@
+figure {
+  img, picture {
+    @apply block h-auto mx-auto;
+    max-width: 100%;
+  }
+}
+
+.person {
+  img, picture {
+    @apply min-w-full;
+  }
+}

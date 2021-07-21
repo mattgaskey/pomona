@@ -1,0 +1,50 @@
+.collator {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px #ccc solid;
+  -webkit-box-shadow: #ccc 1px 3px 5px;
+          box-shadow: #ccc 1px 3px 5px; }
+
+.collator__label {
+  display: block;
+  margin: -1rem -1rem 1rem;
+  padding: .3em;
+  background-color: #35443f;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 12px; }
+
+.fractal-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
+
+.fractal-row > * {
+  margin-right: 2rem; }
+
+.placeholder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  padding: 2rem;
+  border: 1px #ccc solid;
+  background-color: #999;
+  color: #e9e9e9;
+  font-family: sans-serif;
+  font-weight: 300; }
+
+/*# sourceMappingURL=pattern-scaffolding.css.map */

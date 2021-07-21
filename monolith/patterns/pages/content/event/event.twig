@@ -1,0 +1,72 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+
+  {% include '@content-header' with { pages: ['News & Events','Events'], title: 'Underwater Basket-Weaving Seminar' } %}
+
+
+    <div class=c-container-lg mx-auto">
+      {% include '@picture' with {height: 734, width: 1300} %}
+    </div>
+
+  {% embed '@with-sidebar' with {container: 'c-container-sm', variant: 'border-t-4 border-green-400 bg-white relative lg:-mt-100 p-40'} %}
+    {% block with_sidebar_main %}
+      {% include '@editorial' with { variant: '' } %}
+      <div class="border-t-2 text-brown-300 leading-relaxed pt-30 mt-30 font-sans">
+        <h3>Event Contact</h3>
+        <p>
+          <a class="ln" href="http://www.example.com">Tricia Avant</a><br />
+          <a class="ln" href="tel:5555555555">(555) 555-5555</a><br />
+          <a class="ln" href="http://www.example.com">example@example.com</a>
+        </p>
+      </div>      
+    {% endblock %}
+    {% block with_sidebar_aside %}
+      <div class="mb-20">
+      {% embed '@icon-block' with { iconClasses: 'text-orange-400 leading-relaxed', icon: 'fa-calendar-alt' } %}
+        {% block icon_block_content %}
+          <div class="editorial font-sans text-lg">
+            <p>Tuesday, January 21, 2020 10:00 am to 5:00 pm repeating every week on Monday, Tuesday, Wednesday, Thursday, and Friday until Feb 21, 2020.</p>
+            <p><a class="btn btn-sm btn-lavender btn-uppercase btn-more" href="http://www.example.com">Add to Calendar</span></a></p>
+            <p>The Chan Gallery is open 10 a.m.-noon and 2-5 p.m., Monday through Friday.</p>
+          </div>
+        {% endblock %}
+      {% endembed %}
+      </div>
+      <div class="mb-20">
+      {% embed '@icon-block' with { iconClasses: 'text-orange-400 leading-relaxed', icon: 'fa-map-marker-alt' } %}
+        {% block icon_block_content %}
+          <div class="editorial font-sans text-lg">
+            <p>
+            Pomona College<br>
+            Chan Gallery, Studio Art Hall<br>
+            Room: 123<br>
+            370 Columbia Ave.
+            </p>
+            <p>
+            <a class="btn btn-lavender btn-sm btn-uppercase btn-more" href="http://www.example.com">View Campus Map</a>
+            </p>
+          </div>
+        {% endblock %}
+      {% endembed %}
+      </div>
+      <div class="mb-20">
+      {% embed '@icon-block' with { iconClasses: 'text-orange-400 leading-relaxed', icon: 'fa-ticket-alt' } %}
+        {% block icon_block_content %}
+          <div class="editorial font-sans text-lg">
+            <p>
+              General Public<br />
+              Pomona Alumni<br />
+              Pomona Faculty and Staff<br />
+              Pomona Families<br />
+              Pomona Students<br />
+              Claremont Colleges Community
+            </p>
+          </div>
+        {% endblock %}
+      {% endembed %}      
+      </div>
+    {% endblock %}    
+  {% endembed %}
+
+{% endblock %}
+{% endembed %}

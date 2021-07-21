@@ -1,0 +1,4 @@
+<h2 class="italic text-orange font-serif font-bold text-3xl mb-20">Professional Experience</h2>
+{% for item in items %}
+  <div{{ item.attributes.addClass(['editorial','editorial-main', 'mb-20']) }}>{{ item.content }}</div>
+{% endfor %}

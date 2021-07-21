@@ -1,0 +1,73 @@
+@mixin list-vertical {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: .3em 0;
+  }
+}
+
+@mixin list-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 0 -.3em;
+  list-style: none;
+
+  li {
+    margin: .3em 0;
+    padding: 0 .3em;
+    line-height: 1.1;
+  }
+}
+
+@mixin list-piped {
+  @include list-horizontal;
+  margin-left: -1em;
+  margin-right: -1em;
+
+  li {
+    @apply border-r-1 border-black border-solid;
+    padding: 0 1em;
+
+    &:last-child {
+      border-width: 0;
+    }
+  }
+}
+
+$list_bullets: (
+  'blue':'bkg-list-bullet.jpg',
+  'lavender':'bkg-list-bullet-2.jpg',
+  'blue-hollow':'bkg-list-bullet-3.jpg',
+  'lavender-hollow':'bkg-list-bullet-4.jpg',
+  'yellow':'bkg-bullet-blue-bkg.jpg'
+);
+
+@mixin bullets() {
+  list-style-type: square;
+  list-style-position: initial;
+  margin-left: 1.5em;
+}
+
+@mixin imageBullets($type:'blue') {
+  @include bullets();
+  $value: map-get($map: $list_bullets, $key: $type);
+
+  list-style-type: none;
+  li {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(.6em);
+      left: -1.05em;
+      background: transparent url('../images/#{$value}') scroll no-repeat 50% 50% / cover;
+      width: .3125em;
+      height: .3125em;
+      background-color: #ccc;
+      display: inline-block;
+    }  
+  }  
+}

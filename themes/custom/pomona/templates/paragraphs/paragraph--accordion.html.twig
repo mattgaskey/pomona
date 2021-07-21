@@ -1,0 +1,8 @@
+<div class="my-40">
+  {% if raw_title %}
+  <h2 class="text-4xl leading-normal mb-10">{{ raw_title }}</h2>
+  {% endif %}
+  <div data-accordion-start-opened="{{ raw_accordion_opened }}">
+  {{ content.field_accordion_item|without('field_title') }}
+  </div>
+</div>

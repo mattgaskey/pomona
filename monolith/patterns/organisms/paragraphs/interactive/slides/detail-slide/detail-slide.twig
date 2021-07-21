@@ -1,0 +1,12 @@
+<div class="slide slide--detail-slide md:relative">
+  <div class="slide__media">
+    {% block slide_media %}
+      {% include "@picture" with { width: 1300, height: 732 } only  %}
+    {% endblock %}
+  </div>
+  <div class="slide__caption bg-blue text-white px-75 py-15 md:absolute md:inset-x-0 md:bottom-0 md:bg-blue-blend lg:px-75 lg:py-35">    
+    {% block slide_caption %}
+      {% include '@button-feature' %}
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<figure {{ other_attributes }} class="slide slide--body-slide relative pb-75">
+  <div class="slide__media">
+    {% block slide_media %}
+      {% include '@picture' with { width: 375, height: 210 } only %}
+    {% endblock %}
+  </div>
+  <figcaption class="absolute bg-orange p-15 min-h-75 text-base md:text-2xl text-white flex flex-col inset-x-0 bottom-0 items-center leading-tight">
+    {% block slide_caption %}
+      <p>{{ random([paragraph,words,sentence,catchPhrase,bs])|striptags|capitalize }}</p>
+    {% endblock %}
+  </figcaption>
+</figure>

@@ -1,0 +1,11 @@
+{% set banner_padding = banner ? 'py-30' : 'py-15' %}
+<div class="site-alert mt-40 {{ banner_padding }} px-20 bg-{{color}} border-b-6 border-white" {{ attributes }}>
+  <div class="c-container mx-auto flex items-center justify-between">
+    {% block site_alert_content %}
+      <p><strong>Lorem ipsum dolor sit amet:</strong> Donec id elit non mi porta gravida at eget metus.</p>
+    {% endblock %}
+    {% block site_alert_link %}
+      <a class="btn btn-lg btn-more uppercase font-bold blue" href="http://www.example.com/">More info</a>
+    {% endblock %}
+  </div>
+</div>

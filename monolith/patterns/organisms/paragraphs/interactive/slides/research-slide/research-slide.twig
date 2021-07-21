@@ -1,0 +1,28 @@
+<figure class="slide slide--research-slide 
+  border-t-6 
+  border-t-gray-700 
+  flex 
+  flex-col
+  md:flex-row 
+  md:items-top 
+  md:justify-between">
+  <div class="
+    slide__media
+    md:flex-none md:w-3/5">
+    {% block slide_media %}
+      {% include '@picture' with { width: 565, height: 318 } only %}
+    {% endblock %}
+  </div>
+  <figcaption class="
+    font-serif 
+    text-md
+    px-25 
+    py-10 
+    md:text-lg 
+    md:flex-1 md:w-2/5">
+    {% block slide_caption %}
+      <h2 class="font-sans text-xl text-blue mb-10" >Title for this Slide</h2>
+      <p>{{ random([paragraph,words,sentence,catchPhrase,bs])|striptags|capitalize }}</p>
+    {% endblock %}
+  </figcaption>
+</figure>

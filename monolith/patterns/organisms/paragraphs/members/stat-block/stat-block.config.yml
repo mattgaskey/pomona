@@ -1,0 +1,11 @@
+default: Vertical
+context:
+  variant: stat-block--vertical
+  stat_classes: bg-lavender border-lavender-100
+  stat_number_classes: text-white
+variants:
+  - name: Horizontal
+    context: 
+      variant: stat-block--horizontal
+      stat_classes: border-lavender
+      stat_number_classes: text-lavender 

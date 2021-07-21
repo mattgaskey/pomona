@@ -1,0 +1,53 @@
+<div class="p-50 editorial">
+<h2>Padding</h2>
+<p>Padding values in class names are described in pixels, but are expressed in the CSS as `rem` to maintain typographic flexibility.</p>
+
+<h3>Even padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+<div class="text-lg bg-yellow-100 m-5 p-{{ s.name }} ">.p-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+
+<h3>Vertical padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+<div class="text-lg bg-yellow-100 m-5 py-{{ s.name }} ">.py-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+
+<h3>Horizontal padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+<div class="text-lg bg-yellow-100 m-5 px-{{ s.name }} ">.px-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+
+<h3>Top padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+  <div class="text-lg bg-yellow-100 m-5 pt-{{ s.name }} ">.pt-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+
+<h3>Right padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+  <div class="text-lg bg-yellow-100 m-5 pr-{{ s.name }} ">.pr-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+
+<h3>Bottom padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+  <div class="text-lg bg-yellow-100 m-5 pb-{{ s.name }} ">.pb-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+
+<h3>Left padding</h3>
+<div class="flex flex-wrap my-40">
+{% for s in spacing %}
+  <div class="text-lg bg-yellow-100 m-5 pl-{{ s.name }} ">.pl-{{ s.name }} ({{ s.value }})</div>
+{% endfor %}
+</div>
+</div>

@@ -1,0 +1,52 @@
+<p class="p-10"><b>Note:</b> "Button" and "A" columns should match exactly. Input styles are provided for legacy scripts that use the <code>input type="button"</code> approach instead of the more modern <code>button</code> tag, and these do not support icons. Input styles should all be self-similar </p>
+<div class="flex">
+{% for tag in ['button','a','input','submit','reset'] %}
+  <div class="font-sans font-bold text-base p-10 border-1 border-brown-100">
+    <h1 class="uppercase mb-20">Type: {{ tag }}</h1>
+  {% if tag is same as ('a') %}
+    {% set attr = 'href="http://www.example.com"' %}
+  {% elseif tag is same as('input') %} 
+    {% set attr='type="button"' %}
+  {% elseif tag is same as('submit') %} 
+    {% set tag='input' %}
+    {% set attr='type="submit"' %}
+  {% elseif tag is same as('reset') %} 
+    {% set tag='input' %}
+    {% set attr='type="reset"' %}    
+  {% else %}
+    {% set attr = "" %}
+  {% endif %}
+{% for size in ['btn-sm','','btn-lg','btn-xl'] %}
+<div class="mb-20">
+  <h2 class="uppercase mb-20">
+    Size: 
+    {% if size is same as('') %}
+      default
+    {% else %}
+      {{ size }}
+    {% endif %}
+  </h2>
+{% for color in ['','btn-cyan','btn-lavender'] %}
+<div class="mb-10 leading-tight" style="line-height: 2.5">
+  
+  {% if tag is same as('input') %}
+    <input {{ attr }} class="btn {{ size }} {{ color|default('blue') }} {{ variant }}" value="Click Here" />
+  {% else %}
+    {% for icon in ['', 'btn-plus', 'btn-next','btn-feed', 'btn-more', 'btn-less', 'btn-arrow','btn-download','btn-search','btn-share', 'btn-prev' ] %}
+      <{{ tag }} {{ attr }} class="btn {{ size }} {{ icon }} {{ color|default('blue') }} {{ variant }}">{% if icon is not empty %}{{ '.' ~ icon }}{% else %}Click Here{% endif %}</{{ tag }}>
+    {% endfor %}
+    {% for icon in ['', 'btn-plus', 'btn-more', 'btn-arrow' ] %}
+    <ul>
+      <li class="my-10"><{{ tag }} {{ attr }} class="btn btn-block {{ size }} {{ icon }} {{ color|default('blue') }} {{ variant }}">{% if icon is not empty %}{{ '.' ~ icon }}{% else %}Click Here{% endif %}</{{ tag }}></li>
+      <li class="my-10"><{{ tag }} {{ attr }} class="btn btn-block {{ size }} {{ icon }} {{ color|default('blue') }} {{ variant }}">{% if icon is not empty %}{{ '.' ~ icon }}{% else %}Click Here{% endif %}: Laborum Lorem fugiat laborum minim incididunt elit in quis ullamco cillum. Fugiat ea ullamco enim do consectetur nostrud quis quis in.</{{ tag }}></li>
+    </ul>  
+    {% endfor %}    
+  {% endif %}
+  
+</div>
+{% endfor %}
+</div>
+{% endfor %}
+  </div>
+{% endfor %}
+</div>

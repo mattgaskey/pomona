@@ -1,0 +1,454 @@
+id: pages
+label: Pages
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/page-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      AZHEADERLINKTITLE: 'A-Z Header Link Title'
+    3:
+      AZLISTINGTITLE: 'A-Z Listing Title'
+    4:
+      AZTAGS: 'A-Z Tags'
+    5:
+      ALPHABETICALLETTERLISTING: 'Alphabetical Letter Listing'
+    6:
+      BODY: 'Body'
+    7:
+      CLASS: 'Class'
+    8:
+      DIRECTORY: 'Directory'
+    9:
+      GROUP: 'Group'
+    10:
+      PROMOTED: 'Promoted'
+    11:
+      PUBLISHED: 'Published'
+    12:
+      STICKY: 'Sticky'
+    13:
+      VIEWREFERENCE: 'View Reference'
+    14:
+      AZHEADERLINKURL: 'A-Z Header Link URL'
+    15:
+      POSTED: 'Post date'
+    16:
+      UPDATED: 'Updated'
+    17:
+      SUMMARY: 'Summary'
+    18:
+      INSETS: 'Insets'
+    19:
+      IMAGE: 'Image'
+    20: 
+      IMAGEALT: 'Image Alt'
+    21:
+      CONTENTBOTTOM: 'Content Bottom'
+    22:
+      FOOTER: 'Footer'
+    23:
+      INCONTENTSLIDESHOW: 'In Content Slideshow'
+    24:
+      HIGHLIGHTSLIDESHOW: 'Highlight Slideshow'
+    25:
+      PATH: 'Path'
+    26:
+      PAGECONTACT: 'Page Contact'
+process:
+  title: 
+    plugin: skip_on_empty
+    method: row
+    source: TITLE
+  status: PUBLISHED
+  moderation_state:
+   plugin: static_map
+   source: PUBLISHED
+   map:
+     0: draft
+     1: published
+  path/pathauto: 
+   plugin: default_value
+   default_value: 0 # Disable pathauto
+  path/alias: PATH
+  sticky: STICKY
+  promote: PROMOTED
+  created: 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  field_glossary_listing_title: AZLISTINGTITLE
+  field_header_link/uri: 
+    plugin: str_replace
+    source: AZHEADERLINKURL
+    search: d7-pomona.lndo.site
+    replace: 'www.pomona.edu'
+  field_header_link/title: AZHEADERLINKTITLE
+  field_glossary_tags:
+  -
+    plugin: explode
+    source: AZTAGS
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: a_z_tags
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_glossary: ALPHABETICALLETTERLISTING
+  body/value: BODY
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_summary/value: SUMMARY
+  field_summary/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_class: CLASS
+  field_directory: 
+  -
+    plugin: explode
+    source: DIRECTORY
+    delimiter: ', '
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: a_z_directory
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_group: 
+  -
+    plugin: explode
+    source: GROUP
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: group
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_legacy_nid: NID
+  field_legacy_view_name:
+  -
+    plugin: skip_on_empty
+    method: process
+    source: VIEWREFERENCE
+  -
+    plugin: strip_trailing
+    character: '|'
+  - 
+    plugin: explode
+    delimiter: '|'
+  -
+    plugin: extract
+    index: 
+      - 0
+  field_legacy_view_machine_name:
+  -
+    plugin: skip_on_empty
+    method: process
+    source: VIEWREFERENCE
+  -
+    plugin: strip_trailing
+    character: '|'
+  - 
+    plugin: explode
+    delimiter: '|'
+  -
+    plugin: extract
+    index: 
+      - 1
+  field_legacy_view_argument:
+  -
+    plugin: skip_on_empty
+    method: process
+    source: VIEWREFERENCE
+  - 
+    plugin: explode
+    delimiter: '|'
+  -
+    plugin: extract
+    index: 
+      - 2
+  # field_view_reference/name:
+  # -
+  #   plugin: skip_on_empty
+  #   method: process
+  #   source: VIEWREFERENCE
+  # -
+  #   plugin: strip_trailing
+  #   character: '|'
+  # -
+  #   plugin: explode
+  #   delimiter: '|'
+  # -
+  #   plugin: extract
+  #   index: 
+  #     - 0
+  # field_view_reference/args:
+  # -
+  #   plugin: skip_on_empty
+  #   method: process
+  #   source: VIEWREFERENCE
+  # -
+  #   plugin: strip_trailing
+  #   character: '|'
+  # -
+  #   plugin: explode
+  #   delimiter: '|'
+  # -
+  #   plugin: extract
+  #   index: 
+  #     - 1
+  field_insets:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: INSETS
+    -
+      plugin: strip_trailing
+      character: '|'
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_plain_inset
+              - paragraphs_image_inset
+              - paragraphs_twitter_inset
+              - paragraphs_video_inset
+              - paragraphs_audio_inset
+              - paragraphs_news_inset
+              - paragraphs_blog_inset
+              - paragraphs_events_inset
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_content_bottom:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: CONTENTBOTTOM
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_grid_items
+              - paragraphs_list_items
+              - paragraphs_staff_listing
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_footer:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: FOOTER
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_grid_items
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_highlight_slideshow:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: HIGHLIGHTSLIDESHOW
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_embedded_slideshow
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_incontent_slideshow:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: INCONTENTSLIDESHOW
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_simple_content_slideshow
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+  field_page_contact:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PAGECONTACT
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_page_contact
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+destination:
+  plugin: entity:node
+  default_bundle: page
+migration_dependencies:
+  required:
+    - paragraphs_grid_items
+    - paragraphs_list_items
+    - paragraphs_staff_listing
+    - paragraphs_embedded_slideshow
+    - paragraphs_simple_content_slideshow
+    - fc_to_pg_page_contact
+  optional: 
+    - paragraphs_plain_inset
+    - paragraphs_image_inset
+    - paragraphs_twitter_inset
+    - paragraphs_video_inset
+    - paragraphs_audio_inset
+    - paragraphs_news_inset
+    - paragraphs_blog_inset
+    - paragraphs_events_inset

@@ -1,0 +1,9 @@
+<div class="inset-text border-b-2 border-brown-100 pb-20">
+  {% if raw_title %}
+    <h3 class="border-{{ raw_accent_color }} font-sans text-xl border-b-3 pb-10 mb-15">{{ raw_title }}</h3>
+  {% endif %}
+    {{ drupal_view('inset_views','show_5','blog',term_ids) }}
+    {{ content.field_link }}
+</div>
+
+

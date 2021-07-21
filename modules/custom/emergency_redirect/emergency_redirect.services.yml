@@ -1,0 +1,6 @@
+services:
+  emergency_redirect.response_subscriber:
+    class: Drupal\emergency_redirect\EventSubscriber\ResponseSubscriber
+    arguments: ["@current_route_match"]
+    tags: 
+      - { name: event_subscriber }

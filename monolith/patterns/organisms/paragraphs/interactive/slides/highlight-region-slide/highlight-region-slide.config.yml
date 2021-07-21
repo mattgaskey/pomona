@@ -1,0 +1,8 @@
+default: Unlinked
+context:
+  linked: false
+variants:
+  - name: linked
+    context:
+      linked: true
+      label: "More"

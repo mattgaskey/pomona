@@ -1,0 +1,28 @@
+{% set body_html = content.field_body[0]['#text'] %}
+{% set is_stats_block = '<div class="stats-box">' in body_html %}
+
+{% if is_stats_block %}
+  <div class="border-b-2 py-10 border-yellow-100">
+    {% if raw_title is not empty %}
+      <h3 class="font-sans text-xl mb-10 border-b-3 border-{{ raw_accent_color|lower }}">{{ raw_title }}</h3>
+    {% endif %}
+    <div class="editorial p-15 bg-pttrn-lt-grey">
+      <div class="by-the-numbers by-the-numbers--list">
+        {{ content.field_body }}
+      </div>
+    </div>
+  </div> 
+{% else %}
+  <div class="inset-text border-b-1 border-brown-100 pb-20">
+    {% if raw_title is not empty %}
+      <h3 class="border-{{ raw_accent_color|lower }} font-sans text-xl border-b-3 pb-10 mb-15">{{ raw_title }}</h3>
+    {% endif %}
+    <div class="editorial bg-white">
+      {{ content.field_body }}
+      {{ content.field_link }}
+    </div>
+  </div>
+{% endif %}
+
+
+

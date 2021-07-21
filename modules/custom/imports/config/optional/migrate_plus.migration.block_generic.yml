@@ -1,0 +1,30 @@
+id: block_generic
+label: Generic Block
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/block_generic_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'block_id'
+    1:
+      LABEL: 'label'
+    2:
+      BODY: 'body'
+    3:
+      TITLE: 'title'
+process:
+  info: LABEL
+  body/value: BODY
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_title: TITLE
+destination:
+  plugin: entity:block_content
+  default_bundle: basic

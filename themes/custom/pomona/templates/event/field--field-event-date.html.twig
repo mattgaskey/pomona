@@ -1,0 +1,5 @@
+{% for item in items %}
+    <div{{attributes}}>
+        {{ item.content['#attributes'].datetime|date('l, F j, Y g:i a') }}
+    </div>
+{% endfor %}

@@ -1,0 +1,10 @@
+{% if items %}
+  <div class="bg-pttrn-lt-grey">
+    <div class="c-container-lg md:flex md:flex-row py-20 lg:py-40">
+      {% for item in items %}
+        {{ item.content }}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+

@@ -1,0 +1,23 @@
+.list-of-items {
+  .item {
+    .item__media {
+      img {
+        max-width: 368px;
+      }
+    }
+    &.news-feed-teaser {
+      min-height: 152px;
+      .item__media {
+        max-width: 252px;
+      }
+    }
+    .item__content {
+      p {
+        @apply text-lg;
+      }
+      > * {
+        @apply mb-15;
+      }
+    }
+  }
+}

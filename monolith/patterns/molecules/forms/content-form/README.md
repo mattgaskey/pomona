@@ -1,0 +1,1 @@
+Drupal-generated forms don't really provide an opportunity to add classes willy-nilly, so we are making liberal use of the tailwind `@apply` in the associated stylesheet to this pattern in order to provide form defaults. (Tailwind strips most form styles away to make it easier to override styling.)

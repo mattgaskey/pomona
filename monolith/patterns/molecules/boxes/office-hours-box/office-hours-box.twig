@@ -1,0 +1,11 @@
+<div class="office-hours-box">
+  <h3 class="italic mt-20">Office Hours</h3>
+  <div class="flex flex-wrap mr-30">
+    {% for item in items %}
+      <div class="pr-30 mb-20">
+        {{ item.label }}<br />
+        {{ item.slots }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

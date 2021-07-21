@@ -1,0 +1,51 @@
+id: paragraphs_sr_headline_w_image
+label: Sagehen Report Headline with Image
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_sr_headline_w_image_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      IMAGE: 'image'
+    3:
+      MORELINK: 'more_link_url'
+    4:
+      TEXT: 'text'
+    5:
+      TITLE: 'title'
+    6:
+      MORELINKTITLE: 'more_link_title'
+    7:
+      IMAGEALT: 'image_alt'
+process:
+  field_link/uri: 
+    - plugin: str_replace
+      source: MORELINK
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_link/title: MORELINKTITLE
+  field_details/value: TEXT
+  field_details/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_title: TITLE
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: sr_headline_w_image

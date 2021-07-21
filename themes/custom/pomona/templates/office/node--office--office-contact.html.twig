@@ -1,0 +1,7 @@
+{% if content.field_primary_contact|children is not empty %}
+  {{ content.field_primary_contact }}
+{% else %}
+  <span class="text-lg"><a href="tel:{{ content.field_phone|render|striptags|trim }}" class="ln font-sans">{{ content.field_phone|render|striptags|trim }}</a></span>
+  <span class="text-lg font-sans">{{ content.field_e_mail }}</span> 
+{% endif %}
+<span class="text-lg font-sans text-brown-300">{{ content.field_contact_details }}</span>

@@ -1,0 +1,7 @@
+{% embed '@box' with { heading: "Featured Work", box_heading_classes: 'font-serif font-bold text-3xl text-orange italic bold' } %}
+  {% block box_content %}
+    {% include '@figure' with { figure_classes: image_plain.figure_classes, caption: image_plain.caption, caption_classes: image_plain.caption_classes } %}
+    {% include '@figure' with { figure_classes: image_orange.figure_classes, caption: image_orange.caption, caption_classes: image_orange.caption_classes } %}
+    {% include '@video' with { figure_classes: video_orange.figure_classes, caption: video_orange.caption, caption_classes: video_orange.caption_classes } %}
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,1 @@
+This slide pattern does not use the `figure` pattern because the series of buttons and so forth inside each slide makes this less of a caption and more of a navigation component.

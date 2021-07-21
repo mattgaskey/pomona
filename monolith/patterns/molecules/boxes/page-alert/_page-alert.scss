@@ -1,0 +1,22 @@
+.page-alert {
+  a {
+    @apply text-white inline-block border-b-2 border-yellow no-underline relative;
+    &:after {
+      @include fa-icon;
+      @extend .fas;
+      @apply text-yellow absolute text-base;
+      content: fa-content($fa-var-chevron-right);
+      bottom: 5px;
+      margin-left: .3em;
+    }  
+    &:hover {
+      @apply border-transparent;
+      &:after {
+        @apply text-white border-transparent;
+      }
+    }
+  }
+  p {
+    @apply inline;
+  }
+} 

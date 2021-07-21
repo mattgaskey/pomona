@@ -1,0 +1,7 @@
+collated: true
+context:
+  content: A noble craft, but somehow a most melancholy! All noble things are touched with that.
+variants:
+  - name: Long Text
+    context:
+      content: The water which supplies the farms of Mars is collected in immense underground reservoirs at either pole from the melting ice caps, and pumped through long conduits to the various populated centers. Along either side of these conduits, and extending their entire length, lie the cultivated districts. These are divided into tracts of about the same size, each tract being under the supervision of one or more government officers.

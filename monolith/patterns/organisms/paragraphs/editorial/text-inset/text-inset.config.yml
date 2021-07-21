@@ -1,0 +1,15 @@
+status: review
+collated: true
+variants:
+  - name: border-yellow
+    context:
+      border_color: border-yellow
+  - name: border-green
+    context:
+      border_color: border-green
+  - name: border-lavender
+    context:
+      border_color: border-lavender
+  - name: pattern-bg
+    context: 
+      content_classes: p-15 bg-pttrn-lt-grey

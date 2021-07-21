@@ -1,0 +1,17 @@
+{{ attach_library('pomona/filterAZ') }}
+<div class="exposed-form">
+  <div class="exposed-form__keys flex flex-row flex-no-wrap border-5 border-green mb-20">
+    <div class="exposed-form__input">{{ form.title }}</div>
+    <div class="exposed-form__button">{{ form.actions }}</div>
+  </div>
+  <div class="exposed-form__letter">
+    {{ form.letter }}
+  </div>
+  {{ form|without('title', 'actions', 'letter') }}
+</div>
+<script>
+  (function($){
+    $('#edit-submit-a-z-directory').attr('value', '');
+    $('#edit-title').attr('size', '14');
+  })(jQuery);
+</script>

@@ -1,0 +1,24 @@
+{% set classes = (attributes['list-type'] == 'list_items') ? 'inline-block md:border-t-6 md:border-gray-600 w-full md:mb-35' : '' %}
+{% set media_classes = (attributes['list-type'] == 'list_items') ? 'border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-8 md:max-w-25' : 'border-b-6 border-gray-600' %}
+
+<div class="item news-feed-teaser bg-white {{ classes }}">
+  {% if content.field_media|children is not empty %}
+  <div class="item__media {{ media_classes }}">
+    {% if content.field_link|children is not empty %}
+      <a href="{{ linktouri }}" tabindex="-1">{{ content.field_media }}</a>
+    {% else %}
+      {{ content.field_media }}    
+    {% endif %}
+  </div>
+  {% endif %}
+  <div class="item__content underline-links px-25 py-5 leading-tight">
+    {% if content.field_link|children %}
+    <div><a href="{{ linktouri }}" class="text-xl font-sans text-blue border-b-2 border-brown-100 mb-15 inline-block hover:border-transparent">{{ content.field_title }}</a></div>
+    {% else %}
+      <div class="font-sans">{{ content.field_title }}</div>
+    {% endif %}
+    {% if content.field_body|children %}
+      {{ content.field_body }}
+    {% endif %}
+  </div>
+</div>

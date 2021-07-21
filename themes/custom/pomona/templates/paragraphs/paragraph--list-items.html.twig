@@ -1,0 +1,9 @@
+{{ content.field_link }}
+<div class="list-of-items border-t-6 border-{{ raw_accent_color|default('green') }} bg-gray-100 p-25 pt-0 mt-50">
+  <div class="px-20 pb-20 lg:px-40 lg:pb-40 relative">
+    {% if content.field_title|children is not empty %}
+      <h2 class="overlap font-serif leading-none inline-block px-15 py-10 text-4xl text-white bg-{{ raw_accent_color|default('green') }}">{{ content.field_title|children }}</h2>
+    {% endif %}
+  </div>
+  {{ content.field_grid_items }}
+</div>

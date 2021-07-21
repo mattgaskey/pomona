@@ -1,0 +1,9 @@
+{% if items %}
+  <div class="lg:w-1/2 lg:pr-40">
+    <ul class="bullets bullets-yellow">
+      {% for item in items %}
+        <li>{{ item.content }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

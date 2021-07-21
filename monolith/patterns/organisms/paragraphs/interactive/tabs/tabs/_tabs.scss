@@ -1,0 +1,75 @@
+.aria-only {
+  @apply sr-only;
+}
+
+.at-accordion-or-tabs {
+  @apply mx-auto my-25 relative;
+  clear: both;
+
+  > li {
+    > a {
+      @apply font-sans font-bold uppercase text-lg block bg-cyan text-white leading-none p-20 mb-5 relative;
+
+      &:hover,
+      &:active {
+        @apply bg-cyan-400 text-white; 
+      }
+
+      &::after {
+        content: fa-content($fa-var-plus);
+        @extend %fa-icon;
+        @extend .fas;
+        @apply text-xl text-yellow absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+      }
+
+      &.active {
+        @apply bg-blue;
+        &::after {
+          content: fa-content($fa-var-minus);
+        }
+      }
+    }
+
+    > section {
+      @apply relative w-full overflow-hidden hidden;
+    }
+  }
+
+  .at-tab-one-pixel-fix-left,
+  .at-tab-one-pixel-fix-right {
+    @apply hidden;
+  }
+
+  &.at-tabs {
+    > li {
+      @apply inline;
+
+      > a {
+        @apply inline-block font-bold relative z-30 mb-0;
+
+        &::after {
+          display: none;
+        }
+
+        &:hover:not(.active) {
+          @apply bg-cyan-400 text-white;
+        }
+
+        &.active {
+          @apply z-50;
+          &:hover {
+            @apply bg-blue text-white;
+          }
+        }
+      }
+
+      > section {
+        @apply float-left border-cyan border-t-8 z-40;
+        top: -8px;
+      }
+    }
+  }
+}

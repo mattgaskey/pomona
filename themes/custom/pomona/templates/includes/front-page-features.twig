@@ -1,0 +1,44 @@
+{% if is_front %}
+{{ attach_library('pomona/trumbaHomepage') }}
+<div class="bg-gray-200 bg-pttrn-lt-grey pt-50 pb-100">
+  <div class="c-container">
+    <div class="grid-of-items overflow-hidden">
+      <div class="md:flex md:-mr-25 md:flex-wrap md:items-stretch md:space-between">
+
+          {{ drupal_region('spotlight') }}
+
+          <div class="home-featured-event md:pr-25 md:w-1/3 flex flex-col">
+            <h2 class="font-sans uppercase px-25 py-10 flex-none">Featured Event</h2>
+            <div class="h-full bg-white" id="featured-event">
+              <figure{{ attributes }}>
+                {% block teaser_image %}
+                  <a href="#" class="event-teaser__image"><img src="/sites/default/files/2020-10/blue__16x9.png" alt="Pomona placeholder image"></a>
+                {% endblock %}
+                <figcaption class="font-sans px-25 pt-25 border-t-15 border-orange-400">
+                  {% block teaser_caption %}
+                  <div class="text-3xl italic font-serif text-orange"></div>
+                  <a class="text-xl border-b-1 border-orange-400 hover:border-transparent text-blue" href="#">Loading...</a>
+                  {% endblock %}
+                </figcaption>
+              </figure>
+            </div>
+            <p class="bg-white text-right flex-none p-25 border-b-2 border-orange-400">
+              <a class="inline-flex items-center text-cyan font-bold uppercase  border-b-1 border-transparent hover:border-brown-100" href="/events"><span>{{ teaser.label|default("Calendar") }}</span> <span class="fas fa-chevron-right text-sm pl-5"></span></a>
+            </p>
+          </div>
+
+          <div class="home-featured-news md:pr-25 md:w-1/3 flex flex-col">
+            <h2 class="font-sans uppercase px-25 py-10 flex-none">Featured News</h2>
+            <div class="h-full bg-white">
+            {{ drupal_view('news', 'home_featured_news') }}
+            </div>
+            <p class="bg-white text-right flex-none p-25 border-b-2 border-lavender">
+              <a class="inline-flex items-center text-cyan font-bold uppercase  border-b-1 border-transparent hover:border-brown-100" href="/news"><span>All Headlines</span> <span class="fas fa-chevron-right text-sm pl-5"></span></a>
+            </p>
+          </div>                    
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,40 @@
+// attaching classes this way because current menu block behavior prevents
+// us from adding classes to the link in the header. (We are using 2 patches
+// after all.
+.section-nav {
+  h2 a {
+    @apply text-cyan;
+
+    &:hover {
+      @apply text-blue;
+    }
+  }
+
+  // Fix for submenu padding; only vertical pad the first level
+  // submenu section, not each subsequent section
+  .menu__item {
+    .menu__item--active {
+      ~ .menu {
+        @apply py-15;
+      }
+    } 
+
+    // Classes from menu fields
+    &.menu__item__az {
+      a {
+        @apply bg-lavender;
+        &:hover {
+          @apply bg-lavender-200;
+        }
+      }
+    }
+    &.hide-menu-item {
+      @apply hidden;
+    }
+    &.hide-menu-item-children {
+      ul {
+        @apply hidden;
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+id: paragraphs_embedded_slideshow
+label: Embedded Slideshow
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_embedded_slideshow_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      SHOWSIDEBAR: 'show_slideshow_sidebar'
+    3:
+      SLIDES: 'slides'
+    4:
+      SIDEBAR: 'slideshow_sidebar_content'
+    5:
+      TYPE: 'slideshow_type'
+process:
+  field_show_slideshow_sidebar: SHOWSIDEBAR
+  field_slideshow_type/value: TYPE
+  field_paragraphs:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SLIDES
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_detailed_slide
+              - paragraphs_front_page_slideshow
+              - paragraphs_simple_content_slideshow
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_slideshow_sidebar_content:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SIDEBAR
+    -
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_slideshow_sidebar_content
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: "@foo"
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: "@foo"
+            index:
+              - 1
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: embedded_slideshow
+migration_dependencies:
+  required:
+    - paragraphs_detailed_slide
+    - paragraphs_front_page_slideshow
+    - paragraphs_simple_content_slideshow
+    - fc_to_pg_slideshow_sidebar_content
+  optional: []

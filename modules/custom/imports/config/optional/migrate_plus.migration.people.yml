@@ -1,0 +1,350 @@
+id: people
+label: People
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/person-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      PUBLISHED: 'Published'
+    3:
+      POSTED: 'Post date'
+    4:
+      UPDATED: 'Udpated'
+    5:
+      AREAS: 'Areas of Expertise'
+    6:
+      AWARDS: 'Awards Text'
+    7:
+      BODY: 'Body'
+    8:
+      EMAIL: 'Email'
+    9:
+      EDUCATION: 'Education'
+    10:
+      EXPERTISE: 'Expertise'
+    11:
+      EXTERNALCV: 'External CV'
+    12:
+      WORKBODY: 'Work Body'
+    13:
+      HIDEHIGHRESLINK: 'Hide High Res Link'
+    14:
+      SECONDARYADDRESS: 'Secondary Address'
+    15:
+      LABOFFICENUMBER: 'Lab Office Number'
+    16:
+      LABPHONE: 'Lab Phone'
+    17:
+      NAMEFIRST: 'Name First'
+    18:
+      NAMELAST: 'Name Last'
+    19:
+      PRIMARYADDRESS: 'Primary Address'
+    20:
+      OFFICEHOURS: 'Office Hours'
+    21:
+      MINIBIO: 'Office Listing Mini Bio'
+    22:
+      OFFICENUMBER: 'Office Number'
+    23:
+      LINKURL: 'Link URL'
+    24:
+      LINKTITLE: 'Link Title'
+    25:
+      LINK2URL: 'Link 2 URL'
+    26:
+      LINK2TITLE: 'Link 2 Title'
+    27:
+      POSITION: 'Position'
+    28:
+      PROEXP: 'Professional Experience'
+    29:
+      QUALI: 'Qualifications'
+    30:
+      RECENTCOURSES: 'Recent Courses Taught'
+    31:
+      RESEARCH: 'Research Interests'
+    32:
+      SCHOOLROLE: 'School Role'
+    33:
+      YEAR: 'Year'
+    34:
+      IMAGE: 'Image'
+    35:
+      IMAGEALT: 'Image Alt'
+    36:
+      DOWNLOADCV: 'Download CV'
+    37:
+      ADDITIONALTABS: 'Additional Tabs'
+    38:
+      LOCATION: 'Location'
+    39:
+      OFFICEPHONE: 'Office Phone'
+    40:
+      PERSONMEDIA: 'Person Media Gallery'
+    41:
+      LABLOCATION: 'Lab Location'
+    42:
+      SOCIALMEDIA: 'Social Media'
+process:
+  title: TITLE
+  status: PUBLISHED
+  created: 
+  - 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+  -
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  field_person_areas_of_expertise/value: AREAS
+  field_person_areas_of_expertise/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_awards_text/value: AWARDS
+  field_awards_text/format:
+    plugin: default_value
+    default_value: 'full_html'
+  body/value: BODY
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_e_mail: EMAIL
+  field_education/value: EDUCATION
+  field_education/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_expertise/value: EXPERTISE
+  field_expertise/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_external_cv/uri: EXTERNALCV
+  field_work_body/value: WORKBODY
+  field_work_body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_hide_high_res_link: HIDEHIGHRESLINK
+  field_office_hours:
+    plugin: sub_process
+    process:
+      pseudo_office_hours:
+        -
+          plugin: explode
+          source: OFFICEHOURS
+          delimiter: '|'
+      day:
+        -
+          plugin: extract
+          source: '@pseudo_office_hours'
+          index: 
+            - 0
+      starthours:
+        -
+          plugin: extract
+          source: '@pseudo_office_hours'
+          index:
+            - 1
+      endhours:
+        -
+          plugin: extract
+          source: '@pseudo_office_hours'
+          index:
+            - 2
+  field_lab_office_number: LABOFFICENUMBER
+  field_lab_phone: LABPHONE
+  field_person_name/given: NAMEFIRST
+  field_person_name/family: NAMELAST
+  field_office_listing_mini_bio/value: MINIBIO
+  field_office_listing_mini_bio/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_office_number: OFFICENUMBER
+  field_link/uri: LINKURL
+  field_link/title: LINKTITLE
+  field_link_2/uri: LINK2URL
+  field_link_2/title: LINK2TITLE
+  field_position: POSITION
+  field_professional_experience/value: PROEXP
+  field_professional_experience/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_qualifications_certificati/value: QUALI
+  field_qualifications_certificati/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_recent_courses/value: RECENTCOURSES
+  field_recent_courses/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_research_interests/value: RESEARCH
+  field_research_interests/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_school_role: 
+    plugin: explode
+    source: SCHOOLROLE
+    delimiter: '|'
+  field_year: YEAR
+  field_legacy_nid: NID
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+    source: IMAGE
+    no_stub: true
+  field_download_cv_as_pdf/target_id:
+  -
+    plugin: callback
+    callable: basename
+    source: DOWNLOADCV
+  -
+    plugin: entity_lookup
+    value_key: name
+    entity_type: media
+  field_office_phone/value: OFFICEPHONE
+  field_additional_tabs:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: ADDITIONALTABS
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_additional_tabs
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_location:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: LOCATION
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        target_id:
+          -
+            plugin: migration_lookup
+            migration: 
+              - locations
+            no_stub: true
+            source: value
+  field_lab_location/target_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: LABLOCATION
+    -
+      plugin: entity_lookup
+      entity_type: node
+      bundle: location
+      value_key: field_imported_nid
+  field_person_media_gallery:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PERSONMEDIA
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_person_media_gallery
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_social_media:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: SOCIALMEDIA
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_social_media
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+destination:
+  plugin: entity:node
+  default_bundle: person
+migration_dependencies:
+  required: 
+    - fc_to_pg_additional_tabs
+    - fc_to_pg_person_media_gallery
+    - fc_to_pg_social_media
+  optional: []

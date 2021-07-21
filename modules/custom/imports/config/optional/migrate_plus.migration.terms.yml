@@ -1,0 +1,29 @@
+id: terms
+label: Import Terms
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/terms-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - TID
+  column_names:
+    0:
+      VID: 'Vocabulary ID'
+    1:
+      TID: 'Term Id'
+    2:
+      NAME: 'Name'
+    3:
+      VOCAB: 'Vocabulary Machine name'
+    4:
+      PID: 'Parent Term ID'
+process:
+  name: NAME
+  tid: TID
+  vid: VOCAB
+  parent: PID
+destination:
+  plugin: entity:taxonomy_term

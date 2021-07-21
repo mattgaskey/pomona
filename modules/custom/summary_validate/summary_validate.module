@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Contains summary_validate.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function summary_validate_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the summary_validate module.
+    case 'help.page.summary_validate':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Validate the summary field in a node based on the maxlength value') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function summary_validate_entity_bundle_field_info_alter(&$fields, \Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle) {
+  if ($bundle === 'article' || $bundle === 'blog') {
+    if (isset($fields['field_summary'])) {
+      // Use the ID as defined in the annotation of the constraint definition
+      $fields['field_summary']->addConstraint('LessThanMaxlength', []);
+    }
+  }
+}

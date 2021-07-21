@@ -1,0 +1,59 @@
+id: block_by_the_numbers
+label: By the Numbers
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/block_by_the_numbers_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'block_id'
+    1:
+      PARAGRAPHS: 'paragraphs'
+    2:
+      LABEL: 'label'
+process:
+  info: LABEL
+  field_paragraphs:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PARAGRAPHS
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_by_the_numbers
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+destination:
+  plugin: entity:block_content
+  default_bundle: by_the_numbers
+migration_dependencies:
+  required:
+    - paragraphs_by_the_numbers
+  optional: []

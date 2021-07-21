@@ -1,0 +1,11 @@
+<div class="slideshow-with-sidebar lg:flex items-stretch">
+  <div class="bg-bttm-texture-left sidebar p-10 lg:p-20 lg:w-1/4 lg:mb-35 lg:border-b-1 border-white bg-blue text-white">
+    <h2 class="mb-10 text-4xl font-serif font-bold leading-tight">{{ bs|capitalize }}</h2>
+    {{ paragraph }}
+    <a class="flex justify-between bg-lavender my-10 uppercase font-bold p-8 leading-none"  href="">{{ words }} <span class="fas fa-chevron-right text-yellow"></span></a>
+    <a class="flex justify-between block bg-lavender my-10 uppercase font-bold p-8 leading-none" href="">{{ words }} <span class="fas fa-chevron-right text-yellow"></span></a>
+  </div>
+  <div class="slideshow lg:w-3/4">
+    {% include '@slideshow' %}
+  </div>
+</div>

@@ -1,0 +1,13 @@
+context:
+  image_plain:
+    figure_classes: my-30
+    caption: Nibh vel mi ac ultrices, vitae gravida elementum interdum, nec at phasellus, enim per bibendum delectus dolor magnis non.
+    caption_classes: font-serif text-2xl p-15 leading-tight
+  image_orange: 
+    figure_classes: my-30
+    caption: Nibh vel mi ac ultrices, vitae gravida elementum interdum, nec at phasellus, enim per bibendum delectus dolor magnis non.
+    caption_classes:  font-serif text-2xl text-white p-15 pb-20 bg-orange leading-tight
+  video_orange:
+    figure_classes: my-30
+    caption: Nibh vel mi ac ultrices, vitae gravida elementum interdum, nec at phasellus, enim per bibendum delectus dolor magnis non.
+    caption_classes:  font-serif text-2xl text-white p-15 pb-20 bg-orange leading-tight   

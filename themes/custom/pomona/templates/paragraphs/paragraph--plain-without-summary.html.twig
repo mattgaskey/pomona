@@ -1,0 +1,6 @@
+{% embed "@fractal/long-text.twig" %}
+  {% block paragraph %}
+    {{ content.field_details }}
+  {% endblock %}
+{% endembed %}
+{% include "@fractal/sagehen-spacer.twig" with { height: "12px" } %}

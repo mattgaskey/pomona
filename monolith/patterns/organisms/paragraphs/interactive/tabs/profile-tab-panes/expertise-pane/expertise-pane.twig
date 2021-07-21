@@ -1,0 +1,33 @@
+{% embed '@with-sidebar' with { major: '3/4', minor: '1/4' } %}
+  {% block with_sidebar_main %}
+    <h2 class="italic text-orange font-serif font-bold text-3xl mb-20">Expertise</h2>
+    <div class="editorial editorial-main">
+      <p>Jack I. Abecassis is an expert on Early Modern and Enlightenment French intellectual history. He has written extensively on philosophical aspects of French literature and philosophy, especially on the Renaissance thinker and essayist Michel de Montaigne. He authored a book about the novelist Albert Cohen (1895-1982), titled Albert Cohen: Dissonant Voices. He is currently exploring the intersection of literature, cinema and the neuro-cognitive sciences, an extension of his earlier interests in the psychosomatic, cognitive and perceptual aspects in Montaigne, Pascal, Diderot, and the French phenomenologist, Maurice Merleau-Ponty. He currently teaches courses both in French literature and in the Department of Linguistics and Cognitive Sciences.</p>
+    </div>
+
+    <div class="editorial editorial-main bg-white p-20 border-t-6 border-offwhite mt-40">
+      <h3 class="font-sans uppercase text-lg mb-20">Research Interests</h3>
+      <ul>
+        <li>Michel de Montaigne</li>
+        <li>Albert Cohen</li>
+        <li>Cognitive approaches to film, literature and translation theory</li>
+      </ul>
+    </div>
+  {% endblock %}
+  {% block with_sidebar_aside %}
+
+    <h3 class="italic text-orange font-serif font-bold text-3xl mb-20">Areas of Expertise</h3>
+
+    <div class="editorial editorial-main">
+      <p>FRENCH LITERATURE</p>
+      <ul class="bullets bullets-blue">
+        <li>Early modern and Enlightenment French literature</li>
+        <li>Cognitive approaches to film, literature and translation theory</li>
+        <li>Albert Cohen</li>
+        <li>Contemporary Jewish and Israeli novels</li>
+        <li>The fantastic genre</li>
+        <li>Psycho-Narrative</li>
+      </ul>
+    </div>
+  {% endblock %}
+{% endembed %}

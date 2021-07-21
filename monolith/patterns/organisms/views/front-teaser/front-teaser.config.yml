@@ -1,0 +1,20 @@
+collated: true
+default: Spotlight
+context:
+  teaser:
+    label: More
+    color: green-400
+    itemTitle: '@patterns.sentence'
+variants:
+  - name: Featured Event
+    context:
+      teaser:
+        label: Calendar
+        color: orange-400
+        textColor: orange
+        date: Jan 21, 2020
+  - name: Featured News
+    context:
+      teaser:
+        label: All Headlines
+        color: lavender

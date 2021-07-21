@@ -1,0 +1,36 @@
+pomona.small:
+  label: small
+  mediaQuery: ''
+  weight: 0
+  multipliers: 
+    - 1x
+    - 2x
+pomona.medium:
+  label: medium
+  mediaQuery: 'all and (min-width: 640px)'
+  weight: 0
+  multipliers: 
+    - 1x
+    - 2x
+pomona.large:
+  label: large
+  mediaQuery:  'all and (min-width: 1000px)'
+  weight: 0
+  multipliers: 
+    - 1x
+    - 2x
+pomona.xlarge:
+  label: xlarge
+  mediaQuery:  'all and (min-width: 1600px)'
+  weight: 0
+  multipliers: 
+    - 1x
+    - 2x        
+pomona.xxlarge:
+  label: xxlarge
+  mediaQuery:  'all and (min-width: 2400px)'
+  weight: 0
+  multipliers: 
+    - 1x
+    - 2x
+            

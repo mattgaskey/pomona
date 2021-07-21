@@ -1,0 +1,8 @@
+<div class="share-button flex flex-row relative">
+  <button class="btn btn-cyan btn-share font-bold btn-uppercase">Share</button>
+  <div class="hidden share-button__buttons bg-blue">
+    {% block addtoany %}
+      {% include '@icon-only-button--default' %}
+    {% endblock %}
+  </div>
+</div>

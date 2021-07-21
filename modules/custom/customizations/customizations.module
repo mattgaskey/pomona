@@ -1,0 +1,569 @@
+<?php
+
+/**
+ * @file
+ * Contains customizations.module.
+ */
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Core\Render\Element;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Link;
+use Drupal\Core\Breadcrumb\Breadcrumb;
+use Drupal\views\Views;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function customizations_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the odu_customizations module.
+    case 'help.page.customizations':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Admin customizations, plugins, and extensions') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Set dynamic allowed values for content types; used for entities
+ * that need to configure views.
+ *
+ * @param \Drupal\field\Entity\FieldStorageConfig $definition
+ *   The field definition.
+ * @param \Drupal\Core\Entity\ContentEntityInterface|null $entity
+ *   The entity being created if applicable.
+ * @param bool $cacheable
+ *   Boolean indicating if the results are cacheable.
+ *
+ * @return array
+ *   An array of possible key and value options.
+ *
+ * @see options_allowed_values()
+ */
+function customizations_ct_list_members(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+  $types = \Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple();
+  
+  // List of content types we disallow from this selection
+  $banned = ['department','webform'];
+  foreach ($types as $type) {
+    $label = $type->label();
+    $id = $type->id();
+
+    if (!in_array($id,$banned)) {
+      $options[$id] = $label;
+    }
+  }
+  return $options;
+}
+
+/**
+ * Set dynamic allowed values for ordering strategies; used for entities
+ * that need to configure views.
+ * 
+ * You can't build a relationship between this function and the field
+ * in the field UI; instead, you have to change the yml file in
+ * configuration export. In this case, this data set is 
+ * assigned to field.storage.paragraph.field_accent_color.yml
+ *
+ * @param \Drupal\field\Entity\FieldStorageConfig $definition
+ *   The field definition.
+ * @param \Drupal\Core\Entity\ContentEntityInterface|null $entity
+ *   The entity being created if applicable.
+ * @param bool $cacheable
+ *   Boolean indicating if the results are cacheable.
+ *
+ * @return array
+ *   An array of possible key and value options.
+ *
+ * @see options_allowed_values()
+ */
+function customizations_orderby_list_members(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+  $options = [
+    'latest' => 'Latest',
+    'random' => 'Random'
+  ];
+  return $options;
+}
+
+/**
+ * Set dynamic allowed values for accent colors; used for insets
+ * 
+ * You can't build a relationship between this function and the field
+ * in the field UI; instead, you have to change the yml file in
+ * configuration export. In this case, this data set is 
+ * assigned to field.storage.paragraph.field_accent_color.yml
+ * 
+ * See https://drupal.stackexchange.com/questions/242006/how-do-i-programmatically-update-the-allowed-values-of-a-list-field 
+ *
+ * @param \Drupal\field\Entity\FieldStorageConfig $definition
+ *   The field definition.
+ * @param \Drupal\Core\Entity\ContentEntityInterface|null $entity
+ *   The entity being created if applicable.
+ * @param bool $cacheable
+ *   Boolean indicating if the results are cacheable.
+ *
+ * @return array
+ *   An array of possible key and value options.
+ *
+ * @see options_allowed_values()
+ */
+function customizations_accent_color_list_members(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+  // These values match the color names used in the Fractal styleguide and can be 
+  // combined with various prefixes to style borders, text colors, and so
+  // forth. 
+  // 
+  // Here is where I would helpfully provide a link to the styleguide, but I have
+  // no idea where it will be. If you are running the docker-compose file from
+  // the repo I made, it will be showing up in port 3000. -- JHW, 3/6/2020
+  $options = [
+    'green' => 'Green',
+    'yellow' => 'Yellow',
+    'lavender' => 'Purple',
+    'red' => 'Red',
+    'blue' => 'Blue'
+  ];
+  return $options;
+}
+
+/* 
+ * Provide a created date fallback for news urls for news stories that do not have a created date set.
+ */
+function customizations_pathauto_pattern_alter(\Drupal\pathauto\PathautoPatternInterface $pattern, array $context) {
+  if ($context['module'] == 'node' && ($context['op'] == 'insert' || $context['op'] == 'update'  || $context['op'] == 'bulkupdate')) {
+    $node = $context['data']['node'];
+
+    if($node->hasField('field_run_date')) {
+      $run_date = $node->get('field_run_date')->first();
+      if(!$run_date) {
+        $pattern->setPattern(preg_replace('/\[node:field_run_date:date(\:[^]]*)?\]/', '[node:created$1]', $pattern->getPattern()));
+        $pattern->getPattern();
+      }
+    }
+    
+    // Check to see if page has a menu set, if not
+    // use the page title as the pattern
+
+    if($node->bundle() == 'page') {
+      $menu = $node->__get('menu');
+      if($menu['enabled'] === 0) {
+        $pattern->setPattern('[node:title]');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function customizations_theme($existing, $type, $theme, $path) {
+  return [
+    'google_custom_search' => [
+      'variables' => [
+        'cx' => '',
+        'query_parameter' => '',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_presave().
+ */
+function customizations_emergency_presave(EntityInterface $entity) {
+  // Invalidate custom entity list cache tag.
+  $tags = ['emergency_emit_list'];
+  Cache::invalidateTags($tags);
+}
+
+/** 
+ * Implements hook_node_view()
+ */
+
+ function customizations_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if($view_mode === 'full' && $entity->bundle() == 'redirect') {
+    try {
+      if ($entity->hasField('field_link')) {
+        $redirect = $entity->field_link->uri;
+        if(!empty($redirect) && $entity->isPublished()) {
+          // $url = $redirect->first()->getValue();
+          header("Location: $redirect", true, 301);exit;
+        } 
+      }
+    } catch(Error $e) {
+      //ksm($e);
+    }
+  }
+  if($view_mode === 'full' && ($entity->bundle() == 'article' || $entity->bundle() == 'blog')) {
+    
+    try {
+      if ($entity->hasField('field_redirect')) {
+         $redirect = $entity->field_redirect->uri;
+         if(!empty($redirect) && $entity->isPublished()) {
+          $build['#cache']['max-age'] = 0;
+           header("Location: $redirect", true, 301);exit;
+         } 
+      }
+      
+    } catch(Error $e) {
+      //ksm($e);
+    }
+  }
+ }
+
+
+/* 
+ * Adds use role classes to body tag of add/edit pages for user permissions
+ */
+
+ function customizations_preprocess_html(&$variables) {
+  // Add node ID
+  /*if ($node = \Drupal::request()->attributes->get('node')) {
+   $variables['attributes']['class'][] = 'page-node-' . $node->id();
+  }*/
+
+  // Get route
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $variables['route_name'] = \Drupal::routeMatch()->getCurrentRouteMatch()->getRouteObject()->getPath();
+
+  // Get currently active user and their roles
+  $account = \Drupal::currentUser();
+  // The getRoles() method will return machine names
+  $roles = $account->getRoles();
+
+  foreach ($roles as $role) {
+    // Add edit class
+    if ($route_name == 'entity.node.edit_form' || $route_name == 'node.add') {
+      //Prefix role- before role name
+      $variables['attributes']['class'][] = 'role-' . $role;
+    }
+  }
+
+  $variables['is_front_page'] = \Drupal::service('path.matcher')->isFrontPage();
+
+}
+
+/**
+ * Implements hook_form_menu_edit_form_alter().
+ */
+function customizations_form_menu_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Insert a column into the table listing with the section landing custom field.
+  $links = $form['links']['links'];
+  $has_field = FALSE;
+  foreach (Element::children($links) as $key) {
+    $item = $links[$key];
+    $link = $item['#item']->link;
+    $uuid = $link->getDerivativeId();
+    if ($uuid) {
+      $link_entity = \Drupal::service('entity.repository')
+        ->loadEntityByUuid('menu_link_content', $uuid);
+      if ($link_entity->hasField('field_is_section_landing')) {
+        $has_field = TRUE;
+        $form['links']['links'][$key]['section_landing'] = [
+          '#markup' => $link_entity->field_is_section_landing->value ? t('✓') : '',
+        ];
+      }
+    }
+  }
+  if ($has_field) {
+    $form['links']['links']['#header'][] = ['data' => t('Section landing')];
+  }
+}
+
+/**
+ *  Assigning Pomona Roles via JSON 
+    https://jicsweb.pomona.edu/api/roles?api_key=56aabba57cfa47c79b1d46376f6e7c64
+ **/
+// function customizations_role_list() {
+//   $roles = ['pomstaff','pomfaculty','pomonastudent','pomalumni']; 
+//   return $roles;
+// }
+
+// function customizations_list_user($user) {
+//   //Retrieve user who's logging in and what roles are associated with them from Pomona API
+//   $account = \Drupal::currentUser();
+//   $account_username = \Drupal::currentUser()->getUsername();
+//   $endpoint = 'https://jicsweb.pomona.edu/api/roles/'.$account_username.'?api_key=56aabba57cfa47c79b1d46376f6e7c64';
+
+//   if(!empty($account) && !empty($endpoint)) {
+//     try {
+//       $response = \Drupal::httpClient()->get($endpoint, array('headers' => array('Accept' => 'text/plain')));
+//       $all_roles = $response->getBody();
+
+//       if (empty($all_roles)) {
+//         \Drupal::logger('customizations')->error('Username not found in Pomona API');
+//         \Drupal::messenger()->addError("We're currently having an issue retrieving your Pomona College affiliations, so you may be unable to access some content that you should be able to access. Please log out and try logging back in. If you continue to get this message, please email <a href='mailto:webupdate@pomona.edu'>webupdate@pomona.edu</a>.");
+//         return FALSE;
+//       }
+//     }
+//     catch (RequestException $e) {
+//       \Drupal::logger('customizations')->error('Unable to retrieve response from Pomona API');
+//       \Drupal::messenger()->addError("We're currently having an issue retrieving your Pomona College affiliations, so you may be unable to access some content that you should be able to access. Please log out and try logging back in. If you continue to get this message, please email <a href='mailto:webupdate@pomona.edu'>webupdate@pomona.edu</a>.");
+//       return FALSE;
+//     }
+
+//     //Successfully retrieved a response and username
+//     $selected_roles = customizations_role_list(); //we only care about these roles
+
+//     if(!empty($all_roles)) {
+//       $jsonout = json_decode($all_roles, TRUE);
+//       //Output JSON response for testing purposes only
+//       //\Drupal::messenger()->addMessage(print_r($jsonout, TRUE));
+
+//       $all_user_roles = array();
+//       foreach($jsonout AS $role) {
+//         $all_user_roles[] = $role['Role'];
+//       }
+      
+//       $final_result = array();
+//       foreach($all_user_roles AS $role) {
+//         if (in_array($role, $selected_roles)) {
+//           $final_result[] = $role;
+//         }
+//       }
+//       //Output result array for testing purposes only
+//       //\Drupal::messenger()->addMessage(print_r($final_result, TRUE));
+//       return $final_result;
+//     }
+//   }
+// }
+//  /**
+//  * Implements hook_user_login().
+//  * Login altered to update roles listed to set the ones for the user in pomona api
+//  **/
+// function customizations_user_login($account) {
+//   //Get Pomona Roles and Current Drupal User Roles
+//   $pomona_user_roles = customizations_list_user($account);
+//   $drupal_roles = $account->getRoles();
+//   $selected_roles = customizations_role_list();
+//   //If user has a POM role in Drupal but no longer has it on the feed, then remove POM role
+//   foreach($drupal_roles AS $role) {
+//     if(strpos($role, 'pom') !== false) {
+//       if (!in_array($role, $pomona_user_roles) || empty($pomona_user_roles)) {
+//         $account->removeRole($role);
+//       }
+//     }
+//   }
+//   //Add roles from pomona feed to drupal roles
+//   if(!empty($pomona_user_roles)) {
+//     foreach($pomona_user_roles AS $roles) {
+//       $account->addRole($roles);
+//     }
+//   }
+//   //Save user with role changes
+//   $account->save();
+// }
+/**
+ *  Modifying default Drupal login page to remove tabs and initially hide local Drupal login for SSO
+ **/
+
+function customizations_menu_local_tasks_alter(&$data, $route_name) {
+  if($route_name == 'user.login'  && isset($data['tabs'][0])) {
+    // Remove all tabs from user login form.
+    foreach ($data['tabs'][0] as $key => $tab){
+      $data['tabs'][0][$key]['#access'] = FALSE;
+    }
+  }
+}
+
+function customizations_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form' ) {
+    $form['#attached']['library'][] = 'customizations/customizations';
+    $form['#attributes']['class'][] = 'sr-only';
+    $form['#prefix'] = '<div class="login-links"><div class=""><a class="saml-login" type="submit" href="/saml_login">LOG IN</a></div><br><div class=""><a class="saml-login-cancel">Cancel Single Sign-On Login</a></div></div>';
+
+    // Remove descriptions.
+    $form['name']['#description'] = t('');
+    $form['pass']['#description'] = t('');
+  }
+}
+
+function customizations_system_breadcrumb_alter(\Drupal\Core\Breadcrumb\Breadcrumb &$breadcrumb, \Drupal\Core\Routing\RouteMatchInterface $route_match, array $context){
+  //If breadcrumb comes from a view, rebuild title to get overrides
+  if (preg_match('/view\./', $route_match->getRouteName())) {
+    //Build title to get overrides
+    //Partially comes from former core patch "Breadcrumb title does not reflect title override, Issue #2787051": "https://www.drupal.org/files/issues/2018-12-23/drupal-view_title_with_contextual_filters-2787051-28.patch"
+    $view_id = $route_match->getRouteObject()->getDefault('view_id');
+    $display_id = $route_match->getRouteObject()->getDefault('display_id');
+    if ($view_id){
+      $view = Views::getView($view_id);
+      $parameters = $route_match->getParameters();
+      $parameters->remove('view_id');
+      $parameters->remove('display_id');
+      $view->setArguments($parameters->all());
+      $view->setDisplay($display_id);
+      $view->buildTitle();
+      $title = $view->getTitle();
+  
+      //override last link with properly built breadcrumb...
+      $links = $breadcrumb->getLinks();
+      unset($links[(count($links)-1)]);
+      $breadcrumb = new Breadcrumb();
+      $breadcrumb->setLinks($links);
+      $breadcrumb->addLink(Link::createFromRoute($title, '<nolink>'));
+      $breadcrumb->addCacheTags(['config:views.view.' . $view_id]);
+      $breadcrumb->addCacheContexts(['route.name']);
+    }
+  }
+}
+
+
+/**
+ * Recursively get a list of menu item IDs in the subtree.
+ */
+function getBranchChildren($subtree, $menu_id_array = []) {
+  foreach($subtree as $item) {
+    // Only include enabled items, but still check disabled item children.
+    if ($item->link->isEnabled()) {
+      $menu_id_array[] = (int) $item->link->getMetaData()['entity_id'];
+    }
+    if ($item->hasChildren) {
+      $menu_id_array += getBranchChildren($item->subtree, $menu_id_array);
+    } 
+  }
+  return $menu_id_array;
+}
+
+
+function customizations_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+
+  if ($view->id() == 'a_z_directory' && $view->current_display == 'misc') {
+    
+    // Get A-Z Link from main menu.
+    $current_path = \Drupal::service('path.current')->getPath();
+    $directory_uri = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+    $chunks = explode('/', $directory_uri);
+    $system_uri = 'route:view.a_z_directory.misc;arg_0=' . end($chunks);
+    $equery = \Drupal::entityQuery('menu_link_content')
+      ->condition('link.uri', $system_uri)
+      ->condition('menu_name', 'main');
+    $result = $equery->execute();
+    $menu_link_id = (!empty($result)) ? reset($result) : FALSE;
+    
+    // From parent, get all the children recursively.
+    if ($menu_link_id) {
+      $menu_link = MenuLinkContent::load($menu_link_id);
+      $menu_parameters = new \Drupal\Core\Menu\MenuTreeParameters();
+      //$menu_parameters->onlyEnabledLinks();
+      $menu_parameters->setRoot($menu_link->getParentId());
+      $sub_nav = \Drupal::menuTree()->load('main', $menu_parameters);
+      $menu_id_array = getBranchChildren($sub_nav);
+      // Remove the existing contextual filter.
+      foreach ($query->where[0]['conditions'] as $i => $condition) {
+        if (strpos($condition['field'], 'menu_entity_index.parent_id') === 0) {
+          unset($query->where[0]['conditions'][$i]);
+        }
+      }
+      $query->addWhere(0, 'menu_entity_index.entity_id', $menu_id_array, 'in');
+    }
+  }
+
+  if ($view->id() == 'images_w_centered_focal_point') {
+    
+    // var_dump ($query);exit;
+    //$query->addJoin('left','crop_field_data','media__field_media_image.field_media_image_target_id = crop_field_data.entity_id');
+
+    /**
+     * 
+     * select crop_field_data.cid,crop_field_data.uri,crop_field_data.x,crop_field_data.y,media__field_media_image.field_media_image_width,media__field_media_image.field_media_image_height
+     * from crop_field_data join media__field_media_image on 
+     * media__field_media_image.field_media_image_target_id = crop_field_data.entity_id 
+     * having ((crop_field_data.x*2)=(media__field_media_image.field_media_image_width)) or ((crop_field_data.y*2)=(media__field_media_image.field_media_image_height))
+     */
+
+    
+
+  }
+  
+}
+
+function customizations_views_pre_execute(\Drupal\views\ViewExecutable $view) {
+  if ($view->id() == 'images_w_centered_focal_point') {
+    $query = $view->build_info['query']; 
+    $query->addField('media__field_media_image','field_media_image_width','field_media_image_width');
+    $query->addField('media__field_media_image','field_media_image_height','field_media_image_height');
+    $query->leftJoin('media__field_media_image', 'media__field_media_image', 'media_field_data.thumbnail__target_id = media__field_media_image.field_media_image_target_id');
+    $query->leftJoin('crop_field_data', 'crop_field_data', 'crop_field_data.entity_id = media__field_media_image.field_media_image_target_id');
+    $query->where('crop_field_data.y*2=media__field_media_image.field_media_image_height OR crop_field_data.x*2=media__field_media_image.field_media_image_width');
+    $view->build_info['query'] = $query;
+    $view->build_info['count_query'] = $query;
+  }
+}
+
+/**
+ * Change menu URL if connected to a redirect with a URL
+ */
+function customizations_link_alter(&$variables){
+  
+  if (isset($variables['options']['attributes']['data-drupal-link-system-path'])){
+    preg_match('/node\/(\d+)$/',$variables['options']['attributes']['data-drupal-link-system-path'],$matches);
+    if (isset($matches[1])){
+      $nid=($matches[1]);
+      $node = node_load($nid);
+      if ($node->bundle()=='redirect'){
+        if ($node->hasField('field_link')) {
+          $redirect = $node->field_link->uri;
+          if(!empty($redirect)) {
+            $variables['url'] = Url::fromUri($redirect);
+          } 
+        }
+      }
+    }
+  } 
+}
+
+/* Alter the meta tags for any page prior to page attachment.
+ *
+ * @param array $metatag_attachments
+ *   An array of metatag objects to be attached to the current page.
+ */
+function customizations_metatags_attachments_alter(array &$metatag_attachments) {
+  
+  $cleaned_tags = [];
+  $has_image = false;
+  foreach ($metatag_attachments['#attached']['html_head'] as $head_tag){  
+    
+    if ($head_tag[0]['#attributes']['property'] == 'og:image'){
+      if (stristr($head_tag[0]['#attributes']['content'],'jpg') || 
+          stristr($head_tag[0]['#attributes']['content'],'jpeg') || 
+          stristr($head_tag[0]['#attributes']['content'],'png')
+      ){
+        $cleaned_tags[]=$head_tag;
+        $has_image=true;
+      }
+    }else{
+      $cleaned_tags[]=$head_tag;
+    }
+  }
+  
+  if (!$has_image){
+    
+    $default_image_url = \Drupal::request()->getSchemeAndHttpHost() . base_path().'sites/default/files/2020-12/social_sharing_logo.png';
+    $cleaned_tags[] = [
+      0=>[
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => "og:image",
+          'content' => $default_image_url,
+        ],
+      ],
+      1=>'og_image_0',
+    ];
+  }
+  
+  
+  $metatag_attachments['#attached']['html_head']=$cleaned_tags;
+  
+}

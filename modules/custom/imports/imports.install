@@ -1,0 +1,7 @@
+<?php
+
+// If you want to clear data between installs:
+function imports_uninstall() {
+  Drupal::configFactory()->getEditable('migrate_plus.migration.locations')->delete();
+  Drupal::configFactory()->getEditable('migrate_plus.migration.terms')->delete();
+}

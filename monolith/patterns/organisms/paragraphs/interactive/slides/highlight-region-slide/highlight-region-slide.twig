@@ -1,0 +1,29 @@
+<figure class="slide slide--highlight-region {{ variant }}">
+  <div>
+    {% block slide_media %}
+      {% if linked %}<a href="http://www.example.com/" class="block">{% endif %}
+        {% include "@picture" with { width: 850, height: 478 } only  %}
+      {% if linked %}</a>{% endif %}
+    {% endblock %}
+  </div>
+  {% block slide_caption %}
+    <figcaption class="{{ figcaption_variant|default('bg-blue text-2xl text-white lg:text-4xl lg:font-serif') }}">
+      <p>{{ random([paragraph,words,sentence,catchPhrase,bs])|striptags|capitalize }}</p>
+      {% if linked %}
+        <a href="http://www.example.com/" class="
+          btn
+          btn-uppercase
+          ml-10
+          block
+        ">
+            {{ label }} 
+            <span class="
+              text-yellow 
+              ml-4 
+              fas 
+              fa-chevron-right
+            "></span>
+        </a>{% endif %}
+    </figcaption>
+  {% endblock %}
+</figure>

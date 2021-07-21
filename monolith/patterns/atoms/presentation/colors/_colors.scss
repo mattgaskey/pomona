@@ -1,0 +1,53 @@
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.color-grid__swatch {
+  flex: 0 0 1;
+  width: 33.3%;
+  min-height: 20vw;
+  position: relative;
+
+  @media screen and (min-width: $tablet) {
+    width: 20%;
+    min-height: 20vw;
+  }  
+}
+
+
+
+.color-grid__label {
+  background-color: #ffffffcc;
+  font-family: sans-serif;
+  font-size: .8rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: .5rem;
+  line-height: 1;
+  border-radius: 0 0 .5rem 0;
+}
+
+@each $clr in map-keys($colors) {
+  $value: map-get($colors, $clr);
+  .bg--#{$clr} {
+    background-color: $value;
+
+    &::after {
+      content: '#{$value}';
+      background-color: #000000AA;
+      color: white;
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-family: sans-serif;
+      font-size: .8rem;
+      padding: .5rem;
+      line-height: 1;
+      border-radius: .5rem 0 0 0;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<div class="datepicker-wrapper">
+  <label for="datepicker" class="font-serif font-bold text-xl">Go To Date</label>
+  <div class="mt-20">
+    <div id="datepicker" class="hasDatepicker">
+      <div class="font-sans">
+        <div class="flex justify-between items-center">
+          <a class="btn btn-prev btn-green btn-no-label"><span>Prev</span></a>
+          <div class="text-xl">December</div>
+          <a class="btn btn-next btn-green btn-no-label"><span>Next</span></a>
+        </div>
+        <table class="w-full text-lg">
+          <thead>
+            <tr>
+              <th>Su</th>
+              <th>Mo</th>
+              <th>Tu</th>
+              <th>We</th>
+              <th>Th</th>
+              <th>Fr</th>
+              <th>Sa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in 0 .. 4 %}
+              <tr>
+                {% set start = (i * 7) + 1 %}
+                {% set end = (i+1) * 7 %}
+                {% for j in start .. end  %}
+                  {% set active = (j is same as(23)) ? ' bg-green text-yellow ' : '' %}
+                  <td class="text-center p-3">
+                    {% if j <= 31 %}
+                    <a class="p-5 font-bold btn-block {{ active }} hover:bg-green hover:text-yellow" href="http://www.example.com/">{{ j }}</a>
+                    {% endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

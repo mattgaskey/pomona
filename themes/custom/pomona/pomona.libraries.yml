@@ -1,0 +1,133 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/main.css : {}
+      css/patterns.css : {}
+      css/hiraku.css : {}
+      
+global-scripts:
+  version: 1.x
+  header: true
+  js:
+    js/lib/hiraku.js: {}
+    js/lib/jquery.fitvids.js: {}
+    js/toggle-button.js : {}
+    js/main.js : {}
+    js/googleTranslate.js : {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - core/drupal.dialog.ajax
+    - pomona/interactives
+    - pomona/otherRequiredLibraries
+
+slideshows:
+  version: 1.x
+  css:
+    theme:
+      css/slick.css: {}
+      css/slick-theme.css: {}
+  js: 
+    js/lib/slick/slick.js: {}
+    js/slideshows.js: {}
+
+otherRequiredLibraries:
+  version: 1.x
+  css:
+    theme:
+      css/magnific.css: {}
+      js/lib/rtResponsiveTables/jquery.rtResponsiveTables.css: {}
+  js:
+    js/lib/atAccordionOrTabs/jquery.bbq.js: {}
+    js/lib/jquery.magnific-popup.min.js: {}
+    js/lib/jquery-accessible-accordion.js: {}
+    js/lib/atAccordionOrTabs/jquery.atAccordionOrTabs.js: {}
+    js/lib/rtResponsiveTables/jquery.rtResponsiveTables.js: {}
+    js/lib/jquery.jsonp-2.4.0.js: {}
+    js/lib/jquery.jsonp-sort.js: {}
+    js/lib/jquery.url-parser.js: {}
+    js/lib/tableau-js-api.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+fancybox:
+  version: 1.x
+  css:
+    theme:
+      js/lib/fancybox/jquery.fancybox.css: {}
+  js:
+    js/lib/fancybox/jquery.fancybox.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+interactives:
+  version: 1.x
+  js:
+    js/patterns/accordion.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - pomona/otherReqiuiredLibraries
+
+share:
+  version: 1.x
+  js:
+    js/share-button.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+trumbaHomepage:
+  version: 1.x
+  js:
+    js/lib/trumba/trumba-homepage.js: {}
+
+trumbaCalendar:
+  version: 1.x
+  js:
+    js/lib/trumba/trumba-calendar.js: {}
+    
+trumbaNewsEvents:
+  version: 1.x
+  js:
+    js/lib/trumba/trumba-news-events.js: {}
+
+trumbaArts:
+  version: 1.x
+  js:
+    js/lib/trumba/trumba-arts.js: {}
+
+trumbaStaff:
+  version: 1.x
+  js:
+    js/lib/trumba/trumba-staff.js: {}
+
+directory:
+  version: 1.x
+  js:
+    js/directory.js: {}
+    js/a-z-filter.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+directoryAZ:
+  version: 1.x
+  js:
+    js/a-z-misc.js: {}
+    js/a-z-filter.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+filterAZ:
+  version: 1.x
+  js:
+    js/a-z-filter.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

@@ -1,0 +1,31 @@
+id: fc_to_pg_faculty_quote
+label: Faculty Quote
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/fc_to_pg_faculty_quote_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'fc_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      BODY: 'body'
+    3:
+      IMAGE: 'image'
+    4:
+      TITLE: 'title'
+process:
+  field_title: TITLE
+  field_body/value: BODY
+  field_body/format:
+    plugin: default_value
+    default_value: 'full_html'
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: faculty_quote

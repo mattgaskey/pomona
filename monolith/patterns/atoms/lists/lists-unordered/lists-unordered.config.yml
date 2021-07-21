@@ -1,0 +1,35 @@
+default: Plain
+collated: true
+context:
+  items:
+    - List Item One
+    - List Item Two
+    - List Item Three
+    - List Item Four
+    - List Item Five
+variants:
+  - name: Vertical
+    context:
+      variant: 'list--vertical'
+  - name: Horizontal
+    context:
+      variant: 'list--horizontal'
+  - name: Piped
+    context:
+      variant: 'list--piped'
+  - name: bullets
+    context: 
+      variant: 'bullets'
+  - name: blue
+    context:
+      variant: 'bullets bullets-blue'
+  - name: lavender
+    context:
+      variant: 'bullets bullets-lavender'
+  - name: blue-hollow
+    context:
+      variant: 'bullets bullets-blue-hollow'
+  - name: lavender-hollow
+    context:
+      variant: 'bullets bullets-lavender-hollow'
+

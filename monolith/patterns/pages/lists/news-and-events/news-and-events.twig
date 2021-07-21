@@ -1,0 +1,64 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+
+  {% include '@content-header' with { pages: [], title: 'News &amp; Events', variant: '' } %}  
+
+  {% embed '@with-sidebar' with { major: "3/4", minor: "1/4" } %}
+    {% block with_sidebar_main %}
+
+      {% embed '@panel' with { color: 'green', name: 'News', morebutton: 'View all News', wrapper_classes: 'px-25 lg:-ml-75', inner_classes: 'lg:pl-75 pb-40' } %}
+        {% block panel_content %}
+          <div class="bg-white">
+            {% include '@slideshow' with { variant: 'top', pattern: '@top-of-content', linked: true, label: 'Read the whole story'  } %}
+
+            <div class="mt-60 px-25 pb-25">
+              {% include '@featured-news' %}
+            </div>
+
+          </div>
+        {% endblock %}
+      {% endembed %}
+
+      {% embed '@panel' with { color: 'green', name: 'Events', morebutton: 'Event Calendar', wrapper_classes: 'px-25 lg:-ml-75', inner_classes: 'lg:pl-75 pb-40' } %}
+        
+        {% block panel_content %}
+          {% include '@featured-events' %}
+        {% endblock %}
+        
+      {% endembed %}      
+
+    {% endblock %}
+
+    {% block with_sidebar_aside %}
+      <div class="box">
+        <h3 class="font-sans uppercase text-xl mb-15">MEDIA CONTACT</h3>
+        <p class="leading-relaxed text-base text-brown-300">
+          <a class="ln font-serif text-lg">Patricia Zurita Vest</a><br />
+          Associate Director of News and Strategic Content<br />
+          <a class="ln font-serif" href="mailto:patricia.vest@pomona.edu">patricia.vest@pomona.edu</a><br />
+          <a class="ln font-serif" href="tel:9096218503">(909) 621-8503</a>
+        </p>
+      </div>
+
+      <div class="mt-75">
+        <h3 class="font-sans uppercase text-xl mb-15">EVENTS CONTACT</h3>
+        <p class="leading-loose text-base text-brown-300">
+          <a class="ln font-serif text-lg">Crystal Camarena</a><br />
+          Event Coordinator<br />
+          <a class="ln font-serif" href="mailto:crystal.camarena@pomona.edu">crystal.camarena@pomona.edu</a><br />
+          <a class="ln font-serif" href="tel:9096218373">(909) 621-8373</a>
+        </p>
+      </div>
+
+      <div class="mt-75 bg-gray-100 p-25">
+        <h3 class="font-sans uppercase text-xl">Social Media Activity</h3>
+        <div class="editorial py-15">
+        <p>Pomona is full of passion and engagement. Want evidence? Check out what we're up to on social media.</p>
+        </div>
+        <a class="btn btn-block btn-uppercase btn-lavender btn-more" href="http://www.example.com/">Social Media Hub</a>
+      </div>
+    {% endblock %}
+  {% endembed %}
+    
+{% endblock %}
+{% endembed %}

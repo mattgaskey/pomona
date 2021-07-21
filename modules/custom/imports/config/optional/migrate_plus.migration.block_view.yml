@@ -1,0 +1,27 @@
+id: block_view
+label: View Block
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/block_view_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'block_id'
+    1:
+      LABEL: 'label'
+    2:
+      VIEWNAME: 'view_name'
+    3:
+      ARGUMENTS: 'arguments'
+process:
+  info: LABEL
+  field_legacy_view_name: VIEWNAME
+  field_arguments: ARGUMENTS
+destination:
+  plugin: entity:block_content
+  default_bundle: view

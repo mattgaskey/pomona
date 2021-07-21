@@ -1,0 +1,7 @@
+name: 'Inset Injector'
+type: module
+description: 'Provides a twig extension that can inject field_inset members into specific locations in a long text field / body field'
+core: 8.x
+package: 'NewCity'
+dependencies:
+  - paragraphs:paragraphs

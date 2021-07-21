@@ -1,0 +1,6 @@
+services:
+  inset_injector.twig_extensions:
+    arguments: ['@renderer']
+    class: Drupal\inset_injector\TwigExtension\Extension
+    tags:
+      - { name: twig.extension }

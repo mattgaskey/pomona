@@ -1,0 +1,5 @@
+name: Emergency Redirect
+type: module
+description: Redirect to emergency page if emergency page is active; redirect away from it otherwise.
+core: 8.x
+package: 'NewCity'

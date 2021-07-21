@@ -1,0 +1,11 @@
+<div class="by-the-numbers {{ variant }} {{ by_the_numbers_classes }}">
+  {% for item in items %}
+    {% include '@stat-block' with { 
+        variant: block_variant, 
+        stat: item.stat, 
+        stat_caption: item.stat_caption,
+        stat_classes: item.stat_classes,
+        stat_number_classes: item.stat_number_classes
+    } %}
+  {% endfor %}
+</div>

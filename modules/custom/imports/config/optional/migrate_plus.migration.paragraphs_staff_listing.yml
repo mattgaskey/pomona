@@ -1,0 +1,35 @@
+id: paragraphs_staff_listing
+label: Staff Listing
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_staff_listing_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      OFFICE: 'office'
+    3:
+      TYPE: 'type'
+process:
+  field_staff_listing_type: TYPE
+  field_office/target_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: OFFICE
+    -
+      plugin: entity_lookup
+      entity_type: node
+      bundle: office
+      value_key: title
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: staff_listing

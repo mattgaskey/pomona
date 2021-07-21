@@ -1,0 +1,31 @@
+id: audio_to_media
+label: Audio to Media
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/audio_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - FID
+  column_names:
+    0:
+      FID: 'id'
+    1:
+      PATH: 'filepath'
+    2:
+      NAME: 'filename'
+process:
+  name: NAME
+  field_media_audio_file/target_id:
+    plugin: migration_lookup
+    migration: audio
+    source: FID
+destination:
+  plugin: 'entity:media'
+  default_bundle: audio
+migration_dependencies:
+  required:
+    - audio
+  optional: []

@@ -1,0 +1,30 @@
+id: paragraphs_headline_with_link
+label: Headline with Link
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_headline_with_link_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      MORELINK: 'more_link_url'
+    3:
+      MORELINKTITLE: 'more_link_title'
+process:
+  field_link/uri: 
+    - plugin: str_replace
+      source: MORELINK
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_link/title: MORELINKTITLE
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: headline_with_link

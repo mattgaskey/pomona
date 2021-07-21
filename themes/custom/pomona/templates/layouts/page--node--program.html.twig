@@ -1,0 +1,22 @@
+{% extends "@pomona/layouts/page.html.twig" %}
+
+{% set main_classes = [
+	'main',
+	node_unpublished? 'unpublished',
+	node_revision ? 'revision',
+  (not is_front) ? 'bg-title-pattern',
+  (not is_front) ? 'bg-repeat-x',
+  (not is_front) ? 'py-50' : 'pb-50',
+  'min-h-200',
+  type
+] %}
+
+{% block main_content %}
+  <main id="main-content" class="min-h-200 {{ main_classes|join(' ')|trim }}" role="main">
+    <div class="c-container-lg">
+    {{ page.breadcrumb }}
+    {{ page.content }}
+    </div>
+  </main>
+{% endblock %}
+

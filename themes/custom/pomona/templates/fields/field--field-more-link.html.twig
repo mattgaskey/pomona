@@ -1,0 +1,5 @@
+<div{{attributes}}>
+{% for item in items %}
+  <a class="inline-flex border-b-1 border-transparent hover:border-brown-100 items-center text-cyan font-bold uppercase" href="{{ item.content['#url'] }}">{{ item.content['#title'] }}<span class="fas fa-chevron-right text-sm pl-5"></span></a>
+{% endfor %}
+</div>

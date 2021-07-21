@@ -1,0 +1,348 @@
+.editorial {
+  h2:not([class]) {
+    @apply text-4xl leading-normal;
+  }
+
+  h3:not([class]) {
+    @apply text-3xl leading-normal italic text-orange;
+  }
+
+  h4:not([class]) {
+    @apply text-2xl leading-normal font-sansblack font-black;
+  }
+
+  h5:not([class]) {
+    @apply text-2xl leading-normal font-sans font-bold;
+  }
+
+  h6:not([class]) {
+    @apply text-xl leading-normal font-bold;
+  }
+
+  p:not([class]) {
+    @apply mb-25;
+
+    &:last-child {
+      @apply mb-0;
+    }
+
+    li {
+      @apply mb-10;
+    }
+  }
+
+  ul {
+    list-style-type: none !important;
+  }
+
+  ul:not([class]),
+  ol:not([class]) {
+    @apply my-20;
+
+    &:last-child {
+      @apply mb-0;
+    }
+
+    li {
+      @apply mb-10;
+    }
+  }
+
+  a:not([class]) {
+    &:hover {
+      @apply border-transparent;
+    }
+  }
+
+  ol:not([class]) {
+    counter-reset: item;
+    > li {
+      @apply pl-15;
+      &:before {
+        @apply text-cyan-300 font-sansblack;
+        content: counter(item) ". ";
+        counter-increment: item;
+      }
+    }
+  }
+
+  .text-brown {
+    @apply font-sans;
+  }
+
+  .inset {
+    @apply font-sans;
+
+    h3:not([class]) {
+      @apply font-sans text-xl text-black border-b-2 mb-20;
+    }
+
+    p:not([class]),
+    li:not([class]) {
+      @apply font-sans text-base mb-5;
+    }
+
+    ul:not([class]),
+    ol:not([class]) {
+      @apply my-10;
+    }
+
+    blockquote {
+      p:not([class]) {
+        @apply text-xl leading-relaxed;
+      }
+    }
+  }
+
+  .section-person {
+    @apply float-left border-b-2 border-brown-100 py-30;
+    .body-image-placement {
+      @apply float-left mr-20 mt-10 w-1/3-up;
+      clear: both;
+      min-width: 280px;
+    }
+  }
+
+  .button {
+    &:after {
+      @include fa-icon;
+      @extend .fas;
+      @apply text-yellow;
+      content: fa-content($fa-var-angle-right);
+      margin-left: .3em;
+      float: right;
+      padding-top: 5px;
+    }
+    &:hover {
+      @apply bg-cyan-400;
+    }
+
+    @apply text-white bg-blue font-sans leading-relaxed inline-block whitespace-no-wrap bg-cyan uppercase font-bold text-lg p-15;
+    cursor: pointer;
+    letter-spacing: 1px;
+    
+    &.button-small {
+      @apply text-sm py-5 px-10;
+      &:not(.btn-more) {
+        @apply leading-relaxed;
+      }
+    }
+  }
+
+  .more-link {
+    @extend .btn-more-link;
+  }
+
+  .pomona-page-intro {
+    @apply font-sans text-3xl pb-40 mb-40 border-b-6 border-yellow-100;
+  }
+
+  .rtecenter {
+    @apply text-center;
+  }
+
+  a[href*="/map/?"] {
+    &:before {
+      @include fa-icon;
+      @extend .fas;
+      @apply text-lavender bg-transparent;
+      content: fa-content($fa-var-map-marker-alt);
+      margin-right: .3em;
+    }
+  }
+
+  &.user {
+    @apply text-xl font-serif;
+  }
+
+  &.events-contact-block {
+    .block__title {
+      @apply uppercase text-2xl;
+    }
+    .field {
+      @apply mb-5 text-lg;
+      &.field-name-field-position,
+      &.field-name-field-phone {
+        @apply text-brown-300 font-sans;
+      }
+      a {
+        @apply font-serif;
+      }
+    }
+  }
+
+  .fsBody {
+    h1 {
+      @apply hidden;
+    }
+  }
+
+  @screen lg {
+    .two-col {
+      columns: 2;
+    }
+
+    .three-col {
+      columns: 3;
+    }
+
+    .four-col {
+      columns: 4;
+    }
+    .column-2,
+    .column-3,
+    .column-4,
+    .columns-to-single-on-mobile {
+      @apply flex flex-row clear-both;
+    }
+    .column-2 {
+      div {
+        width: 49%;
+        padding-right: 2%;
+      }
+    }
+    .column-3,
+    .columns-to-single-on-mobile {
+      div {
+        width: 32%;
+        padding-right: 2%;
+      }
+    }
+    .column-4 {
+      div {
+        width: 24%;
+        padding-right: 2%;
+      }
+    }
+    .pomona-page-intro {
+      @apply text-4xl;
+    }
+  }
+
+  // CSS injector 41
+  a.social-media-department-listing {
+    width: 29px;
+    height: 29px;
+    background: transparent url("../images/social-media-icons-29.svg") no-repeat;
+    background-size: auto 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 5px;
+  }
+
+  .social-media-department-group {
+      margin-bottom: 5px;
+  }
+
+  a.social-media-department-listing-instagram {
+      background-position: -29px 0 !important;
+  }
+
+  a.social-media-department-listing-youtube {
+      background-position: -58px 0 !important;
+  }
+
+  a.social-media-department-listing-twitter {
+      background-position: -87px 0 !important;
+  }
+
+  a.social-media-department-listing-linkedin {
+      background-position: -116px 0 !important;
+  }
+
+  a.social-media-department-listing-pinterest {
+      background-position: -145px 0 !important;
+  }
+
+  a.social-media-department-listing-flickr {
+      background-position: -174px 0 !important;
+  }
+
+  a.social-media-department-listing-app {
+      background-position: -203px 0 !important;
+  }
+
+  a.social-media-department-listing-podcast {
+      background-position: -232px 0 !important;
+  }
+
+  // CSS Injector 341
+  .wiki-list {
+    @apply bg-pttrn-lt-grey p-25;
+  }
+  .wiki-list-item {
+    background-color: #fff;
+    border-top: 4px solid #CCCCCB;
+    margin-bottom: 25px;
+    clear: both;
+    display: inline-block;
+    width: 100%;
+    min-height: 75px;
+  }
+  .wiki-list-item img {
+    width: 250px;
+    float: left;
+    margin-right: 15px;
+  }
+  .wiki-list-item p {
+    margin: 0 10px 10px 10px;
+  }
+  .wiki-list-item > a {
+    display: inline-block;
+    float: left;
+    border-bottom: none !important;	
+  }
+  @media (max-width:768px) {
+    .wiki-list-item img {
+      float: none;
+      width: 100%;
+    }
+  }
+}
+
+.editorial-main {
+  @apply text-xl font-serif leading-relaxed;
+
+  ul:not([class]){
+    @include imageBullets('blue');
+
+    ul:not([class]),
+    ul.rteindent1  {
+      @include imageBullets('lavender');
+
+      ul:not([class]) {
+        @include imageBullets('blue-hollow');
+
+        ul:not([class]) {
+          @include imageBullets('lavender-hollow');
+        }
+      }
+    }
+  }
+}
+
+.bg-blue {
+
+  &.editorial {
+    a:not(.btn):not(.more-link):not(.lightbox-trigger) {
+      @apply text-white border-cyan;
+
+      &.ln-alt {
+        @apply border-yellow;
+      }
+    }
+    ul:not([class]) {
+      @include imageBullets('yellow');
+    }
+    .student-location-count {
+      @apply italic text-3xl border-b-4 border-yellow;
+      > p {
+        @apply font-sans text-5xl leading-tight not-italic;
+      }
+    }
+  }
+}
+
+.editorial-sans {
+  @apply font-sans leading-relaxed;
+}

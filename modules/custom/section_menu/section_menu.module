@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains section_menu.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function section_menu_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the section_menu module.
+    case 'help.page.section_menu':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Generate a custom menu block that uses the nearest section head') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function section_menu_theme($existing, $type, $theme, $path) {
+  return ['section_menu_block' =>
+    [
+      'variables' => [
+        'linked_title' => '',
+        'items' => [],
+      ],
+      'template' => 'section-menu',
+    ]
+  ];
+}

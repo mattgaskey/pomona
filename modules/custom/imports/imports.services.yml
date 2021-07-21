@@ -1,0 +1,5 @@
+#services:
+#  imports.event_subscriber:
+#    class: Drupal\imports\EventSubscriber\VCOMImportSubscriber
+#    tags: 
+#      - { name: event_subscriber }

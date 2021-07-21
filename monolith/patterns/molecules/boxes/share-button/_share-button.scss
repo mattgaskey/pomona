@@ -1,0 +1,18 @@
+.blog__wrapper {
+  .share-button {
+    top: -25px;
+  }
+}
+
+.slide {
+  .share-button {
+    top: 33px;
+    left: 15px;
+    z-index: 100000;
+    .share-button__buttons {
+      span {
+        @apply h-full pt-4;
+      }
+    }
+  }
+}

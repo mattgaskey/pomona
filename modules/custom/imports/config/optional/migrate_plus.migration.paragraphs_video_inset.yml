@@ -1,0 +1,50 @@
+id: paragraphs_video_inset
+label: Video Inset
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_video_inset_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      CAPTION: 'caption'
+    3:
+      INSETALIGN: 'inset_alignment'
+    4:
+      INSETPLACE: 'inset_paragraph_placement'
+    5:
+      MEDIA: 'media'
+    6:
+      MORELINK: 'more_link_url'
+    7:
+      MORELINKTITLE: 'more_link_title'
+process:
+  field_media_caption/value: CAPTION
+  field_media_caption/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_media_alignment/value: INSETALIGN
+  field_media_paragraph_placement/value: INSETPLACE
+  field_link/uri: 
+    - plugin: str_replace
+      source: MORELINK
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_link/title: MORELINKTITLE
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+      - yt_video
+      - vimeo_video
+    source: MEDIA
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: video_inset

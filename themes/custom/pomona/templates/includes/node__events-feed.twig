@@ -1,0 +1,54 @@
+{{ attach_library('pomona/trumbaCalendar') }}
+{% embed "@fractal/with-sidebar.twig" with {
+  main_id: 'content-area',
+  aside_id: 'aside-area'
+} %}
+  {% block with_sidebar_main %}
+    {% include "@pomona/includes/events-slideshow.twig" %}
+    <script type="text/javascript" src="//www.trumba.com/scripts/spuds.js"></script>
+    <div class="my-30" id="trumba-events-months">
+      <script type="text/javascript">
+        $Trumba.addSpud({
+          webName: "pomona-college-json",
+          spudType : "monthlist" 
+        });
+      </script>
+    </div>
+    <div id="trumba-events-feed">
+      <script type="text/javascript">
+      $Trumba.addSpud({
+        webName: "pomona-college-events",
+        spudType: "main",
+        url: { filterview: "HideEventsFromListing" }
+      });
+      </script>
+    </div>
+  {% endblock %}
+  {% block with_sidebar_aside %}
+    <div class="my-20" id="trumba-events-search">
+      <script type="text/javascript">
+        $Trumba.addSpud({
+          webName: "pomona-college-json",
+          spudType : "searchlabeled" 
+        });
+      </script>
+    </div>
+    <div class="my-20" id="trumba-events-calendar">
+      <script type="text/javascript">
+        $Trumba.addSpud({
+          webName: "pomona-college-json",
+          spudType : "datefinder" ,
+          teaserBase : "/events" 
+        });
+      </script>
+    </div>
+    <div class="my-20" id="trumba-events-filters">
+      <script type="text/javascript">
+        $Trumba.addSpud({
+          webName: "pomona-college-events",
+          spudType : "filter" 
+        });
+      </script>
+    </div>
+  {% endblock %}
+{% endembed %}

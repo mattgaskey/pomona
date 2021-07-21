@@ -1,0 +1,13 @@
+<ul class="menu {{ variant }}">
+  {% for item in items %}
+    <li class="menu__item is_leaf {{ item|machine_name }}">
+      <a href="/" class="menu__link">
+        {% if item == 'Home' %}
+          {% include '@logo-horizontal' with { variant: 'logo-horizontal--inverse' } %}
+        {% else %}
+          {{- item -}}
+        {% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul> 

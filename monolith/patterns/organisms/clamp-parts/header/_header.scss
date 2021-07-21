@@ -1,0 +1,137 @@
+body.not-logged-in header.main-header {
+  @apply sticky top-0;
+}
+
+body.logged-in header.main-header {
+  @apply relative;
+}
+
+#main-menu {
+
+  li:not(.home) {
+    @apply hidden;
+  }
+
+  .home {
+    flex: 0 0 25vw;
+    height: 13.28vw;  
+    svg {
+      @apply bg-blue block max-w-full h-auto border-cyan border-b-4;
+      .column {
+        fill: #20438f;
+      }
+    }
+  }
+
+  @screen md {
+    ul {
+      @apply flex items-center justify-center mx-auto text-base font-sans font-normal;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    .home {
+      flex: 0 0 30vw;
+      max-width: rem-calc(207px);
+      height: rem-calc(75px);
+
+      @media print {
+        height: auto;
+
+        svg {
+          background-color: white;
+        }
+
+        .shield,
+        .wordmark {
+          fill: #20438f;
+        }
+
+        .column {
+          fill: white;
+        }
+
+      }
+    }    
+  }
+
+  @screen lg {
+    transform: translateX(-1.1rem);
+
+    li {
+      position: relative;
+      flex: 1 1 auto;
+      margin: 0 4px;
+      padding: 0;
+      text-align: center;
+    } 
+
+    li:not(.home) {
+      @media print {
+        display: none;
+      }
+
+      @apply block text-center px-4;
+
+      &:first-child {
+        @apply pl-0;
+      }
+
+      &:last-child {
+        @apply pr-0;
+      }
+
+      a {
+        @apply text-black border-b-2 border-transparent py-3;
+        transition: border-bottom-color .2s ease-in-out;
+        line-height: 1;
+        text-decoration: none;
+        letter-spacing: .05em;
+
+        &:hover {
+          @apply border-cyan;
+        }
+      }
+
+      &::before {
+        @apply text-gray;
+        // Position the bullet to the left side of the flex container
+        position: absolute;
+        left: 0;
+        // Nudge it into the gutter
+        transform: translateX(-.75em);
+        content: '\30fb';
+      }
+
+      &:first-child,
+      &:nth-child(5) {
+        &::before {
+          display: none;
+        }
+      }      
+    }
+  }
+
+  @media print {
+
+  }
+}
+
+.auxiliary-navigation {
+  position: relative;
+  width: 64.8rem;
+
+  .quicklinks,
+  .searchbar {
+    position: absolute;
+    top: 6px;
+    right: 0;
+  }
+
+  .quicklinks {
+    right: 2.5em;
+  }
+}
+
+
+

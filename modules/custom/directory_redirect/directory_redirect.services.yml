@@ -1,0 +1,5 @@
+services:
+  directory_redirect_subscriber.event_subscriber:
+    class: Drupal\directory_redirect\EventSubscriber\DirectoryRedirectSubscriber
+    tags: 
+      - { name: event_subscriber }

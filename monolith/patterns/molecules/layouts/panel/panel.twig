@@ -1,0 +1,13 @@
+<div class="{{ wrapper_classes }} bg-{{ bgcolor|default('pttrn-lt-grey') }} border-t-6 border-{{ color|default('gray') }} mx-auto {{ variant }}">
+  <div class="{{ inner_classes|default('px-20 pb-20 lg:px-40 lg:pb-40') }} relative">
+    <h2 class="overlap font-serif leading-none inline-block px-15 py-10 text-4xl text-white bg-{{ color|default('gray') }}">{{ name|default("Headline") }}</h2>
+    {% block panel_content %}
+      
+    {% endblock %}
+    {% block morebutton %}
+      {% if morebutton %}
+        <a href="{{ morebuttonlink|default('http://www.example.com') }}" class="overlap absolute right-0 top-0 btn {{ morebuttonstyles|default('btn-small btn-more btn-uppercase btn-lavender')}}">{{ morebutton }}</a>
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

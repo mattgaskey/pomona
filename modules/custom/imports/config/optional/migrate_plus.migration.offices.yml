@@ -1,0 +1,166 @@
+id: offices
+label: Offices
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/offices-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      AZLISTINGTITLE: 'A-Z Listing Title'
+    3:
+      ALPHABETICALLETTERLISTING: 'Alphabetical Letter Listing'
+    4:
+      BODY: 'Body'
+    5:
+      CONTACTDETAILS: 'Contact Details'
+    6:
+      EMAIL: 'Email'
+    7:
+      LISTINGPAGEURL: 'Listing Page URL'
+    8:
+      LISTINGPAGETITLE: 'Listing Page Title'
+    9:
+      OFFICENUMBER: 'Office Number'
+    10: 
+      OFFICEPHONE: 'Office Phone'
+    11:
+      OFFICEWEBSITE: 'Office Website'
+    12:
+      SHOW: 'Show'
+    13:
+      INSTAGRAM: 'Instagram'
+    14:
+      LINKEDIN: 'LinkedIn'
+    15:
+      TWITTER: 'Twitter'
+    16:
+      YOUTUBE: 'YouTube'
+    17:
+      FACEBOOK: 'Facebook'
+    18:
+      LOCATION: 'Location'
+    19:
+      PRIMARYCONTACT: 'Primary Contact'
+    20:
+      OFFICES: 'Offices'
+    21:
+      PEOPLE: 'People'
+process:
+  title: TITLE
+  field_glossary_listing_title: AZLISTINGTITLE
+  field_glossary: ALPHABETICALLETTERLISTING
+  body/value: BODY
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_contact_details/value: CONTACTDETAILS
+  field_contact_details/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_e_mail: EMAIL
+  field_listing_page/title: LISTINGPAGETITLE
+  field_listing_page/uri:
+    plugin: str_replace
+    source: LISTINGPAGEURL
+    search: 'd7-pomona.lndo.site'
+    replace: 'www.pomona.edu'
+  field_office_number: OFFICENUMBER
+  field_phone: OFFICEPHONE
+  field_office_website/uri: 
+    plugin: str_replace
+    source: OFFICEWEBSITE
+    search: 'd7-pomona.lndo.site'
+    replace: 'www.pomona.edu'
+  field_office_department_toggle: SHOW
+  field_instagram_url/uri: INSTAGRAM
+  field_linkedin_url/uri: LINKEDIN
+  field_twitter_url/uri: TWITTER
+  field_youtube_url/uri: YOUTUBE
+  field_facebook_url/uri: FACEBOOK
+  field_legacy_nid: NID
+  field_location:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: LOCATION
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        target_id:
+          -
+            plugin: migration_lookup
+            migration: 
+              - locations
+            no_stub: true
+            source: value
+  # RUN ONCE WITHOUT THESE, THEN RUN AGAIN WITH THESE UNCOMMENTED
+  field_primary_contact/target_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PRIMARYCONTACT
+    -
+      plugin: migration_lookup
+      migration: people
+  field_offices:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: OFFICES
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        target_id:
+          -
+            plugin: migration_lookup
+            migration: 
+              - offices
+            no_stub: true
+            source: value
+  field_people:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: PEOPLE
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        target_id:
+          -
+            plugin: migration_lookup
+            migration: 
+              - people
+            no_stub: true
+            source: value
+destination:
+  plugin: entity:node
+  default_bundle: office
+migration_dependencies:
+  required: []
+  optional:
+    - people
+    - offices

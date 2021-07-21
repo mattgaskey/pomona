@@ -1,0 +1,5 @@
+{% for item in items %}
+  <div class="blog__footer border-t-2 border-brown-100 pt-20">
+    {% include '@fractal/article-meta.twig' with { label: "#{label}: ", content: item.content } %}
+  </div>
+{% endfor %}

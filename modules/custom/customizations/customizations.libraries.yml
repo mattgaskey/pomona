@@ -1,0 +1,7 @@
+customizations:
+  version: 1.x
+  header: true
+  js:
+    js/customizations.js: {}
+  dependencies:
+      - core/jquery

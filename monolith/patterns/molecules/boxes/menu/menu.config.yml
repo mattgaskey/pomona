@@ -1,0 +1,12 @@
+collated: true
+default: Menu Vertical
+context:
+  variant: menu--vertical
+  items:
+    - Menu One
+    - Menu Two
+    - Menu Three
+variants:
+  - name: horizontal
+    context:
+      variant: menu--horizontal

@@ -1,0 +1,51 @@
+id: paragraphs_grid_item
+label: Grid Item
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_grid_item_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      BODY: 'body'
+    3:
+      IMAGE: 'image'
+    4:
+      MORELINK: 'more_link_url'
+    5:
+      TITLE: 'title'
+    6:
+      MORELINKTITLE: 'more_link_title'
+    7:
+      IMAGEALT: 'image_alt'
+process:
+  field_body/value: BODY
+  field_body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_link/uri: 
+    - plugin: str_replace
+      source: MORELINK
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_link/title: MORELINKTITLE
+  field_title: TITLE
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: grid_item

@@ -1,0 +1,10 @@
+<div class="box {{ box_classes }}">
+  {% block box_header %}
+    <{{ heading_level|default('h2') }} class="{{ box_heading_classes }}{{ sr_only }}">{{ heading|default('sentence') }}</{{ heading_level|default('h2') }}>
+  {% endblock %}
+  <div class="box__content {{ box_content_classes }}">
+    {% block box_content %}
+      {{ paragraph }}
+    {% endblock %}
+  </div>
+</div>

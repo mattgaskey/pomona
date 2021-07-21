@@ -1,0 +1,72 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+
+  {% include '@content-header' with { pages: ['News &amp; Events'], title: 'News', variant: '' } %}  
+
+  {% embed '@with-sidebar' with { major: "3/4", minor: "1/4" } %}
+    {% block with_sidebar_main %}
+
+      <div class="bg-pttrn-lt-grey py-25 lg:py-50 px-25 lg:pr-25 lg:pl-75 lg:-ml-75">
+        <div class="-mx-25 -mt-25">
+        {% include '@slideshow' with { variant: 'top', pattern: '@top-of-content', linked: true, label: 'Read the whole story'  } %}
+        </div>
+
+        <div class="mt-60 px-25 pb-25">
+          {% for i in 0..9 %}
+            {% include '@news-two-col' %}
+          {% endfor %}
+        </div>
+
+        <div class="mt-20 px-25">
+          {% include '@pagination' %}
+        </div>
+      </div>
+
+    {% endblock %}
+
+    {% block with_sidebar_aside %}
+      <div class="box">
+        <h3 class="font-sans uppercase text-xl mb-15">FILTER NEWS BY</h3>
+        <div class="border-green border-4 flex items-stretch">
+          <label class="sr-only" for="searchform">Search by Keyword</label>
+          <input id="searchform" class="py-6 px-4 w-full block" type="text" placeholder="Search by Keyword" /></label>
+          <button class="btn btn-green border-green-400 icon-button btn-search btn-no-label"><span>Search</span></button>
+        </div>
+
+        <div class="js-accordion my-20">
+          <div class="js-accordion__panel" data-accordion-opened="false">
+            <h3 class="js-accordion__header ">Categories</h3>
+            <div class="p-10 lg:p-20 bg-gray-100">
+              {% for cat in ['Category 1', 'Category 2', 'Category 3'] %}
+              <div class="flex items-center font-sans" >
+                <input class="border-1 border-gray" type="checkbox" id="checkbox-{{ i }}" />
+                <label class="inline-block text-xl ml-10" for="checkbox-{{ i }}" >{{ cat }}</label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="box mt-75">
+        <h3 class="font-sans uppercase text-xl mb-15">MEDIA CONTACT</h3>
+        <p class="leading-relaxed text-base text-brown-300">
+          <a class="ln font-serif text-lg">Patricia Zurita Vest</a><br />
+          Associate Director of News and Strategic Content<br />
+          <a class="ln font-serif" href="mailto:patricia.vest@pomona.edu">patricia.vest@pomona.edu</a><br />
+          <a class="ln font-serif" href="tel:9096218503">(909) 621-8503</a>
+        </p>
+      </div>
+
+      <div class="mt-75 bg-gray-100 p-25">
+        <h3 class="font-sans uppercase text-xl">Social Media Activity</h3>
+        <div class="editorial py-15">
+        <p>Pomona is full of passion and engagement. Want evidence? Check out what we're up to on social media.</p>
+        </div>
+        <a class="btn btn-block btn-uppercase btn-lavender btn-more" href="http://www.example.com/">Social Media Hub</a>
+      </div>
+    {% endblock %}
+  {% endembed %}
+    
+{% endblock %}
+{% endembed %}

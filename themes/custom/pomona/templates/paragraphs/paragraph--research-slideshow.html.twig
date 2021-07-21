@@ -1,0 +1,13 @@
+<div{{ attributes }}>
+{% embed "@fractal/research-slide.twig" %}
+  {% block slide_media %}
+    {{ content.field_media }}
+  {% endblock %}
+  {% block slide_caption %}
+    {{ content.field_title }}
+    {{ content.field_body }}
+    {{ content.field_link }}
+  {% endblock %}
+{% endembed %}
+</div>
+

@@ -1,0 +1,261 @@
+.btn {
+  @apply text-white text-base font-normal bg-blue p-10 font-sans leading-none inline-block relative;
+  cursor: pointer;
+  letter-spacing: 1px;
+
+  &:hover {
+    @apply bg-blue-400;
+  }
+
+  &::before,
+  &::after {
+    @include fa-icon;
+    @extend .fas;
+    @apply text-yellow;
+    position: absolute;
+    top: 50%;    
+    transform: translateY(-50%);
+  }
+
+  &::before {
+    left: 10px; 
+  }
+
+  &::after {
+    right: 10px; 
+  }
+
+  &.absolute {
+    position: absolute;
+  }
+
+  &.block {
+    display: block;    
+  }
+}
+
+.btn-ghost {
+  @apply bg-transparent text-blue-400;
+
+  &:hover {
+    @apply text-white;
+
+    .text-cyan {
+      @apply text-yellow;
+    }
+  }
+}
+
+.btn-uppercase {
+  @apply uppercase font-bold;
+}
+
+.btn-heavy {
+  @apply font-sansblack;
+}
+
+.btn-blue {
+  @apply bg-blue;
+
+  &:hover {
+    @apply bg-blue-400;
+  }
+}
+
+.btn-green {
+  @apply bg-green-400;
+
+  &:hover {
+    @apply bg-green;
+  }
+}
+
+.btn-lavender {
+  @apply bg-lavender;
+
+  &:hover {
+    @apply bg-lavender-200;
+  }  
+}
+
+.btn-orange {
+  @apply bg-orange;
+
+  &:hover {
+    @apply bg-orange-400;
+  }  
+}
+
+.btn-cyan {
+  @apply bg-cyan;
+
+  &:hover {
+    @apply bg-cyan-400;
+  }  
+}
+
+.btn-transparent {
+  @apply bg-transparent text-blue;
+
+  &:hover {
+    @apply bg-gray-100;
+  }
+
+  &::after,
+  &::before  {
+    color: #ffc146 !important;
+  }
+}
+
+.btn-sm {
+  @apply text-sm py-5 px-10;
+  &:not(.btn-more) {
+    @apply leading-relaxed;
+  }
+  &::before {
+    left: 10px; 
+  }
+
+  &::after {
+    right: 10px; 
+  }  
+}
+
+.btn-lg {
+  @apply text-lg p-15;
+  &::before {
+    left: 15px; 
+  }
+
+  &::after {
+    right: 15px; 
+  }  
+}
+
+.btn-xl {
+  @apply text-xl p-20;
+  &::before {
+    left: 20px; 
+  }
+
+  &::after {
+    right: 20px; 
+  }  
+}
+
+.btn-4xl {
+  @apply text-4xl p-20;
+  &::before {
+    left: 20px; 
+  }
+
+  &::after {
+    right: 20px; 
+  }  
+}
+
+.btn-no-label {
+  span {
+    @extend .sr-only;
+  }
+
+  &::after {
+    margin-left: 0;
+  }
+}
+
+.btn-more, 
+.btn-next,
+.btn-arrow,
+.btn-plus,
+.btn-download,
+.btn-search,
+.btn-share,
+.btn-prev,
+.btn-top {
+  @apply border-none;
+  padding-right: 2.5em;
+}
+
+.btn-more-link {
+  @apply btn btn-sm btn-lavender btn-uppercase text-white;
+  &::after {
+    content: fa-content($fa-var-angle-right);
+  }
+}
+
+.btn-plus {
+  &::after {
+    content: fa-content($fa-var-plus);
+  }
+}
+
+.btn-next {
+  padding-right: 2em;
+  &::after {
+    content: fa-content($fa-var-angle-right);
+  }
+}
+
+.btn-more {
+  padding-right: 2em;
+  &::after {
+    content: fa-content($fa-var-angle-right);
+  }
+}
+
+.btn-arrow {
+  &::after {
+    content: fa-content($fa-var-arrow-right);
+  }  
+}
+
+.btn-top {
+  &::after {
+    content: fa-content($fa-var-angle-up);
+  }
+}
+
+.btn-download {
+  &::after {
+    content: fa-content($fa-var-download);
+  }  
+}
+
+.btn-search {
+  &::after {
+    content: fa-content($fa-var-search);
+  }  
+}
+
+.btn-share {
+  &::after {
+    content: fa-content($fa-var-share-alt);
+  }
+}
+
+.btn-prev {
+  padding-right: 2em;
+  &::after {
+    content: fa-content($fa-var-angle-left);
+  }
+}
+
+.btn-feed,
+.btn-less {
+  @apply border-none;
+  padding-left: 2.5em;
+}
+
+.btn-feed {
+  &::before {
+    content: fa-content($fa-var-rss);
+  }
+}
+
+.btn-less {
+  padding-left: 2em;
+  &::before {
+    content: fa-content($fa-var-angle-left);
+  }
+}

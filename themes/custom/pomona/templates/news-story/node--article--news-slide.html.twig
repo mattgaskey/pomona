@@ -1,0 +1,12 @@
+{% set has_media = content.field_media|children is not empty %}
+{% embed "@fractal/top-of-content.twig" %}
+  {% block slide_media %}
+    {% if has_media %}{{ content.field_media }}{% else %}{{ content.field_thumbnail_image }}{% endif %}
+  {% endblock %}
+  {% block slide_caption %}
+    <figcaption class="text-2xl px-60 py-20 bg-blue text-white leading-tight font-sans flex items-center min-h-100 inset-x-0 bottom-0 bg-simple-content-slide bg-repeat-x">
+      <p>{{ label }}</p>
+      <a href="{{ url }}" class="btn btn-uppercase btn-lavender btn-more block bottom-0 absolute right-75">Read the Full Story</a>
+    </figcaption>
+  {% endblock %}
+{% endembed %}

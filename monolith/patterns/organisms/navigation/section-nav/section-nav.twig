@@ -1,0 +1,21 @@
+<nav role="navigation" class="section-nav" aria-label="section navigation">
+
+  <h2 class="uppercase font-sans text-xl border-b-2 border-yellow-100"><a href="/academics">Academics</a></h2>
+
+  <div class="mt-15">
+    <ul class="menu font-sans">
+      <li class="menu__item is-active is-active-trail is-expanded mb-5">
+        <a href="#" class="is-active-trail text-sm block px-15 py-10 bg-blue text-white uppercase font-bold" aria-label="Academics > About Our Liberal Arts Education">About Our Liberal Arts Education</a>
+        <ul class="menu bg-yellow-100 text-sm px-25 py-15">
+          {% for label in [ 'Our Curriculum','Your Four Years','The Claremont Colleges','Research at Pomona','The Arts' ] %}    
+          <li class="menu__item is-leaf py-5 block border-b-2 border-gray-300 last:border-b-0"><a href="#" class=" text-cyan hover:text-blue">{{ label }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% for label in [ 'Faculty Listing','Global Learning', 'Departments and Programs', 'Academic Support Resources', 'Pomona College Catalog' ] %}
+      <li class="menu__item is-leaf mb-5"><a href="#" class="block text-sm px-15 py-10 bg-cyan text-white uppercase font-bold">{{ label }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</nav>

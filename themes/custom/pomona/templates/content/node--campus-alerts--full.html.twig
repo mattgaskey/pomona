@@ -1,0 +1,8 @@
+{% if show_page_alert %}
+{{ content.body }}
+{% else %}
+<div class="editorial c-container">
+{{ content.field_emergency_information_page }}
+<p><a href="/emergency-information" class="btn btn-more btn-uppercase mt-20">Emergency Information</a></p>
+</div>
+{% endif %}

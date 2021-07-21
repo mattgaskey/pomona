@@ -1,0 +1,7 @@
+name: 'Section Menu'
+type: module
+description: 'Generate a custom menu block that uses the nearest section head'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - menu_item_fields:menu_item_fields

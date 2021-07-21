@@ -1,0 +1,9 @@
+<div{{ attributes }}>
+{% embed '@fractal/box.twig' with { heading: "Featured Work", box_heading_classes: 'font-serif font-bold text-3xl text-orange italic bold' } %}
+  {% block box_content %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}
+</div>

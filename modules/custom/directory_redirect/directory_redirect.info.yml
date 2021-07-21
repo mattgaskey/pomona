@@ -1,0 +1,5 @@
+name: Directory Redirect
+description: 'Intercepts requests for directory nodes and redirects them based on whether or not they have a profile page.'
+type: module
+package: 'NewCity'
+core: 8.x

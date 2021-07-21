@@ -1,0 +1,61 @@
+.editorial {
+  table {
+    @apply font-sans rounded-lg;
+    border-spacing: 0;
+
+    td, th {
+      @apply align-top p-10 border-0;
+
+      &:first-child {
+        @apply border-l-1;
+      }
+    }
+
+    th {
+      @apply font-normal uppercase text-white bg-cyan;
+    }    
+
+    tbody {
+      tr {
+        &:nth-child(odd) td {
+          @apply bg-yellow-100;
+        }
+        &:nth-child(even) td {
+          @apply bg-gray-100;
+        }
+      }
+    }
+
+    thead tr:first-child, {
+      td, th {
+        &:first-child {
+          @apply rounded-tl-lg;
+        }
+
+        &:last-child {
+          @apply rounded-tr-lg;
+        }
+      }
+    }    
+
+    :last-child tr:last-child {
+      td, th {
+        &:first-child {
+          @apply rounded-bl-lg;
+        }
+
+        &:last-child {
+          @apply rounded-br-lg;
+        }
+      }
+    }
+
+    th {
+      @apply font-bold;
+    }
+
+    &.rt-vertical-table caption {
+      display: block;
+    }
+  }
+}

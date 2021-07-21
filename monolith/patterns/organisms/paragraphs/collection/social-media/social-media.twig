@@ -1,0 +1,5 @@
+<ul>
+  {% for account in accounts %}
+  <li class="inline-block mr-25">{% include '@social-media-link' with { sml:account } %}</li>
+  {% endfor %}
+</ul>

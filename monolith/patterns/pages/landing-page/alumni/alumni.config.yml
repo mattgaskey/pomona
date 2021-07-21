@@ -1,0 +1,19 @@
+order: 20
+context:
+  items:
+    - stat: 8:1
+      stat_caption: Student-to-faculty ratio
+      stat_number_classes: text-white
+      stat_classes: bg-lavender border-lavender-100
+    - stat: '600+'
+      stat_caption: Classes offered at Pomona each year
+      stat_number_classes: text-white
+      stat_classes: bg-orange border-orange-100
+    - stat: '52<span>%</span>'
+      stat_caption: Students who conduct research with faculty
+      stat_number_classes: text-white
+      stat_classes: bg-green border-green-100
+    - stat: '48'
+      stat_caption: Majors offered at Pomona College
+      stat_number_classes: text-white
+      stat_classes: bg-red border-red-100      

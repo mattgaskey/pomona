@@ -1,0 +1,29 @@
+id: paragraphs_sidebar_block
+label: Sidebar Block
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_sidebar_block_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      BODY: 'body'
+    3:
+      TITLE: 'title'
+process:
+  field_body/value: BODY
+  field_body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_title: TITLE
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: sidebar_block

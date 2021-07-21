@@ -1,0 +1,12 @@
+figure {
+  @screen lg {
+    a {
+      &.event-teaser__image {
+        img {
+          width: 368px;
+          height: 204px;
+        }
+      }
+    }
+  }
+}

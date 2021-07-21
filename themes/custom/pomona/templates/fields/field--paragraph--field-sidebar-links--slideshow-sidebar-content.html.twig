@@ -1,0 +1,4 @@
+
+{% for item in items %}
+  <a href="{{ item.content['#url'] }}" class="mr-5 btn btn-more btn-block md:btn-inline xl:btn-block btn-lavender btn-uppercase text-white my-10 uppercase font-bold p-8 leading-none">{{ item.content['#title'] }}</a>
+{% endfor %}

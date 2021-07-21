@@ -1,0 +1,10 @@
+{% if items %}
+  <div class="article-meta">
+    <span>Category: </span>
+    {% set i = 0 %}
+    {% for item in items %}
+      {% set i = i + 1 %}
+      <span>{{ item }}</span>{% if i < items|length %}, {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

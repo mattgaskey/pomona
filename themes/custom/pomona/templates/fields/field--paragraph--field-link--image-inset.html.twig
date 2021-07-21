@@ -1,0 +1,3 @@
+{% for item in items %}
+  <a href="{{ item.content['#url'] }}" class="inset-more text-base block mt-20 text-cyan hover:text-cyan-100">{{ item.content['#title']|default('More') }} <span class="fas fa-angle-right"></span></a>
+{% endfor %}

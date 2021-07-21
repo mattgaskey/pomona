@@ -1,0 +1,21 @@
+<a href="#main-content" class="sr-only focusable" id="skip-link">Skip to main content</a>
+<div id="cookie-banner"></div>
+<div id="page" class="relative z-0 c-offcanvas-content-wrap bg-white h-full md:pt-16">
+{% block header %}
+{% include '@header' %} 
+{% endblock %}
+<div id="main-content" class="{{ main_variant|default('border-t-1 border-transparent -mt-1 bg-title-pattern bg-repeat-x py-100 md:py-50') }}">
+  <main class="min-h-200">
+  {% block main_content %}
+  <h1>Page content goes here</h1>
+  {% endblock %}
+  </main> 
+</div>
+{% block footer %}
+{% include '@footer' %}
+{% endblock %}
+{% block offcanvas %}
+{% include '@offcanvas' with { menu_id: 'left-menu', direction: 'left', items: legal.items } %}
+{% include '@offcanvas' with { menu_id: 'right-menu', direction: 'right', items: legal.items } %}
+{% endblock %}
+</div>

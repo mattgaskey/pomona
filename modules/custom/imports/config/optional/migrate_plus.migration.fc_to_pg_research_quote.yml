@@ -1,0 +1,41 @@
+id: fc_to_pg_research_quote
+label: Research Quote
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/fc_to_pg_research_quote_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'fc_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      BODY: 'body'
+    3:
+      IMAGE: 'image'
+    4:
+      TITLE: 'title'
+    5:
+      IMAGEALT: 'image_alt'
+process:
+  field_title: TITLE
+  field_body/value: BODY
+  field_body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: research_quote

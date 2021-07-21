@@ -1,0 +1,8 @@
+{% embed "@fractal/with-sidebar.twig" with { variant: 'connect-tour-guide' } %}
+  {% block with_sidebar_main %}
+    {{ content.field_content_bottom }}
+  {% endblock %}
+  {% block with_sidebar_aside %}
+    {{ drupal_region('sidebar_first') }}
+  {% endblock %}
+{% endembed %}

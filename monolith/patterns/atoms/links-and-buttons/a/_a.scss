@@ -1,0 +1,58 @@
+.ln {
+  @apply border-b-2 border-brown-100 text-blue;
+
+  &:hover {
+    @apply border-transparent;
+  }
+}
+
+.ln-more {
+  @apply border-none;
+
+  &:after {
+    @include fa-icon;
+    @extend .fas;
+    @apply text-cyan;
+    content: fa-content($fa-var-chevron-right);
+    margin-left: .3em;
+  }
+}
+
+.ln-arrow {
+  @apply border-none;
+
+  &:after {
+    @include fa-icon;
+    @extend .fas;
+    @apply text-cyan;
+    content: fa-content($fa-var-arrow-right);
+    margin-left: .3em;
+  }
+}
+
+.ln-white {
+  @apply text-white border-cyan;
+
+  &.ln-arrow,
+  &.ln-more {
+    &:after {
+      @apply text-cyan-100
+    }
+  }
+}
+
+.ln-white-alt {
+  @apply text-white border-yellow;
+
+  &.ln-arrow,
+  &.ln-more {
+    &:after {
+      @apply text-yellow
+    }
+  }
+}
+
+
+.editorial a:not([class]) {
+  @apply ln;
+}

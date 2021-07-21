@@ -1,0 +1,22 @@
+<div class="md:flex lg:items-start two-sections {{ variant }}">
+    {% block two_sections_landing_page_aside %}
+      {% include '@content-sidebar' %}
+    {% endblock %}
+  <div>
+    {% block two_sections_landing_page_alert %}
+      {% include '@page-alert' %}
+    {% endblock %}
+    <div class="bg-white p-20 lg:p-40 lg:ml-50 xl:ml-85 text-xl font-serif editorial editorial-main">
+      {% block two_sections_landing_page_main %}
+      <h2>Tuition &amp; Financial Aid</h2>
+      <p>We believe in making education accessible and affordible to everyone.</p>
+      <p><a class="btn btn-lg btn-cyan btn-more btn-uppercase">Need-based commitment</a></p>
+      <ul class="bullets bullets-blue lg:my-40">
+        <li><a href="http://www.example.com/">MyinTuition Cost Calculator</a></li>
+        <li><a href="http://www.example.com/">Apply for Aid</a></li>
+        <li><a href="http://www.example.com/">Net Price Calculator</a></li>
+      </ul>
+      {% endblock %}
+    </div>
+  </div>
+</div>

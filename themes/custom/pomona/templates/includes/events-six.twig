@@ -1,0 +1,12 @@
+<div class="hidden md:flex-wrap md:-mx-15 md:-mb-30" id="events-six">
+  {% for i in 0..5 %}
+    <div class="md:flex-1/2 px-15 mb-30 flex flex-col" id="events-six__{{ i }}">
+      <div class="border-t-6 border-gray bg-white p-25 font-sans h-full">
+        <a class="ln" href=""></a>
+        <p class="event-date hidden text-base text-brown-300 mt-20"></p>
+        <p class="event-time hidden text-base text-brown-300"></p>
+        <p class="event-more hidden text-base text-brown-300">(view event for more dates)</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>

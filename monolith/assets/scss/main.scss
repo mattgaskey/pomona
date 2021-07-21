@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+
+@import 'mixins/mixins';
+@import 'includes/inc';
+
+// Admin toolbar z-index adjustment
+// so dropdowns do not drop behind
+// the main site navigation
+
+#toolbar-administration {
+  z-index: 10000;
+}
+
+// Fix the header to the top of the screen only if
+// the admin toolbar is not present. (This is a 
+// drupal fix.)
+
+body {
+  // Maintaining this attribute because the current site has it and the
+  // visual shift is significant, although it may make the site in general
+  // more difficult to read. 
+  // See https://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
+  -webkit-font-smoothing: antialiased;
+}
+
+.fsBody h1 {
+  /* https://gitlab.com/newcity/pomona-d8/-/issues/100 
+    Formstack logic cannot suppress an h1 if the form is embedded rather than displayed directly.
+  */
+  display: none;
+}
+
+.btn-ghost {
+  @apply border-2 bg-transparent border-solid whitespace-no-wrap;
+}
+
+.btn-ghost--blue {
+  @apply border-blue text-blue;
+}
+
+.fa-icon {
+  @include fa-icon;
+}
+
+/* purgecss start ignore */
+
+.responsive-embed {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+  max-width: 100%;
+  width: 100%;
+
+  @at-root span#{&} {
+    display: block;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.multiply {
+  mix-blend-mode: multiply;
+}
+
+.event-submit {
+  &-link {
+    @apply text-cyan font-sans;
+    &::after {
+      content: '\f054';
+      font-family: 'Font Awesome 5 Free';
+      @apply text-sm relative;
+      top: -1px;
+      right: -6px;
+    }
+  }
+}
+
+.sliding-popup-bottom {
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.eu-cookie-compliance-content {
+  margin: 0 !important;
+  max-width: 100vw !important;
+  @screen md {
+    margin: 0 auto;
+  }
+}
+
+.eu-cookie-compliance-popup-open {
+  footer {
+    margin-bottom: 150px;
+    @screen md {
+      margin-bottom: 120px;
+    }
+  }
+}
+
+.eu-cookie-compliance-secondary-button,
+.eu-cookie-compliance-more-button,
+.quicklinks > button,
+.searchbar > button {
+  &:focus {
+    outline: -webkit-focus-ring-color auto 1px !important;
+  }
+}
+
+.a-z-directory-link {
+  @apply font-sans inline-block mb-20;
+  a {
+    @apply border-b-2 border-brown-100 text-blue;
+
+    &:hover {
+      @apply border-transparent;
+    }
+  }
+}
+
+.a-z-directory-link__map {
+  @apply font-sans border-b-2 border-brown-100 text-blue text-lg mb-0;
+  &:hover {
+    @apply border-transparent;
+  }
+  &:before {
+    @include fa-icon;
+    @extend .fas;
+    @apply text-lavender bg-transparent;
+    content: fa-content($fa-var-map-marker-alt);
+    margin-right: .3em;
+  }
+}
+
+.office-directory {
+  li {
+    @apply pb-40 mb-20 border-b-2 border-gray-500 relative;
+    .office-contact-row {
+      @screen md {
+        @apply flex flex-row flex-no-wrap;
+      }
+    }
+  }
+}
+
+.dead {
+  display: none !important;
+}
+
+.takeover {
+  .content {
+    h2 {
+      @apply font-sansblack text-red text-3xl leading-loose mb-20;
+    }
+    p {
+      @apply font-serif text-2xl;
+    }
+    a {
+      @apply text-blue border-b-2 border-brown-100;
+      &:hover {
+        @apply border-transparent;
+      }
+    }
+  }
+}
+
+/* purgecss end ignore */
+
+// Fill in the color on the youtube arrow
+
+.fa-youtube {
+  position: relative;
+
+  &::before {
+    position: relative;
+    z-index: 10;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 30%;
+    bottom: 30%;
+    left: 20%;
+    right: 20%;
+    background-color: white;
+    z-index: 5;
+  }
+}
+
+.container--inner {
+  @apply mx-auto;
+  max-width: 71.875rem;
+  padding-left: theme('theme.container.padding');
+  padding-right: theme('theme.container.padding');
+}
+
+@responsive {
+  .col-2 {
+    column-count: 2;
+  }
+
+  .col-3 {
+    column-count: 3;
+  }
+
+  .overlap {
+    transform: translateY(calc(-50% - 3px));
+  }
+
+  .overlap100 {
+    transform: translateY(-100px);
+  }
+
+  .overlap-down {
+    transform: translateY(50%);
+  }
+
+  .btn-block {
+    @apply block relative w-full text-left;
+  }  
+
+  .btn-inline {
+    @apply inline-block w-auto;
+  }
+}
+
+
+.unpublished {
+  background-color: #fff2f1 !important;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 433 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 19.44 48.52 C 12.86 48.52 7.973 46.6 4.78 42.76 C 1.593 38.92 0 33.017 0 25.05 L 0 0.86 L 12.38 0.86 L 12.38 26.49 C 12.38 30.617 12.933 33.547 14.04 35.28 C 15.14 37.007 16.94 37.87 19.44 37.87 C 21.933 37.87 23.757 36.993 24.91 35.24 C 26.063 33.487 26.64 30.57 26.64 26.49 L 26.64 0.86 L 38.59 0.86 L 38.59 25.05 C 38.59 33.07 37.03 38.987 33.91 42.8 C 30.79 46.613 25.967 48.52 19.44 48.52 Z M 45.763 47.66 L 45.763 0.86 L 58.443 0.86 L 68.803 21.74 L 73.273 32.25 L 73.563 32.25 C 73.509 31.723 73.389 30.763 73.203 29.37 C 72.383 22.75 71.973 17.76 71.973 14.4 L 71.973 0.86 L 83.783 0.86 L 83.783 47.66 L 71.113 47.66 L 60.743 26.71 L 56.283 16.27 L 55.993 16.27 L 56.423 20.08 C 57.189 26.133 57.573 30.813 57.573 34.12 L 57.573 47.66 L 45.763 47.66 Z M 91.245 47.66 L 91.245 0.86 L 108.385 0.86 C 114.052 0.86 118.635 2.073 122.135 4.5 C 125.642 6.92 127.395 10.89 127.395 16.41 C 127.395 20.057 126.542 23.117 124.835 25.59 C 123.135 28.063 120.869 29.887 118.035 31.06 C 115.202 32.24 112.082 32.83 108.675 32.83 L 103.635 32.83 L 103.635 47.66 L 91.245 47.66 Z M 103.635 23.04 L 108.095 23.04 C 110.495 23.04 112.295 22.463 113.495 21.31 C 114.695 20.157 115.295 18.523 115.295 16.41 C 115.295 14.397 114.659 12.933 113.385 12.02 C 112.119 11.107 110.259 10.65 107.805 10.65 L 103.635 10.65 L 103.635 23.04 Z M 151.28 48.52 C 144.7 48.52 139.813 46.6 136.62 42.76 C 133.433 38.92 131.84 33.017 131.84 25.05 L 131.84 0.86 L 144.22 0.86 L 144.22 26.49 C 144.22 30.617 144.773 33.547 145.88 35.28 C 146.98 37.007 148.78 37.87 151.28 37.87 C 153.773 37.87 155.597 36.993 156.75 35.24 C 157.903 33.487 158.48 30.57 158.48 26.49 L 158.48 0.86 L 170.43 0.86 L 170.43 25.05 C 170.43 33.07 168.87 38.987 165.75 42.8 C 162.63 46.613 157.807 48.52 151.28 48.52 Z M 177.602 47.66 L 177.602 0.86 L 194.452 0.86 C 199.926 0.86 204.246 1.737 207.412 3.49 C 210.579 5.243 212.162 8.253 212.162 12.52 C 212.162 14.633 211.612 16.663 210.512 18.61 C 209.406 20.55 207.989 21.88 206.262 22.6 L 206.262 22.89 C 208.662 23.61 210.606 24.883 212.092 26.71 C 213.579 28.53 214.322 30.907 214.322 33.84 C 214.322 38.447 212.596 41.9 209.142 44.2 C 205.689 46.507 201.272 47.66 195.892 47.66 L 177.602 47.66 Z M 189.992 19.15 L 194.162 19.15 C 196.136 19.15 197.612 18.73 198.592 17.89 C 199.579 17.05 200.072 15.887 200.072 14.4 C 200.072 12.96 199.592 11.927 198.632 11.3 C 197.672 10.673 196.182 10.36 194.162 10.36 L 189.992 10.36 L 189.992 19.15 Z M 189.992 38.16 L 195.032 38.16 C 199.832 38.16 202.232 36.43 202.232 32.97 C 202.232 31.29 201.656 30.08 200.502 29.34 C 199.349 28.593 197.526 28.22 195.032 28.22 L 189.992 28.22 L 189.992 38.16 Z M 218.765 47.66 L 218.765 0.86 L 231.155 0.86 L 231.155 37.29 L 248.865 37.29 L 248.865 47.66 L 218.765 47.66 Z M 254.024 47.66 L 254.024 0.86 L 266.414 0.86 L 266.414 47.66 L 254.024 47.66 Z M 288.715 48.52 C 285.642 48.52 282.532 47.957 279.385 46.83 C 276.245 45.703 273.449 44.037 270.995 41.83 L 278.055 33.33 C 279.735 34.677 281.559 35.77 283.525 36.61 C 285.492 37.45 287.315 37.87 288.995 37.87 C 292.549 37.87 294.325 36.767 294.325 34.56 C 294.325 33.84 294.085 33.25 293.605 32.79 C 293.125 32.337 292.382 31.88 291.375 31.42 C 290.369 30.967 289.242 30.5 287.995 30.02 L 282.155 27.57 C 279.375 26.47 277.109 24.813 275.355 22.6 C 273.602 20.393 272.725 17.707 272.725 14.54 C 272.725 11.9 273.469 9.463 274.955 7.23 C 276.449 4.997 278.525 3.233 281.185 1.94 C 283.852 0.647 286.842 0 290.155 0 C 292.935 0 295.705 0.527 298.465 1.58 C 301.225 2.633 303.639 4.193 305.705 6.26 L 299.515 14.04 C 297.882 12.887 296.332 12.033 294.865 11.48 C 293.405 10.927 291.835 10.65 290.155 10.65 C 288.615 10.65 287.415 10.927 286.555 11.48 C 285.689 12.033 285.255 12.813 285.255 13.82 C 285.255 14.54 285.519 15.14 286.045 15.62 C 286.572 16.1 287.389 16.58 288.495 17.06 C 289.602 17.54 290.825 18.02 292.165 18.5 L 297.855 20.73 C 303.949 23.13 306.995 27.403 306.995 33.55 C 306.995 36.237 306.265 38.72 304.805 41 C 303.339 43.28 301.225 45.103 298.465 46.47 C 295.705 47.837 292.455 48.52 288.715 48.52 Z M 311.582 47.66 L 311.582 0.86 L 323.972 0.86 L 323.972 18.28 L 337.942 18.28 L 337.942 0.86 L 350.322 0.86 L 350.322 47.66 L 337.942 47.66 L 337.942 29.08 L 323.972 29.08 L 323.972 47.66 L 311.582 47.66 Z M 357.785 47.66 L 357.785 0.86 L 388.025 0.86 L 388.025 11.23 L 370.175 11.23 L 370.175 18.57 L 385.435 18.57 L 385.435 28.94 L 370.175 28.94 L 370.175 37.29 L 388.745 37.29 L 388.745 47.66 L 357.785 47.66 Z M 394.916 47.66 L 394.916 0.86 L 408.746 0.86 C 416.232 0.86 422.112 2.733 426.386 6.48 C 430.659 10.22 432.796 16.073 432.796 24.04 C 432.796 32.013 430.696 37.943 426.496 41.83 C 422.296 45.717 416.619 47.66 409.466 47.66 L 394.916 47.66 Z M 407.306 37.72 L 408.026 37.72 C 411.819 37.72 414.782 36.713 416.916 34.7 C 419.049 32.687 420.116 29.133 420.116 24.04 C 420.116 19 419.062 15.533 416.956 13.64 C 414.842 11.747 411.866 10.8 408.026 10.8 L 407.306 10.8 L 407.306 37.72 Z' style='white-space:pre' fill='%23cfcfcf'/%3E%3C/svg%3E");
+  background-position: right top;
+  background-size: 27em 3em;
+  background-repeat: no-repeat;
+}
+
+@tailwind utilities;
+

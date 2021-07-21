@@ -1,0 +1,17 @@
+collated: true
+context:
+  color: red
+variants:
+  - name: green
+    context:
+      color: green
+  - name: yellow
+    context:
+      color: yellow
+  - name: purple
+    context:
+      color: lavender
+  - name: blue
+    context:
+      color: blue
+ 

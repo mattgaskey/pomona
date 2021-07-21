@@ -1,0 +1,124 @@
+.site-alert {
+  @apply font-sans text-2xl flex align-middle relative;
+
+  strong {
+    @apply font-sansblack uppercase;
+  }
+
+  &.bg-red {
+    @apply text-white;
+    strong {
+      @apply text-yellow;
+    }
+  }
+
+  &.bg-green {
+    @apply text-white;
+    strong {
+      @apply text-yellow-100;
+    }
+  }
+
+  &.bg-yellow {
+    @apply text-black;
+    strong {
+      @apply text-orange-700;
+    }
+  }  
+
+  &.bg-lavender {
+    @apply text-white;
+
+    strong {
+      @apply text-brown-100;
+    }    
+  }
+
+  &.bg-blue {
+    @apply text-white;
+
+    strong {
+      @apply text-yellow;
+    }    
+  }  
+
+  .button {
+    @apply text-white font-bold p-10 font-sans leading-none inline-block relative bg-cyan uppercase ml-20 text-sm;
+    cursor: pointer;
+    letter-spacing: 1px;
+    padding-right: 2em;
+
+    &:hover {
+      @apply bg-cyan-400;
+    }
+
+    &::before,
+    &::after {
+      @include fa-icon;
+      @extend .fas;
+      @apply text-yellow;
+      position: absolute;
+      top: 50%;    
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      left: 10px; 
+    }
+
+    &::after {
+      right: 10px; 
+      content: fa-content($fa-var-angle-right);
+    }
+  }
+  &:before {
+    content: '';
+    height: 40px;
+    width: 100%;
+    @apply bg-pattern-brwn absolute;
+    top: -40px;
+    left: 0;
+  }
+}
+
+[aria-label="Error message"] {
+  @apply my-20 mx-0 border-1 py-10 pr-10 pl-50;
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
+  background-image: url('../images/message-24-error.png');
+  background-color: #fef5f1;
+  @apply border-orange text-orange-900 font-serif text-xl;
+}
+
+.writing-center-alert {
+  h4 {
+    @apply font-sansblack leading-tight border-b-6 border-yellow pb-10 mb-10;
+    font-size: 26px;
+  }
+  a:not([class]) {
+    @apply border-b-2 border-yellow;
+    &:hover {
+      @apply border-transparent;
+    }
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  div > div {
+    @apply bg-yellow p-5 mt-20;
+    max-width: 240px;
+    .more-link {
+      @apply block text-black text-base font-sansblack uppercase relative mr-20;
+      &:after {
+        @include fa-icon;
+        @extend .fas;
+        @apply text-black absolute text-base block;
+        content: fa-content($fa-var-chevron-right);
+        bottom: 15px;
+        right: 0;
+        margin-right: -15px;
+      }
+    }
+  }
+  
+}

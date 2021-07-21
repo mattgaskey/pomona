@@ -1,0 +1,31 @@
+{% embed '@clamp' with { variant: 'content blog'} %}
+  {% block main_content %}
+    {% include '@content-header' with { pages: ['Academics', 'Deaprtments and Programs', 'History Department', 'History Department News and Events'], title: 'History 110v Timeline - Engendering East Asian History' } %}
+
+      {% embed '@with-sidebar' with {
+        major: '3/4',
+        minor: '1/4'
+      } %}
+        {% block with_sidebar_main %}
+          <div class="editorial editorial-main border-t-6 border-brown-100 py-40 blog__wrapper">
+            {% include '@article-meta' with { label: 'Published: ', content: 'Friday, December 15, 2017' } %}
+            <div class="blog__content pt-20 pb-40">
+              <aside class="md:float-right md:max-w-1/2 md:pl-20 md:pb-20">
+                {% include '@figure' with { caption: "<p>This is a cpation text.  It may be long or short or run on for quite a while in some cases where an overzealous person may give in to certain, shall we say, loquatious vices.</p>" } %}
+              </aside>
+              <p>History is all about researching the past, a process that usually culminates in an essay or paper.  But that’s not the only way to share the results of our research.</p>
+              <p>Students in the Fall 2017 research seminar “Gender, Sexuality and Feminisms in Modern East Asia” made interactive timelines based on their research.  The class, taught by Professor Angelina Chin, researched some of the more cutting-edge and understudied topics in Asian history. Including: feminist interpretations and critiques of women’s status; gender inequality articulated by activists and theorists; gender and nationalism; “comfort women”; sex rights; and queer movements.</p>
+              <p>The result of all their hard work are now available to view online.  Click on one of the links below to check them out.</p>
+              <p><a href="#" >Engendering Modern Japanese History</a></p>
+              <p><a href="#" >Engendering Modern Korean History</a></p>
+              <p><a href="#" >Engendering Modern Chinese History</a></p>
+            </div>
+            <div class="blog__footer border-t-2 border-brown-100 pt-20">
+              {% include '@article-meta' with { label: 'Story By: ', content: 'History Department' } %}
+            </div>
+          </div>
+        {% endblock %}
+      {% endembed %}
+      
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,46 @@
+<div class="md:c-container-lg my-50">
+  <div class="border-b-5 border-cyan mx-auto flex flex-row flex-no-wrap justify-center align-center">
+    <a href="/directory/all">
+      <div class="inline-block mx-5 h-50 bg-cyan text-white font-sansblack text-base md:text-xl px-20 py-15 md:py-10 tracking-wider uppercase -mb-5 hover:bg-cyan-400">
+        A-Z
+      </div>
+    </a>
+    <a href="/directory/offices-departments">
+      <div class="inline-block mx-5 h-50 bg-blue text-white font-sansblack text-base md:text-xl px-20 py-15 md:py-10 tracking-wider uppercase -mb-5">
+        Offices & Departments
+      </div>
+    </a>
+    <a href="/people">
+      <div class="inline-block mx-5 h-50 bg-cyan text-white font-sansblack text-base md:text-xl px-20 py-15 md:py-10 tracking-wider uppercase -mb-5 hover:bg-cyan-400">
+        People
+      </div>
+    </a>
+  </div>
+</div>
+{% embed "@fractal/with-sidebar.twig" %}
+  {% block with_sidebar_main %}
+    <div id="az-directory">
+    {% if not empty %}
+      {% for row in rows %}
+        <div class="border-t-6 border-orange-100 mt-30 mb-75" data-az-directory-letter="{{ row['#title']|trim }}">
+          <h2 class="overlap bg-orange p-10 font-serif italic leading-none text-white inline-block text-3xl">{{ row['#title'] }}</h2>
+          <div class="pl-40 office-directory">
+            {{ row|without('#title') }}
+          </div>
+        </div>
+      {% endfor %}
+      <div class="flex justify-center">
+        <a href="#top" class="btn btn-blue btn-top btn-heavy uppercase">Go to top</a>
+      </div>
+    {% else %}
+      {{ empty }}
+    {% endif %}
+    </div>
+  {% endblock %}
+  {% block with_sidebar_aside %}
+    <div class="box">
+      <h3 class="font-sans uppercase text-xl mb-15">FILTER BY</h3>
+      {{ exposed }}
+    </div>
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,56 @@
+collated: true
+context: 
+  headline: Top industries for Alumni
+  headline_classes: font-sans text-xl border-green mb-10
+  block_variant: stat-block--horizontal
+  items: 
+    - stat: '1'
+      stat_caption: 'Higher Education'
+      stat_classes: 'border-cyan bg-white'
+      stat_number_classes: 'text-cyan'
+    - stat: '2'
+      stat_caption: 'Computer Software'
+      stat_classes: 'border-lavender bg-white'
+      stat_number_classes: 'text-lavender'
+    - stat: '3'
+      stat_caption: 'Research'
+      stat_classes: 'border-green bg-white'
+      stat_number_classes: 'text-green-700'
+    - stat: '4'
+      stat_caption: 'Hospital and Health Care'
+      stat_classes: 'border-orange bg-white'
+      stat_number_classes: 'text-orange-700'
+    - stat: '5'
+      stat_caption: 'Non-Profit Organization Management'
+      stat_classes: 'border-red bg-white'
+      stat_number_classes: 'text-red'
+variants:
+  - name: display
+    context:
+      headline: Plans After Graduation
+      headline_classes: font-serif text-3xl text-orange-700 italic mb-10
+      items:
+      - stat: '57%'
+        stat_caption: 'Accepted a job or internship offer'
+        stat_classes: 'border-cyan bg-white'
+        stat_number_classes: 'text-cyan'
+      - stat: '16%'
+        stat_caption: 'Accepted a graduate school offer'
+        stat_classes: 'border-lavender bg-white'
+        stat_number_classes: 'text-lavender'
+      - stat: '6%'
+        stat_caption: 'Accepted a fellowship or graduate school fellowship'
+        stat_classes: 'border-green bg-white'
+        stat_number_classes: 'text-green'
+      - stat: '3%'
+        stat_caption: 'Accepted a service opportunity'
+        stat_classes: 'border-orange bg-white'
+        stat_number_classes: 'text-orange'
+      - stat: '2%'
+        stat_caption: 'Other'
+        stat_classes: 'border-red bg-white'
+        stat_number_classes: 'text-red'
+      - stat: '15%'
+        stat_caption: 'Unknown'
+        stat_classes: 'border-cyan bg-white'
+        stat_number_classes: 'text-cyan'        

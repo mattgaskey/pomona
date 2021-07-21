@@ -1,0 +1,63 @@
+.offcanvas {
+  overflow: auto;
+
+  &[aria-hidden=true] {
+    display: none !important;
+  }
+
+  #search-block-form {
+    margin: .8125rem;
+  }
+
+  h2 {
+    @apply font-sans font-bold text-sm;
+    margin: 0;
+    padding: 0 .8125rem;
+    background-color: c(cyan1);
+    color: c(white1);
+    line-height: 2.2;
+    text-transform: uppercase;
+
+    &.sr-only {
+      position: static !important;
+      width: auto;
+      height: auto;
+      word-wrap: normal;
+      clip: initial;
+    }
+  }
+
+  .menu {
+    @include list-vertical;
+
+    .menu__item {
+      margin: 0;
+      padding: 1.125rem .8125rem;
+      border-bottom: 2px c(canvas1) solid;
+      font-size: 1.125rem;
+
+      &:last-child {
+        border-bottom-width: 0;
+      }
+
+      &.home {
+        display: none;
+      }
+
+      a {
+        @apply font-sans;
+        color: black;
+        line-height: 1.2;
+        text-transform: uppercase;
+
+        &:link,
+        &:visited,
+        &:hover,
+        &:active {
+          border-bottom-width: 0;
+          text-decoration: none !important;
+        }
+      }
+    }
+  }
+}

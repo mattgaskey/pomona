@@ -1,0 +1,9 @@
+context:
+  accounts:
+    - icon: fa-facebook-f
+      label: Facebook
+    - icon: fa-twitter
+      label: Twitter
+    - icon: fa-linkedin-in
+      label: LinkedIn
+    - icon: fa-youtube

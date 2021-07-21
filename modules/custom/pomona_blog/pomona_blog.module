@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Contains pomona_blog.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\pathauto\PathautoPatternInterface;
+use Drupal\Core\Database\Query\Condition;
+
+/**
+ * Implements hook_help().
+ */
+function pomona_blog_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pomona_blog module.
+    case 'help.page.pomona_blog':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Sets the path for blog posts based on a parent node path') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function pomona_blog_pathauto_alias_alter(&$alias, array &$context) {
+  if (!empty($context['bundle']) && $context['bundle'] == 'blog') {
+    if ($result = pomona_blog_get_parent_blog($context['data']['node'])) {
+      $current_path = '/' . 'node/' . $result;
+      $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+      $alias = $path_alias . $alias;
+    }
+  }
+}
+
+/**
+ * Return the page that's the "parent" of the blog post.
+ */
+function pomona_blog_get_parent_blog($node) {
+  if (!$node->hasField('field_blog')) {
+    return FALSE;
+  }
+  $blog_tid = $node->field_blog->entity->tid->value;
+
+  // Look up the page node that's outputting the blog view.
+  $query = db_select('node__field_legacy_view_argument', 'node')
+    ->fields('node', array('entity_id'))
+    ->condition('bundle', 'page');
+
+  $db_or = new Condition('OR');
+  $db_or->condition('field_legacy_view_argument_value', $blog_tid);
+  $db_or->condition('field_legacy_view_argument_value', $blog_tid . ',%', 'LIKE');
+  $query->condition($db_or);
+
+  return $query->execute()->fetchColumn();
+}

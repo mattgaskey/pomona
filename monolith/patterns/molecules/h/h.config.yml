@@ -1,0 +1,5 @@
+label: Headers
+variants:
+  - name: Partial Underline
+    context:
+      variant: partial-underline

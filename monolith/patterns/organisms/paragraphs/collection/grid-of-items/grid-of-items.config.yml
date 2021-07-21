@@ -1,0 +1,86 @@
+default: Simple Items
+context:
+  items:
+  - media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 inline-block 
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+    classes: bg-white
+  - media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 inline-block 
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+    classes: bg-white
+  - media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 inline-block 
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+    classes: bg-white
+  - media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 inline-block 
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+    classes: bg-white
+  - media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 inline-block 
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+    classes: bg-white
+  - media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item link
+    classes: bg-white
+variants:
+  - name: Long Items
+    context:
+      items:
+      - media_classes: border-b-6 border-gray-600
+        content_classes: p-25 text-brown
+        link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block 
+        media: https://dummyimage.com/368x208
+        link: Simple Item Link
+        classes: bg-white
+        description: true
+      - media_classes: border-b-6 border-gray-600
+        content_classes: p-25 text-brown
+        link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block 
+        media: https://dummyimage.com/368x208
+        link: Simple Item Link
+        classes: bg-white
+        description: true
+      - media_classes: border-b-6 border-gray-600
+        content_classes: p-25 text-brown
+        link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block 
+        media: https://dummyimage.com/368x208
+        link: Simple Item Link
+        classes: bg-white
+        description: true
+      - media_classes: border-b-6 border-gray-600
+        content_classes: p-25 text-brown
+        link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block 
+        media: https://dummyimage.com/368x208
+        link: Simple Item Link
+        classes: bg-white
+        description: true
+      - media_classes: border-b-6 border-gray-600
+        content_classes: p-25 text-brown
+        link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block 
+        media: https://dummyimage.com/368x208
+        link: Simple Item Link
+        classes: bg-white
+        description: true
+      - media_classes: border-b-6 border-gray-600
+        content_classes: p-25 text-brown
+        link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+        media: https://dummyimage.com/368x208
+        link: Simple Item link
+        classes: bg-white
+        description: true
+

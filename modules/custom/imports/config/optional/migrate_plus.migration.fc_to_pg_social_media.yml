@@ -1,0 +1,35 @@
+id: fc_to_pg_social_media
+label: Social Media
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/fc_to_pg_social_media_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'fc_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      FACEBOOK: 'facebook'
+    3:
+      INSTAGRAM: 'instagram'
+    4:
+      LINKEDIN: 'linkedin'
+    5:
+      TWITTER: 'twitter'
+    6:
+      YOUTUBE: 'youtube'
+process:
+  field_facebook_url/uri: FACEBOOK
+  field_instagram_url/uri: INSTAGRAM
+  field_linkedin_url/uri: LINKEDIN
+  field_twitter_url/uri: TWITTER
+  field_youtube_url/uri: YOUTUBE
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: social_media

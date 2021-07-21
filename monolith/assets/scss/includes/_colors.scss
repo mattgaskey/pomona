@@ -1,0 +1,119 @@
+$colors: (
+  undefined: #bada55,
+  neutral: #ccc,
+  offwhite: #f2efe2,
+  white1: #fff,
+  lavender1: #af74b1, // Close duplicate removed, #b072b3
+  blue1: #20438f,
+  blue2: #2558a3,
+  blue3: #2f63d4,
+  cyan1: #018abb, // Close duplicate removed, #028abc
+  cyan2: #03bdff,
+  cyan3: #60a7d5,
+  grass1: #3fad70,
+  seafoam1: #68c187,
+  orange1: #ea7e24,
+  yellow1: #ffe121,
+  gold1: #ffc146,
+  khaki1: #827e56,
+  canvas1: #cfd2aa,
+  red1: #c00,
+  gray2: #d8d8d8,
+  gray3: #bbb,
+  gray4: #eee,
+);
+
+@function c($name, $colorset: $colors) {
+  @if map-has-key($colorset, $name) {
+    @return map-get($colorset, $name);
+  }
+  @debug 'Missing color #{$name}'; //sass-lint:disable-line no-debug
+  @return map-get($colorset, 'undefined');
+}
+
+$color-placeholder: #000;
+$color-link: c('cyan1');
+$color-link-hover: c('cyan2');
+$color-link-visited: c('cyan1');
+$color-link-listed: c('blue1');
+$color-link-listed-hover: c('blue3');
+$color-link-underline: c('canvas1');
+$color-header-3: c('orange1');
+$color-form-text: c('khaki1');
+$color-listing-border: c('neutral');
+$color-footer-border: c('blue2');
+$color-yellow-accent: c('yellow1');
+$color-border-bucket-blue: c('cyan3');
+$color-border-bucket-yellow: c('gold1');
+$color-border-bucket-purple: c('lavender1');
+$color-border-dark-green: c('grass1');
+$color-chevron: c('yellow1');
+$color-orange-caption: c('orange1');
+$color-purple-button: c('lavender1');
+$color-block-title-underline: c('offwhite');
+
+// background variables
+$background-body: c('blue1');
+$background-button: c('cyan1');
+$background-pagination-hover: c('seafoam1');
+
+/// Returns the luminance of `$color` as a float (between 0 and 1)
+/// 1 is pure white, 0 is pure black
+/// @param {Color} $color - Color
+/// @return {Number}
+/// @link http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef Reference
+@function luminance($color) {
+  $colors: ( 'red': red($color), 'green': green($color), 'blue': blue($color));
+  @each $name, $value in $colors {
+    $adjusted: 0;
+    $value: $value / 255;
+    @if $value < .03928 {
+      $value: $value / 12.92;
+    } @else {
+      $value: ($value + .055) / 1.055;
+      $value: pow($value, 2.4);
+    }
+    $colors: map-merge($colors, ($name: $value));
+  }
+  @return (c('red') * .2126) + (c('green') * .7152) + (c('blue') * .0722);
+}
+
+@function contrast($c1, $c2) {
+  $l1: luminance($c1);
+  $l2: luminance($c2);
+  @if $l1 > $l2 {
+    @return ($l1 + .05) / ($l2 + .05);
+  }
+  @return ($l2 + .05) / ($l1 + .05);
+}
+
+@mixin color-scheme-blue1 {
+  color: c(white1);
+
+  a {
+    &:link,
+    &:visited {
+      border-bottom-color: c(cyan1);
+      color: c(white1);
+    }
+
+    &.icon-button,
+    &.content-button {
+      background-color: c(cyan1);
+    }
+  }
+
+  .labeled-link--button a {
+    background-color: c(cyan1) !important;  //sass-lint:disable-line no-important
+  }
+
+  li {
+    border-color: c(white1) !important;  //sass-lint:disable-line no-important
+  }
+}
+
+@mixin color-scheme($color: c(blue1)) {
+  @if $color == c(blue1) {
+    @include color-scheme-blue1;
+  }
+}

@@ -1,0 +1,100 @@
+{% embed '@clamp' with { variant: 'content'} %}
+{% block main_content %}
+
+  {% include '@content-header' with { pages: ['Academics','Majors'], title: 'Art Major' } %}
+
+  {% embed '@with-sidebar' %}
+    {% block with_sidebar_main %}
+      <div class="editorial">
+        {% include '@intro' %}
+        <p>Ad magna ullamco deserunt ad consectetur proident quis. Est Lorem minim cupidatat proident sunt duis. Veniam ea ipsum tempor cupidatat cillum magna exercitation elit laboris dolor sunt cillum ipsum duis. In minim in excepteur tempor deserunt quis consequat fugiat do labore. Aute sint tempor ea excepteur voluptate. Voluptate deserunt amet est est deserunt non aliquip est sunt tempor laborum consequat sunt officia.</p>
+        <p>Dolore adipisicing commodo eiusmod id velit ex ad consectetur irure nostrud do dolore tempor. Duis exercitation exercitation fugiat proident nulla proident aute occaecat nisi culpa sunt anim velit sunt. Irure cillum fugiat duis ea do cupidatat do commodo. Dolore nulla sint incididunt nostrud deserunt dolore duis.</p>
+        <p>Quis incididunt adipisicing laborum ea pariatur non veniam qui laborum incididunt ipsum. Minim irure aliqua consequat culpa duis adipisicing ut magna ea nisi elit adipisicing duis labore. Cillum occaecat ullamco tempor commodo. Ea laborum pariatur excepteur culpa qui proident laborum id velit veniam do do. Veniam sit dolore nulla aliqua ad id ut magna duis officia excepteur sint qui. Ut in ipsum veniam ea deserunt minim exercitation fugiat. Commodo non commodo veniam reprehenderit aliquip pariatur ut dolore nulla voluptate.</p>
+      </div>
+    {% endblock %}
+    {% block with_sidebar_aside %}
+      {% include '@slideshow' with { variant: 'simple' } %}
+    {% endblock %}
+  {% endembed %}
+  
+
+{% embed '@panel' with {
+    wrapper_classes: c-container-lg mt-75', 
+    inner_classes: 'c-container relative pb-60', 
+    color: 'cyan', 
+    bgcolor: 'major-undergrad-research-brush',
+    name: 'What You’ll Study' } %}
+  {% block panel_content %}
+    <div class="lg:flex text-white text-xl font-serif">
+      <div class="lg:w-1/2 lg:pr-40">
+        <ul class="bullets bullets-yellow">
+          <li>Sit dolor reprehenderit ullamco laborum consequat exercitation.</li>
+          <li>Nostrud exercitation cupidatat duis minim elit Lorem anim sint mollit aute ex.</li>
+          <li>Occaecat consequat nostrud id culpa duis cillum ullamco.</li>
+        </ul>
+      </div>
+      <div class="py-40 lg:w-1/3 lg:py-0 lg:flex-none lg:pr-40">
+        {% include '@stat-block' with {
+          stat_number_classes: "font-sans leading-none pb-20 mb-20 font-bold text-6xl border-b-6 border-yellow",
+          stat_caption_classes: "font-sans text-2xl"
+        } %}
+      </div>
+      <div class="lg:w-1/4 lg:flex-none">
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Department Website</a>
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Courses & Requirements</a>        
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
+
+{% embed '@panel' with {
+    wrapper_classes: c-container-lg', 
+    inner_classes: 'c-container relative pb-60',
+    color: 'cyan', 
+    bgcolor: 'pttrn-lt-grey',
+    name: 'Faculty & Teaching' } %}
+  {% block panel_content %}
+
+  {% embed '@with-sidebar' with { major: '3/4', minor: '1/4' } %}
+    {% block with_sidebar_main %}
+      <div class="editorial">
+        {% include '@slideshow' with { variant: 'research', pattern: '@research-slide' } %}
+        {% include '@quote' with { img: 'https://dummyimage.com/175' } %}
+      </div>
+    {% endblock %}
+    {% block with_sidebar_aside %}
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Department Website</a>
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Courses & Requirements</a>        
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Department Website</a>
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Courses & Requirements</a>        
+    {% endblock %}
+  {% endembed %}
+
+  {% endblock %}
+{% endembed %}
+
+{% embed '@panel' with {
+    wrapper_classes: c-container-lg', 
+    inner_classes: 'c-container relative pb-60',
+    color: 'cyan', 
+    bgcolor: 'pttrn-lt-grey',
+    name: 'Creating at Pomona' } %}
+  {% block panel_content %}
+
+  {% embed '@with-sidebar' with { major: '3/4', minor: '1/4' }  %}
+    {% block with_sidebar_main %}
+      <div class="editorial">
+        <p>Dolore adipisicing commodo eiusmod id velit ex ad consectetur irure nostrud do dolore tempor. Duis exercitation exercitation fugiat proident nulla proident aute occaecat nisi culpa sunt anim velit sunt. Irure cillum fugiat duis ea do cupidatat do commodo. Dolore nulla sint incididunt nostrud deserunt dolore duis.</p>
+      </div>
+    {% endblock %}
+    {% block with_sidebar_aside %}
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Department Website</a>
+        <a href="http://www.example.com" class="btn btn-lavender btn-more btn-sm btn-uppercase btn-block mb-10">Courses & Requirements</a>        
+    {% endblock %}
+  {% endembed %}
+
+  {% endblock %}
+{% endembed %}
+
+{% endblock %}
+{% endembed %}

@@ -1,0 +1,20 @@
+.slideshow-with-sidebar {
+
+  figure {
+    margin-bottom: -.5em;
+  }
+  .btn {
+    font-size: 14px;
+    font-weight: 900;
+  }
+}
+
+.c-container-lg .slideshow-with-sidebar {
+  margin-left: -1.875rem;
+  margin-right: -1.875rem;
+
+  @screen md {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

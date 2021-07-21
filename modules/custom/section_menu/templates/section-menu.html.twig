@@ -1,0 +1,22 @@
+{% if linked_title %}
+<a href="{{ linked_title.url }}"><h2>{{ linked_title.title }}</h2></a>
+{% endif %}
+
+{% import _self as section_menu %}
+{{ section_menu.menu_links(items) }}
+
+{% macro menu_links(items) %}
+  {% import _self as section_menu %}
+  {% if items %}
+  <ul>
+    {% for item in items %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        {% if item.below %}
+          {{ section_menu.menu_links(item.below) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}

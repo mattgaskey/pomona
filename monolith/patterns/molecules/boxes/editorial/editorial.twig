@@ -1,0 +1,25 @@
+<div class="editorial {{ variant|default('editorial-main') }}">
+  {% block editorial_content %}
+  {{ paragraph }}
+  
+  <h2>Header two</h2>
+  <h3>Header three</h3>
+  <h4>Header four</h4>
+  <h5>Header five</h5>
+  <h6>Header six</h6>
+  
+  <ul>
+    <li>Enim ut minim magna laboris veniam officia irure.</li>
+    <li>Id in consequat cillum elit nisi Lorem ex incididunt aliqua.
+      <ul>
+        <li>Dolore ipsum minim nulla dolor quis eu irure ipsum mollit.</li>
+        <li>Do ipsum amet pariatur incididunt tempor incididunt.</li>
+        <li>Amet veniam duis ipsum ea in laborum ipsum mollit nulla sit consectetur qui commodo magna.</li>
+      </ul>
+    </li>
+    <li>Culpa cillum ad voluptate ea.</li>
+    <li>Sint officia anim in laboris voluptate elit.</li>
+  </ul>
+  {{ htmlBlock }}
+  {% endblock %}
+</div>

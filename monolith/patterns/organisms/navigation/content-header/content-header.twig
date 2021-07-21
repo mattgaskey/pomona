@@ -1,0 +1,6 @@
+<div class="c-container mb-30 {{ variant }}">
+  {% block content %}
+  {% include '@breadcrumb' with { pages: pages, current: title } %}
+  <h1 class="font-serif text-6xl">{{ override|default(title) }}</h1>
+  {% endblock %}
+</div>

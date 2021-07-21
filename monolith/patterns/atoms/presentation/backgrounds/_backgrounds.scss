@@ -1,0 +1,53 @@
+$bkgs: (
+  'admissions-block': 'bkg-admissions-block.png',
+  'article-quote-close': 'bkg-article-quote-close.png',
+  'article-quote-open': 'bkg-article-quote-open.png',
+  'arts-intro-block': 'bkg-arts-intro-block.jpg',
+  'breadcrumb-home': 'bkg-breadcrumb-home.png',
+  'bttm-texture-left': 'bkg-bttm-texture-left.jpg',
+  'bttm-texture-right': 'bkg-bttm-texture-right.jpg',
+  'bttm-texture-right2': 'bkg-bttm-texture-right2.jpg',
+  'bullet-blue-bkg': 'bkg-bullet-blue-bkg.jpg',
+  'button-arrw': 'bkg-button-arrw.png',
+  'directory-filter': 'bkg-directory-filter.jpg',
+  'directory-search-icon': 'bkg-directory-search-icon.png',
+  'hdr-bullet': 'bkg-hdr-bullet.png',
+  'hdr-nav-logo': 'bkg-hdr-nav-logo.png',
+  'major-atom': 'bkg-major-atom.jpg',
+  'major-binary': 'bkg-major-binary.jpg',
+  'major-brain': 'bkg-major-brain.jpg',
+  'major-earth': 'bkg-major-earth.jpg',
+  'major-pi': 'bkg-major-pi.jpg',
+  'major-undergrad-research-beaker': 'bkg-major-undergrad-research-beaker.jpg',
+  'major-undergrad-research-book': 'bkg-major-undergrad-research-book.jpg',
+  'major-undergrad-research-brush': 'bkg-major-undergrad-research-brush.jpg',
+  'major-undergrad-research-circle': 'bkg-major-undergrad-research-circle.jpg',
+  'major-undergrad-research-mask': 'bkg-major-undergrad-research-mask.jpg',
+  'major-undergrad-research-musicnote': 'bkg-major-undergrad-research-musicnote.jpg',
+  'major-undergrad-research': 'bkg-major-undergrad-research.jpg',
+  'pattern-brwn': 'bkg-pattern-brwn.jpg',
+  'play-bttn-shadow': 'bkg-play-bttn-shadow.png',
+  'play-bttn': 'bkg-play-bttn.png',
+  'pomona-logo': 'bkg-pomona-logo.jpg',
+  'pttrn-lt-grey': 'bkg-pttrn-lt-grey.png',
+  'quote-close': 'bkg-quote-close.png',
+  'quote-open': 'bkg-quote-open.png',
+  'search-mag': 'bkg-search-mag.png',
+  'simple-content-slide': 'bkg-simple-content-slide.jpg',
+  'slideshow-arrows': 'bkg-slideshow-arrows.png',
+  'submit-arrow': 'bkg-submit-arrow.png',
+  'title-pattern': 'bkg-title-pattern.jpg',
+  'upload-icon': 'bkg-upload-icon.png'
+);
+
+@each $key, $value in $bkgs {
+  .bg-#{$key} {
+    background-image: url('../images/#{$value}')
+  }    
+}
+
+[class*="bg-major"] {
+  @apply bg-blue;
+  background-repeat-y: no-repeat;
+  background-size: contain;
+}

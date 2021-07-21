@@ -1,0 +1,13 @@
+<figure {{ attributes }} class="{{ figure_classes }}">
+  {% block figure_media %}
+    {% include '@picture' %}
+  {% endblock %}
+  <figcaption class="{{ caption_classes|default('font-sans leading-normal text-base border-b-2 border-yellow-100 py-15')}}">
+    {% block figure_caption %}
+      {{ caption }}
+      {% if morelink %}
+      <p><a href="http://www.example.com" class="text-cyan hover:text-cyan-100">{{ morelink|default('More') }} <span class="fas fa-angle-right"></span></a></p>
+      {% endif %}
+    {% endblock %}
+  </figcaption>
+</figure>

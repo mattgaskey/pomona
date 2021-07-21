@@ -1,0 +1,50 @@
+default: Simple
+variants:
+  - name: Top of Content
+    context:
+      variant: 'top'
+      pattern: \@top-of-content
+  - name: Detail
+    context:
+      variant: 'detail'
+      pattern: \@detail-slide
+      buttonsets:
+        - 
+          - Lorem
+          - Ipusm
+          - Dolor Sit
+        - 
+          - Global Pomona
+          - Study Abroad
+          - Community Engagement
+          - The Arts
+        - 
+          - Argument Clinic
+          - Cheese Shoppe
+          - How Not to Be Seen
+          - The Ministry of Silly Walks
+  - name: Highlight Region
+    context:
+      variant: 'highlight'
+      pattern: \@highlight-region-slide
+      linked: true
+      label: "Click Here"
+  - name: Tabbed
+    context:
+      variant: 'tabbed'
+      pattern: \@detail-slide
+      buttonsets:
+        - 
+          - Lorem
+          - Ipusm
+          - Dolor Sit
+        - 
+          - Global Pomona
+          - Study Abroad
+          - Community Engagement
+          - The Arts
+        - 
+          - Argument Clinic
+          - Cheese Shoppe
+          - How Not to Be Seen
+          - The Ministry of Silly Walks

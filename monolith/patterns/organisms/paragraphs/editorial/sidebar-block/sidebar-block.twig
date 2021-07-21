@@ -1,0 +1,6 @@
+{% embed '@accordion-pane' with {headline: sidebar_block_headline|default(sentence), accordion_pane_header_classes:'text-3xl', accordion_pane_classes:'text-xl font-serif underline-links' }  %}
+  {% block accordion_content %}
+    {{ paragraphs_long }}
+  {% endblock %}
+{% endembed %}
+

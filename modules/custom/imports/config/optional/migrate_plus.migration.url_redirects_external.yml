@@ -1,0 +1,26 @@
+id: url_redirects_external
+label: URL Redirects - External
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/url-redirects-external-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - RID
+  column_names:
+    0:
+      RID: 'Redirect ID'
+    1:
+      RURL: 'Redirect URL'
+    2:
+      SURL: 'Source URL'
+process:
+  redirect_redirect/uri: RURL
+  redirect_source: SURL
+  status_code:
+    plugin: default_value
+    default_value: 301
+destination:
+  plugin: entity:redirect

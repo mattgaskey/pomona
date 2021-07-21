@@ -1,0 +1,6 @@
+collated: true
+default: mixed case
+variants:
+  - name: caps
+    context:
+      variant: btn-uppercase

@@ -1,0 +1,53 @@
+id: fc_to_pg_slideshow_sidebar_content
+label: Slideshow Sidebar Content
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/fc_to_pg_slideshow_sidebar_content_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'fc_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      CAPTION: 'caption'
+    3:
+      SIDEBARLINKS: 'sidebar_links'
+    4:
+      TITLE: 'title'
+    5:
+      SIDEBARLINKSTITLE: 'sidebar_links_title'
+process:
+  field_caption: 
+    plugin: skip_on_empty
+    method: process
+    source: CAPTION
+  field_sidebar_links_uri: 
+    - plugin: explode
+      source: SIDEBARLINKS
+      delimiter: '|'
+    - plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_sidebar_links_title:
+    plugin: explode
+    source: SIDEBARLINKSTITLE
+    delimiter: '|'
+  field_sidebar_links:
+    -
+      plugin: field_link_generate
+      source: '@field_sidebar_links_uri'
+      title_source: '@field_sidebar_links_title'
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_title: TITLE
+  field_legacy_nid: NID
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: slideshow_sidebar_content

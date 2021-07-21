@@ -1,0 +1,13 @@
+<ol class="{{ variant }}">
+{% for i in 0 .. 9 %}
+  <li>{{ sentence }}
+    {% if i is same as (4) %}
+      <ol type="{{ secondary }}">
+        {% for j in 0..4 %}
+          <li>{{ paragraph }}</li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </li>
+{% endfor %}
+</ol>

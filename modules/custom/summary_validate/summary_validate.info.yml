@@ -1,0 +1,5 @@
+name: 'summary_validate'
+type: module
+description: 'Validate the summary field in a node based on the maxlength value'
+core: 8.x
+package: 'Custom'

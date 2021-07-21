@@ -1,0 +1,13 @@
+{% set has_media = content.field_thumbnail_image is not empty %}
+<div class="item news-feed-teaser border-t-10 border-gray-500 bg-white pb-10 mb-25">
+  {% if has_media %}
+  <div class="item__media float-left mr-20">
+    {{ content.field_thumbnail_image }}
+  </div>
+  {% endif %}
+  <div class="item__content underline-links pl-20 pr-50">
+    <div class="mb-10"><a href="{{ url }}" class="font-sans text-xl text-blue border-b-2 border-brown-100 mb-25">{{ label }}</a></div>
+    <div class="font-sans text-base text-brown-300 mb-10">{{ content.field_publish_date[0]['#text']|date('l, F j, Y') }}</div>
+    <div class="font-serif text-lg leading-tight">{{ content.field_summary }}</div>
+  </div>
+</div>

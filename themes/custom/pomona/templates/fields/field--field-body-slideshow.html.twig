@@ -1,0 +1,8 @@
+{{ attach_library('pomona/slideshows') }}
+{% embed '@fractal/slideshow.twig' %}
+  {% block slides %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

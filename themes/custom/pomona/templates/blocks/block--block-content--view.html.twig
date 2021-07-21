@@ -1,0 +1,21 @@
+{% set name = content.field_title|children ? content.field_title : 'News' %}
+{% set morebutton_content = content.field_more_link %}
+{% set inner_classes = morebutton_content is not empty ? 'px-20 pb-60' : 'px-20 pb-20' %}
+
+<div class="mt-35">
+{% embed "@fractal/panel.twig" with {
+  color: color ? color : 'green',
+  name: name,
+  inner_classes: inner_classes,
+  morebutton: morebutton_content
+} %}
+  {% block panel_content %}
+    {{ drupal_view(view_name, view_variant, view_args) }}
+  {% endblock %}
+  {% block morebutton %}
+    {% if morebutton_content|children is not empty %}
+      <a href="{{ morebutton[0]['#url'] }}" class="btn btn-more btn-uppercase btn-cyan absolute right-20">{{ morebutton[0]['#title'] }}</a>
+    {% endif %}
+  {% endblock %}
+{% endembed %}
+</div>

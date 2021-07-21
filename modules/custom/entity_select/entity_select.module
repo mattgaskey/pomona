@@ -1,0 +1,42 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter() on link components
+ */
+function entity_select_field_widget_link_default_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+  // Replace default selection handler to increase limit of displayed entities.
+  
+  $element['uri']['#selection_handler'] = 'improved_entity_selection';
+  $element['uri']['#description'] = $element['uri']['#description'] . ' ' . t('To narrow results, <a href="/admin/help/entity_select">use these advanced search options.</a>');
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter() on descriptive link components
+ */
+function entity_select_field_widget_described_link_default_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+  // Replace default selection handler to increase limit of displayed entities.
+  
+  $element['uri']['#selection_handler'] = 'improved_entity_selection';
+  $element['uri']['#description'] = $element['uri']['#description'] . ' ' . t('To narrow results, <a href="/admin/help/entity_select">use these advanced search options.</a>');
+}
+
+function entity_select_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.entity_select':
+      $text = file_get_contents(dirname(__FILE__) . '/README.md');
+      if (! \Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');  
+      }
+  }
+}
+

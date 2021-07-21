@@ -1,0 +1,9 @@
+.grid-of-items {
+  .item {
+    .item__content {
+      p {
+        @apply mb-20 text-lg leading-relaxed;
+      }
+    }
+  }
+}

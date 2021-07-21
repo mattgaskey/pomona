@@ -1,0 +1,42 @@
+.inset {
+  @screen md {
+    @apply py-10;
+    width: 368px;
+    &.inset--left {
+      @apply float-left pr-20 relative;
+      clear:both;
+      z-index: 9999;
+    }
+    &.inset--right {
+      @apply float-right pl-20 relative;
+      clear:both;
+      z-index: 9999;
+    }
+    &.inset--full {
+      @apply w-full;
+    }
+  }
+  .button {
+    @apply w-full leading-relaxed;
+  }
+
+  .lightbox-image {
+    &:hover {
+      ~ .lightbox-icon {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.inset-text {
+  .views-element-container {
+    .views-row {
+      @apply border-b-1 border-brown-100;
+      &:last-of-type {
+        @apply border-transparent pb-0;
+      }
+    }
+    
+  }
+}

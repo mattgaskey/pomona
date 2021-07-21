@@ -1,0 +1,8 @@
+<div class="editorial node--person--full lg:pr-30">
+  {% include '@fractal/office-hours-box.twig' with { items: items } %}
+    {% if schema %}
+      {% for meta in schema %}
+        <meta property="openingHours" content="{{ meta.label }}{{ meta.slots }}">
+      {% endfor %}
+    {% endif %}
+</div>

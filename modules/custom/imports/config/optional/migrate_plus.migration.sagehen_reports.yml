@@ -1,0 +1,240 @@
+id: sagehen_reports
+label: Sagehen Reports
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/sagehen-report-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      PUBLISHED: 'Published'
+    3:
+      POSTED: 'Post Date'
+    4:
+      UPDATED: 'Updated'
+    5:
+      PUBLISHDATE: 'Publish Date'
+    6:
+      LINKTRACKINGCODE: 'Link Tracking Code'
+    7:
+      MORELINKURL: 'More Link URL'
+    8:
+      MORELINKTITLE: 'More Link Title'
+    9:
+      DETAILS: 'Details'
+    10:
+      RIGHTBOTTOM: 'Right Bottom'
+    11:
+      HLWITHIMAGES: 'Headlines with Images'
+    12:
+      HLWITHOUTIMAGES: 'Headlines without Images'
+    13:
+      ACCOMPLISHMENTS: 'Accomplishments'
+    14:
+      EVENTS: 'Events'
+    15:
+      TITLESANDLINKS: 'Titles and Links'
+process:
+  title: TITLE
+  status: PUBLISHED
+  created: 
+  - 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+  -
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  field_publish_date: PUBLISHDATE
+  field_link_tracking_code: LINKTRACKINGCODE
+  field_link/uri: MORELINKURL
+  field_link/title: MORELINKTITLE
+  field_details/value: DETAILS
+  field_details/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_title: RIGHTBOTTOM
+  field_legacy_nid: NID
+  field_headlines_with_images:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: HLWITHIMAGES
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_sr_headline_w_image
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_headlines_without_images:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: HLWITHOUTIMAGES
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_headline_with_link
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_events:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: EVENTS
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_headline_with_link
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_titles_and_links:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: TITLESANDLINKS
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_headline_with_link
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_accomplishments:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: ACCOMPLISHMENTS
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_plain_without_summary
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+destination:
+  plugin: entity:node
+  default_bundle: sagehen_report
+migration_dependencies:
+  required:
+    - paragraphs_sr_headline_w_image
+    - paragraphs_headline_with_link
+    - paragraphs_plain_without_summary
+  optional: []

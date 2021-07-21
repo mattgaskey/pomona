@@ -1,0 +1,51 @@
+{% embed '@clamp' with { variant: 'content' } %}
+  {% block main_content %}
+
+  {% include '@content-header' with { pages: ['A-Z Directory','People'], title: 'Jack I. Abecassis' } %}
+
+  <div class="c-container">
+  {% embed '@with-sidebar' with { major: '3/4', minor: '1/4' } %}
+
+    {% block with_sidebar_main %}
+      {% embed '@intro' %}
+        {% block intro_content %}
+        Edwin Sexton & Edna Patrick Smith Modern European Languages Professor and Professor of Romance Languages and Literatures; Coordinator of the French Section 
+        {% endblock %}
+      {% endembed %}
+
+      <div class="font-sans text-lg lg:flex border-b-2 border-yellow-100 pb-20">
+        <div class="editorial lg:w-1/2 lg:pr-30">
+          <p><a href="mailto:jabecassis@pomona.edu">jabecassis@pomona.edu</a><br />
+          <span>Office:</span> <a href="http://www.example.com">Mason Hall</a> 239<br />
+          <a href="tel:9096218950">(909) 621-8950</a></p>
+        </div>
+        <div class="editorial lg:w-1/2 lg:pl-30">
+          <div><h3 class="italic inline">With Pomona since:</h3> 1990</div>
+          {% include '@office-hours-box' with {
+            items: [
+              {
+                label: "Tuesday",
+                slots: "12:00pm-2:00pm"
+              },
+              {
+                label: "Thursday",
+                slots: "12:00pm-2:00pm"
+              }
+            ]
+          } %}
+        </div>
+      </div>
+
+    {% endblock %}
+    {% block with_sidebar_aside %}
+      <a href="http://www.example.com">{% include '@picture' with { width: 275, height: 380 } %}</a>
+      <a class="btn btn-lavender btn-uppercase btn-block btn-download" href="http://www.example.com">Download Hi-res Image</a>
+    {% endblock %}    
+
+  {% endembed %}
+  </div>
+
+  {% include '@profile-tabs' %}
+
+  {% endblock %}
+{% endembed %}

@@ -1,0 +1,10 @@
+collated: true
+variants:
+  - name: ln-white
+    context:
+      variant: ln-white
+      backgroundColor: blue
+  - name: ln-white alt
+    context:
+      variant: ln-white-alt
+      backgroundColor: blue      

@@ -1,0 +1,99 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+
+  {% include '@content-header' with { pages: ['Events'], title: 'Month', override:'Events', variant: '' } %}  
+
+  {% embed '@with-sidebar' with { major: "3/4", minor: "1/4" } %}
+    {% block with_sidebar_main %}
+
+      <div class="py-50 lg:pr-25 pl-75 -ml-75">
+        {% include '@slideshow' with { variant: 'top', pattern: '@top-of-content', linked: true, label: 'Read the whole story'  } %}
+
+        <div class="my-60 flex mx-5 justify-center border-b-6 border-cyan">
+          <a href="http://www.example.com" class="btn mx-5 btn-uppercase relative btn-xl btn-cyan">Day</a>
+          <a href="http://www.example.com" class="btn mx-5 btn-uppercase relative btn-xl btn-cyan">Week</a>
+          <a href="http://www.example.com" class="btn mx-5 btn-uppercase btn-xl -mb-6">Month</a>
+        </div>
+
+        <div class="my-60 flex justify-between items-center">
+          <a class="btn btn-transparent btn-no-label btn-prev btn-4xl"><span>Previous</span></a>
+          <div class="font-sans font-bold uppercase text-blue">February 2, 2020 – February 8 2020</div>
+          <a class="btn btn-transparent btn-no-label btn-next btn-4xl"><span>Next</span></a>
+        </div>
+
+        <div class="mt-60 p-25 bg-pttrn-lt-grey ">
+          {% for i in 0..9 %}
+            {% include '@event-two-col' %}
+          {% endfor %}
+
+          <div class="my-25">
+            {% include '@pagination' with {type: 'Events'} %}
+          </div>
+        </div>
+      </div>
+
+    {% endblock %}
+
+    {% block with_sidebar_aside %}
+      <div class="box">
+        <div class="border-green border-4 flex items-stretch">
+          <label class="sr-only" for="searchform">Search by Keyword</label>
+          <input id="searchform" class="py-6 px-4 w-full block" type="text" placeholder="Search by Keyword" /></label>
+          <button class="btn btn-green border-green-400 icon-button btn-search btn-no-label"><span>Search</span></button>
+        </div>
+
+        <div class="my-40">
+        {% include '@datepicker' %}
+        </div>
+
+        <div class="js-accordion my-20">
+          <div class="js-accordion__panel" data-accordion-opened="true">
+            <h3 class="js-accordion__header ">Type of Event</h3>
+            <div class="p-10 lg:p-20 bg-gray-100">
+              {% for cat in ['Category 1', 'Category 2', 'Category 3'] %}
+              <div class="flex items-center font-sans" >
+                <input class="border-1 border-gray" type="checkbox" id="checkbox-{{ i }}" />
+                <label class="inline-block text-xl ml-10" for="checkbox-{{ i }}" >{{ cat }}</label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="js-accordion__panel" data-accordion-opened="true">
+            <h3 class="js-accordion__header ">Open To…</h3>
+            <div class="p-10 lg:p-20 bg-gray-100">
+              {% for cat in ['Category 1', 'Category 2', 'Category 3'] %}
+              <div class="flex items-center font-sans" >
+                <input class="border-1 border-gray" type="checkbox" id="checkbox-{{ i }}" />
+                <label class="inline-block text-xl ml-10" for="checkbox-{{ i }}" >{{ cat }}</label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="js-accordion__panel" data-accordion-opened="false">
+            <h3 class="js-accordion__header ">Categories</h3>
+            <div class="p-10 lg:p-20 bg-gray-100">
+              {% for cat in ['Category 1', 'Category 2', 'Category 3'] %}
+              <div class="flex items-center font-sans" >
+                <input class="border-1 border-gray" type="checkbox" id="checkbox-{{ i }}" />
+                <label class="inline-block text-xl ml-10" for="checkbox-{{ i }}" >{{ cat }}</label>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="mt-75 bg-gray-100 p-25">
+        <div class="editorial py-15">
+        <p>Add above selected categories to your personal calendar.</p>
+        </div>
+        <div class="text-center">
+        <a class="btn font-bold btn-orange btn-feed" href="http://www.example.com/">iCal</a>
+        </div>
+      </div>
+    {% endblock %}
+  {% endembed %}
+    
+{% endblock %}
+{% endembed %}

@@ -1,0 +1,26 @@
+id: paragraphs_plain_without_summary
+label: Plain Without Summary
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_plain_without_summary_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      TEXT: 'text'
+process:
+  field_details/value: TEXT
+  field_details/format:
+    plugin: default_value
+    default_value: 'full_html'
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: plain_without_summary

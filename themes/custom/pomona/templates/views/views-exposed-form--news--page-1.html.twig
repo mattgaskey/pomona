@@ -1,0 +1,19 @@
+<div class="exposed-form">
+  <div class="exposed-form__keys flex flex-row flex-no-wrap border-5 border-green mb-20">
+    <div class="exposed-form__input">{{ form.keys }}</div>
+    <div class="exposed-form__button">{{ form.actions }}</div>
+  </div>
+  <div class="exposed-form__category js-accordion">
+    <div class="js-accordion__panel" data-accordion-opened="false">
+      <h3 class="js-accordion__header text-base">Categories</h3>
+      <div class="p-10 lg:p-20 bg-gray-100">{{ form.category }}</div>
+    </div>
+  </div>
+  {{ form|without('keys', 'actions', 'category') }}
+</div>
+<script>
+  (function($){
+    $('#edit-submit-news').attr('value', '');
+    $('#edit-keys').attr('size', '14');
+  })(jQuery);
+</script>

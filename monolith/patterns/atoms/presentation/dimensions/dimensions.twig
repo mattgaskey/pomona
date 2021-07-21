@@ -1,0 +1,31 @@
+<div class="editorial p-50 overflow-visible">
+
+  <h2>Widths</h2>
+
+  {% for w in width %}
+  <div class="whitespace-no-wrap bg-yellow-100 my-10 p-10 w-{{ w.name }}">.w-{{ w.name }} ({{ w.value }})</div>
+  {% endfor %}
+
+  <h2>Max Widths</h2>
+
+  {% for mw in maxWidth %}
+  <div class="whitespace-no-wrap bg-yellow-100 my-10 p-10 max-w-{{ mw.name }}">.max-w-{{ mw.name }} ({{ mw.value }})</div>
+  {% endfor %}
+
+  <h2>Heights</h2>
+
+  <div class="flex">
+  {% for h in height %}
+  <div class="whitespace-no-wrap w-20 bg-yellow-100 my-10 pw-10 h-{{ h.name }}"><span style="transform-origin: left center; display: block; transform: rotate(90deg)" class="label">.h-{{ h.name }} ({{ h.value }})</span></div>
+  {% endfor %}
+  </div>
+
+  <h2>Max Heights</h2>
+
+  <div class="flex">
+  {% for mh in maxHeight %}
+  <div class="whitespace-no-wrap w-20 bg-yellow-100 my-10 pw-10 max-h-{{ mh.name }}"><span style="transform-origin: left center; display: block; transform: rotate(90deg)" class="label">.max-h-{{ mh.name }} ({{ mh.value }})</span></div>
+  {% endfor %}
+  </div>
+
+</div>

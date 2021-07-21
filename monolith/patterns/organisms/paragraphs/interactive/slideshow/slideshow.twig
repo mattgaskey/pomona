@@ -1,0 +1,18 @@
+<div class="slideshow slideshow--{{ variant|default('simple') }} {{ wrapper_variant }}"{% if id is not empty %} id="{{id}}"{% endif %}>
+  {% block slides  %}
+    {% if pattern is same as('@highlight-region') %}
+    <div>
+      {% include "@video-slide" %}
+    </div>
+    {% endif %}
+    {% for i in ['One','Two','Three','Four','Five'] %}
+      <div>
+        {% if buttonsets %}
+          {% include pattern|default('@body-slide') with { buttons: random(buttonsets)} %}
+        {% else %}
+          {% include pattern|default('@body-slide') with { buttons: random(buttonsets)} %}
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endblock %}
+</div>

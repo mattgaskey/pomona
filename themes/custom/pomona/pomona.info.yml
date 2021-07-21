@@ -1,0 +1,44 @@
+name: Pomona
+package: NewCity
+type: theme
+core: 8.x
+description: The Pomona theme implemented in D8.
+base theme: stable
+libraries:
+  - pomona/global-styling
+  - pomona/global-scripts
+regions:
+  header: Header
+  quicklinks_menu: Quicklinks Menu
+  sidebar_first: Sidebar First
+  highlighted: Highlighted
+  help: Help
+  breadcrumb: Breadcrumb
+  in_page_alert: In-Page Alert
+  content: Content
+  content_sidebar: Content Sidebar
+  content_footer: Content Footer
+  spotlight: Spotlight
+  footer_a: Page bottom left
+  footer_b: Page bottom middle
+  footer_c: Page bottom right
+  offcanvas_first: Offcanvas First
+  offcanvas_second: Offcanvas Second
+
+ckeditor_stylesheets:
+  - css/wysiwyg.css
+
+component-libraries:
+  fractal:
+    paths:
+      - fractal
+#  layouts:
+#    paths:
+#      - layouts
+#  macros:
+#    paths:
+#      - macros
+#  custom:
+#    paths:
+#      - drupal/custom
+

@@ -1,0 +1,32 @@
+{% embed '@tabs' %}
+  {% block tabs %}
+      <li>
+        {% embed '@tab-pane' with { tab_label: "Expertise" } only %}
+          {% block tab_pane_content %}
+            {% include '@expertise-pane' %}
+          {% endblock %}
+        {% endembed %}
+      </li>
+      <li>
+        {% embed '@tab-pane' with { tab_label: "Work" } only %}
+          {% block tab_pane_content %}
+            {% include '@work-pane' %}
+          {% endblock %}
+        {% endembed %}
+      </li>
+      <li>
+        {% embed '@tab-pane' with { tab_label: "Education" } only %}
+          {% block tab_pane_content %}
+            {% include '@education-pane' %}
+          {% endblock %}
+        {% endembed %}
+      </li>
+      <li>
+        {% embed '@tab-pane' with { tab_label: "Awards & Honors" } only %}
+          {% block tab_pane_content %}
+            {% include '@awards-pane' %}
+          {% endblock %}
+        {% endembed %}
+      </li>
+  {% endblock %}
+{% endembed %}

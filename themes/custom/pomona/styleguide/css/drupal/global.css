@@ -1,0 +1,29 @@
+.ui-widget.ui-dialog.ui-dialog-off-canvas {
+  border-width: 0 1px; }
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar {
+  color: #000;
+  border-bottom-width: 0;
+  background-color: #fff; }
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar-close {
+  color: #000;
+  background-image: url(../images/ex.svg); }
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar-close:hover {
+  background-image: url(../images/ex.svg); }
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar-close:focus {
+  background-image: url(../images/ex.svg); }
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-title {
+  padding-left: 0;
+  max-width: calc(100% - 4em); }
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-title::before {
+  display: none; }
+
+.ui-dialog.ui-dialog-off-canvas {
+  background-color: #fff; }
+
+/*# sourceMappingURL=global.css.map */

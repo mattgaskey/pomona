@@ -1,0 +1,11 @@
+{% embed '@fractal/offcanvas.twig' with { label: "Main Navigation", direction: 'left' }  %}
+  {% block offcanvas_menu %}
+    {{ page.offcanvas_first }}
+  {% endblock %}
+{% endembed %}
+
+{% embed '@fractal/offcanvas.twig' with { label: "Utilities", direction: 'right' }  %}
+  {% block offcanvas_menu %}
+    {{ page.offcanvas_second }}
+  {% endblock %}
+{% endembed %}

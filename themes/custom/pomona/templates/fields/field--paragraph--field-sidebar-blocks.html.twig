@@ -1,0 +1,7 @@
+{% for item in items %}
+
+<div{{ item.attributes.addClass("editorial editorial-main bg-white p-20 border-t-6 border-offwhite mt-40")}}>
+  {{ item.content }}
+</div>
+
+{% endfor %}

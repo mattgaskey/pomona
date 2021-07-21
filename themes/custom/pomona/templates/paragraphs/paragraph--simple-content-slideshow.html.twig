@@ -1,0 +1,13 @@
+{% set bottom = content.field_caption|children is not empty ? 'bottom-0' : '' %}
+{% embed '@fractal/top-of-content.twig' %}
+  {% block slide_media %}
+    {{ content.field_media }}
+  {% endblock %}
+  {% block slide_caption %}
+  <figcaption class="text-2xl px-60 py-20 bg-blue text-white leading-tight font-sans flex items-center min-h-100 absolute inset-x-0 {{ bottom }} bg-simple-content-slide bg-repeat-x">
+    {{ content.field_caption|injectclass('font-sans') }}
+  </figcaption>
+    {{ content.field_link }}
+  {% endblock %}    
+{% endembed %}
+

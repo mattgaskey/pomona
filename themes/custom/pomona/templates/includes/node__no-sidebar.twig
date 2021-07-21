@@ -1,0 +1,7 @@
+<div class="c-container {{ wrapper_classes }}">
+  {{ content.field_incontent_slideshow }}
+  {{ content.body|inject(content.field_insets,content.field_accordion) }}
+  {% if drupal_view_result(view_name, view_machine_name, view_args) and view_args is not empty %}
+    {{ drupal_view(view_name, view_machine_name, view_args) }}
+  {% endif %}
+</div>

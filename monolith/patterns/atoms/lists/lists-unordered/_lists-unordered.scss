@@ -1,0 +1,24 @@
+ol,
+ul {
+  &.list--vertical {
+    @include list-vertical;
+  }
+
+  &.list--horizontal {
+    @include list-horizontal;
+  }
+
+  &.list--piped {
+    @include list-piped;
+  }
+}
+
+.bullets {
+  @include bullets;
+}
+
+@each $key, $value in $list_bullets {
+  .bullets-#{$key} {
+    @include imageBullets($key);
+  }  
+}

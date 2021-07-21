@@ -1,0 +1,6 @@
+"use strict";
+
+module.exports = {
+  order: 99
+};
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRlbW8vZGVtby5jb25maWcuanMiXSwibmFtZXMiOlsibW9kdWxlIiwiZXhwb3J0cyIsIm9yZGVyIl0sIm1hcHBpbmdzIjoiOztBQUFBQSxPQUFPQyxPQUFQLEdBQWlCO0FBQ2ZDLFNBQU87QUFEUSxDQUFqQiIsImZpbGUiOiJkZW1vLmNvbmZpZy5qcyIsInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0ge1xuICBvcmRlcjogOTlcbn07Il19

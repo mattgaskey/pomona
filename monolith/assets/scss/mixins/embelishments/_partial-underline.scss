@@ -1,0 +1,10 @@
+@mixin partial-underline($color: currentColor, $width: 1.56em, $height: 2px, $margin-top: 0)  {
+  &::after {
+    display: block;
+    width: $width; // Make the underline proportional to the font size
+    height: $height;
+    margin-top: $margin-top;
+    background-color: $color;
+    content: '';
+  }
+}

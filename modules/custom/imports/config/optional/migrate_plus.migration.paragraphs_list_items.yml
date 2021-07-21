@@ -1,0 +1,77 @@
+id: paragraphs_list_items
+label: List Items
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_list_items_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      MORELINK: 'more_link_url'
+    3:
+      TITLE: 'title'
+    4:
+      ITEMS: 'items'
+    5:
+      MORELINKTITLE: 'more_link_title'
+process:
+  field_link/uri: 
+    plugin: str_replace
+    source: MORELINK
+    search: d7-pomona.lndo.site
+    replace: www.pomona.edu
+  field_link/title: MORELINKTITLE
+  field_title: TITLE
+  field_grid_items:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: ITEMS
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_grid_item
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+          -
+            plugin: skip_on_empty
+            method: process
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+          -
+            plugin: skip_on_empty
+            method: process
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: list_items
+migration_dependencies:
+  required:
+    - paragraphs_grid_item
+  optional: []

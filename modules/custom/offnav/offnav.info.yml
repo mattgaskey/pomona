@@ -1,0 +1,8 @@
+name: OffNav
+type: module
+description: Provides off-canvas navigation through Drupal 8’s off-canvas API
+core: 8.x
+package: NewCity
+
+#dependencies:
+#  - paragraphs:paragraphs

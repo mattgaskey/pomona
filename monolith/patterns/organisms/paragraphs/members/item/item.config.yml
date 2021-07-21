@@ -1,0 +1,31 @@
+default: Simple
+context:
+  item:
+    media_classes: border-b-6 border-gray-600
+    content_classes: p-25
+    link_classes: text-xl text-blue border-b-2 border-brown-100 mb-25 inline-block
+    media: https://dummyimage.com/368x208
+    link: Simple Item Link
+variants:
+  - name: Photo with Description
+    context:
+      item:
+        description: true
+  - name: Alternate Text Color
+    context:
+      item:
+        description: true
+        content_classes: p-25 text-brown-300
+  - name: Photo with Description (Inset)
+    context:
+      item:
+        classes: md:border-t-6 md:border-gray-600
+        media_classes: border-b-6 border-gray-600 md:border-0 md:float-left md:mr-25 md:mb-25 md:max-w-25 
+        description: true
+  - name: Text Only
+    context:
+      item:
+        classes: border-t-6 border-gray-600
+        link: false
+        media: false
+        description: true

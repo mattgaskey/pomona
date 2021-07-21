@@ -1,0 +1,43 @@
+/* purgecss start ignore */
+@import 'fa/fontawesome';
+@import 'fa/solid';
+@import 'fa/brands';
+
+@font-face {
+  font-family: 'futura-pt';
+  src: url('../fonts-brand/FuturaPT-Book_gdi.eot');
+  src: url('../fonts-brand/FuturaPT-Book_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../fonts-brand/FuturaPT-Book_gdi.woff2') format('woff2'),
+    url('../fonts-brand/FuturaPT-Book_gdi.woff') format('woff'),
+    url('../fonts-brand/FuturaPT-Book_gdi.ttf') format('truetype'),
+    url('../fonts-brand/FuturaPT-Book_gdi.svg#futurapt_book') format('svg');
+  font-weight: 400;
+  font-style: normal;
+} 
+
+@font-face {
+  font-family: 'futura-pt-black';
+  src: url('../fonts-brand/FuturaPT-Heavy_gdi.eot');
+  src: url('../fonts-brand/FuturaPT-Heavy_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../fonts-brand/FuturaPT-Heavy_gdi.woff2') format('woff2'),
+    url('../fonts-brand/FuturaPT-Heavy_gdi.woff') format('woff'),
+    url('../fonts-brand/FuturaPT-Heavy_gdi.ttf') format('truetype'),
+    url('../fonts-brand/FuturaPT-Heavy_gdi.svg#futurapt_heavey') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GalliardPro-Roman';
+  src: url('../fonts-brand/GalliardPro-Roman_gdi.eot');
+  src: url('../fonts-brand/GalliardPro-Roman_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../fonts-brand/GalliardPro-Roman_gdi.woff') format('woff'),
+    url('../fonts-brand/GalliardPro-Roman_gdi.ttf') format('truetype'),
+    url('../fonts-brand/GalliardPro-Roman_gdi.svg#GalliardPro-Roman') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  unicode-range: U+0020-25CA;
+}
+
+/* purgecss end ignore */

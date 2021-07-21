@@ -1,0 +1,23 @@
+.page-contact {
+  position: relative;
+  a.btn-more {
+    position: absolute;
+    left: 20px;
+    top: -10px;
+  }
+  
+  &__box {
+    @screen md {
+      @apply mr-35;
+      &:last-of-type {
+        @apply mr-0;
+      }
+    }
+  }
+  @screen md {
+    width: calc(50% - 20px);
+    &:last-of-type {
+      @apply ml-40;
+    }
+  }
+}

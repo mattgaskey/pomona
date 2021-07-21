@@ -1,0 +1,15 @@
+{{ attach_library('pomona/fancybox') }}
+{% embed '@fractal/figure.twig' with { caption_classes: "font-serif bg-orange text-white text-2xl p-15 leading-tight", figure_classes: "my-30" } %}
+  {% block figure_media %}
+    {% if remotevideouri %}
+      <a data-fancybox href="{{ remotevideouri }}">{{ content.field_media }}</a>
+    {% elseif imageuri %}
+      <a data-fancybox href="{{ imageuri }}">{{ content.field_media }}</a>
+    {% else %}
+      {{ content.field_media }}
+    {% endif %}
+  {% endblock %}
+  {% block figure_caption %}
+    {{ content.field_caption }}
+  {% endblock %}
+{% endembed %}

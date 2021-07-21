@@ -1,0 +1,51 @@
+form {
+  p {
+    @apply mb-20;
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+}
+
+label {
+  @apply font-bold text-brown-300;
+}
+
+select {
+  @apply font-sans bg-white border-5 border-green rounded-none p-5 pr-30 bg-no-repeat bg-right;
+  background-image: url(../images/select_down.png); 
+  appearance: none;
+  &[multiple],
+  &[size] {
+    background-image: none; 
+  }
+}
+
+[type=submit] {
+  @apply bg-lavender tracking-wide uppercase text-white font-sansblack p-10 pr-30 border-3 border-lavender bg-no-repeat;
+  background-position: calc(100% - 8px) 50%;
+  background-image: url(../images/bkg-submit-arrow.png);
+  padding-right: 24px !important;
+  &:hover {
+    @apply bg-lavender-100 border-lavender-100;
+  }
+}
+
+[type=reset] {
+  @apply bg-white tracking-wide uppercase text-gray-900 font-sansblack p-10 border-3 border-gray-900 bg-no-repeat;
+  &:hover {
+    @apply bg-gray-100;
+  }
+}
+
+[type=button]:not([class]),
+button:not([class]) {
+  @apply bg-blue uppercase text-white font-sansblack p-10 border-3 border-blue bg-no-repeat;
+  &:hover {
+    @apply bg-cyan border-cyan;
+  }
+}
+
+input, textarea {
+  @apply border-1 border-gray-500 px-6 py-4 font-sans;
+}

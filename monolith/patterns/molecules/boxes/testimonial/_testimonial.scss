@@ -1,0 +1,44 @@
+.testimonial {
+  h2 {
+    @include partial-underline($margin-top: rem-calc(4px));
+  }
+
+  p {
+    display: block;
+    @apply text-lg;
+
+    &::before {
+      content: '“';
+    }
+
+    &::after {
+      content: '”';
+    }
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  .content-button {
+    margin-left: 1rem;
+    background-color: c(cyan1);
+    white-space: nowrap;
+  }
+
+  cite {
+    @apply font-sans block pb-20;
+
+    &::before {
+      content: '— ';
+    }
+  }
+
+  &:first-child h2 {
+    margin-top: 0;
+  }
+
+}

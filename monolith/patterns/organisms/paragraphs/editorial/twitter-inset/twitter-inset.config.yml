@@ -1,0 +1,8 @@
+default: Short
+context:
+  handle: pomonacollege
+  tweet_limit: 4
+variants:
+  - name: Long
+    context:
+      tweet_limit: 20

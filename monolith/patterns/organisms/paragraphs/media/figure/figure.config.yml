@@ -1,0 +1,17 @@
+default: Simple
+variants:
+  - name: Caption
+    context:
+      caption: <p>This is a caption for the image above.</p>
+  - name: With Link
+    context:
+      caption: <p>This is a caption for the image above.</p>
+      morelink: "More"
+  - name: Display
+    context:
+      caption: Nibh vel mi ac ultrices, vitae gravida elementum interdum, nec at phasellus, enim per bibendum delectus dolor magnis non.
+      caption_classes: font-serif text-2xl p-15 leading-tight
+  - name: Display Orange
+    context:
+      caption: Nibh vel mi ac ultrices, vitae gravida elementum interdum, nec at phasellus, enim per bibendum delectus dolor magnis non.
+      caption_classes:  font-serif text-2xl text-white p-15 pb-20 bg-orange leading-tight

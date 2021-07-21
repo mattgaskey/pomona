@@ -1,0 +1,24 @@
+{% embed '@highlight-region-slide' with { variant: 'slide--video', linked: true, label: 'Watch'} %}
+  {% block slide_media %}
+    {% include '@feature-video' %}
+  {% endblock %}
+  {% block slide_caption %}
+  <p>Take a Campus Tour</p>
+  {% if linked %}
+    <a href="http://www.example.com/" class="
+      btn-small
+      bg-lavender 
+      text-white 
+      ml-10
+      block
+    ">
+        Watch
+        <span class="
+          text-yellow 
+          ml-4 
+          fas 
+          fa-chevron-right
+        "></span>
+    </a>{% endif %}
+{% endblock %}
+{% endembed %}

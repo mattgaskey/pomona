@@ -1,0 +1,9 @@
+{% embed '@clamp' with { main_variant: 'border-t-1 border-transparent -mt-1 bg-title-pattern bg-repeat-x' } %}
+{% block main_content %}
+{% include '@site-alert' with { color: 'red' } %}
+<div class="c-container-lg  mx-auto">
+  {% include '@slideshow' with { variant: 'highlight', pattern: "@highlight-region-slide", linked: true, label: "watch" }  %}
+</div>
+{% include '@content-footer' %}
+{% endblock %}
+{% endembed %}

@@ -1,0 +1,11 @@
+  <div class="c-container-lg mx-auto mt-100 mb-50">
+    <ul class="profileTabs">
+      {% block tabs %}
+        {% for i in 1..countTabs %}
+        <li>
+          {% include '@tab-pane' with { tab_label: 'Tab #' ~ i } only %}
+        </li>
+        {% endfor %}
+      {% endblock %}
+    </ul>
+  </div>

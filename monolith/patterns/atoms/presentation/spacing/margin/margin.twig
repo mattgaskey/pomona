@@ -1,0 +1,67 @@
+<div class="p-50 editorial">
+<h2>Margin</h2>
+<p>Margin values in class names are described in pixels, but are expressed in the CSS as `rem` to maintain typographic flexibility.</p>
+
+<h3>Even margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 m-{{ s.name }} ">.m-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+
+<h3>Vertical margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 my-{{ s.name }} ">.my-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+
+<h3>Horizontal margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 mx-{{ s.name }} ">.mx-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+
+<h3>Top margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 mt-{{ s.name }} ">.mt-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+
+<h3>Right margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 mr-{{ s.name }} ">.mr-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+
+<h3>Bottom margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 mb-{{ s.name }} ">.mb-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+
+<h3>Left margin</h3>
+<div class="flex flex-wrap my-40 items-start">
+{% for s in spacing %}
+<div class="border-2 border-black m-5 bg-cyan-300">
+  <div class="border-2 border-black p-10 text-lg bg-yellow-100 ml-{{ s.name }} ">.ml-{{ s.name }} ({{ s.value }})</div>
+</div>
+{% endfor %}
+</div>
+</div>

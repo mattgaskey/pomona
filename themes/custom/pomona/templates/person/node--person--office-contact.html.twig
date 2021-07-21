@@ -1,0 +1,4 @@
+<span><a href={{ url }} class="text-lg font-sans ln inline-block">{{ label }}</a><span>
+<div><a href="tel:{{ content.field_office_phone|render|striptags|trim }}" class="text-lg font-sans ln inline-block">{{ content.field_office_phone|render|striptags|trim }}</a></div>
+<div><a href="mailto:{{ content.field_e_mail|render|striptags|trim }}" class="text-lg font-sans ln inline-block lowercase">{{ content.field_e_mail|render|striptags|trim }}</a></div>
+{{ content.field_office_hours }}

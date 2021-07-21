@@ -1,0 +1,58 @@
+id: paragraphs_front_page_slideshow
+label: Front Page Slideshow
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_front_page_slideshow_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      BANNERVIDEO: 'banner_video'
+    3:
+      CAPTION: 'caption'
+    4:
+      MORELINK: 'more_link_url'
+    5:
+      VIDEODESC: 'video_description'
+    6:
+      IMAGE: 'image'
+    7:
+      MORELINKTITLE: 'more_link_title'
+    8:
+      IMAGEALT: 'image_alt'
+process:
+  field_caption: CAPTION
+  field_link/uri: 
+    - plugin: str_replace
+      source: MORELINK
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_link/title: MORELINKTITLE
+  field_slide_video_description: VIDEODESC
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+  field_slide_video/target_id:
+    plugin: migration_lookup
+    migration: 
+     - video_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: front_page_slideshow

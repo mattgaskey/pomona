@@ -1,0 +1,30 @@
+{{ attach_library('pomona/trumbaNewsEvents') }}
+{% embed "@fractal/with-sidebar.twig" %}
+  {% block with_sidebar_main %}
+    {% embed "@fractal/panel.twig" with {
+      name: 'News',
+      color: 'green',
+      morebutton: 'View All News',
+      morebuttonlink: '/news'
+    } %}
+      {% block panel_content %}
+        {{ drupal_view('news', 'news_events_landing_slideshow') }}
+        {{ drupal_view('news', 'news_events_landing_teasers') }}
+      {% endblock %}
+    {% endembed %}
+    {% embed '@fractal/panel.twig' with {
+      name: 'Events',
+      color: 'green',
+      morebutton: 'Event Calendar',
+      morebuttonlink: '/events'
+    } %}
+      {% block panel_content %}
+        {% include '@pomona/includes/events-featured.twig' %}
+        {% include '@pomona/includes/events-six.twig' %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+  {% block with_sidebar_aside %}
+    {{ drupal_region('sidebar_first') }}
+  {% endblock %}
+{% endembed %}

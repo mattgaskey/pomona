@@ -1,0 +1,21 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+
+{% include '@content-header' with { pages: [], title: 'Life @ Pomona' } %}
+
+<div class=c-container-lg mx-auto">
+  {% include '@slideshow' with { variant: 'tabbed', pattern: "@detail-slide" }  %}
+</div>
+<div class="c-container-sm my-20 lg:mt-85 lg:mb-40 text-xl font-serif editorial">
+
+<p>At Pomona College, we take pride in being a residential college where the line between living and learning is practically non-existent.
+
+<p>Ninety-four percent of our students live on campus all four years, and many professors live within five miles of campus. This creates a close-knit community where new collaborations or eye-opening discussions can spring up anywhere – a dorm, club meeting, or at lunch with a professor.</p>
+
+<p>Pomona will be your home for four years – that’s four years of forging connections, making lifelong friends, and learning and discovering new passions.</p>
+
+<p>If you consider our campus a hub, we have some pretty amazing spokes: The Claremont Colleges has more than 8,000 students you can meet through 250+ clubs and 2,000+ classes. We’re nestled in Southern California, a natural and cultural playground you can explore on day trips, field trips and internships. You may even take your Pomona experience global with study abroad or international research and internships.</p>
+
+</div>
+{% endblock %}
+{% endembed %}

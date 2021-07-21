@@ -1,0 +1,14 @@
+offnav.mobile_1:
+  path: '/nav/mobile_1'
+  defaults:
+    _controller: '\Drupal\offnav\Controller\OffNavController::mobile1'
+    _title: 'Mobile Navigation'
+  requirements:
+    _permission: 'access content'
+offnav.mobile_2:
+  path: '/nav/mobile_2'
+  defaults:
+    _controller: '\Drupal\offnav\Controller\OffNavController::mobile2'
+    _title: 'Mobile Utilities'
+  requirements:
+    _permission: 'access content'

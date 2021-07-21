@@ -1,0 +1,10 @@
+/* fix issue 108, down arrow in admin area select */
+select[multiple],
+select[multiple]:hover,
+select[multiple]:focus {
+  background-image: none;
+}
+
+.no-term-reference-tree-button {
+  background-color: transparent !important;
+}

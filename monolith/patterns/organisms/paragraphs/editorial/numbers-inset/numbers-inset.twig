@@ -1,0 +1,7 @@
+{% embed '@text-inset' with { headline: 'Top Industries for Alumni', content_classes: 'p-15 bg-pttrn-lt-grey' } %}
+  {% block inset_text_content %}
+    {% include '@by-the-numbers' with {
+      variant: 'by-the-numbers--list' 
+    } %}
+  {% endblock %}
+{% endembed %}

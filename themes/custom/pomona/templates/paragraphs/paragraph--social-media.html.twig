@@ -1,0 +1,7 @@
+{% if accounts|length > 0 %}
+<div class="my-10">
+  {% for account in accounts %}
+    <div class="inline-block mr-25">{{ account }}</div>
+  {% endfor %}
+</div>
+{% endif %}

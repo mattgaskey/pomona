@@ -1,0 +1,8 @@
+{% embed '@fractal/site-alert.twig' with { color: 'red', attributes: attributes|without('class'), banner: TRUE } %}
+  {% block site_alert_content %}
+    {{ content.field_banner_alert }}
+  {% endblock %}
+  {% block site_alert_link %}
+    {{ content.field_link|injectclass('btn btn-more btn-blue') }}
+  {% endblock %}  
+{% endembed %}

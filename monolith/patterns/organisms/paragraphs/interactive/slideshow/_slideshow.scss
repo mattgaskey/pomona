@@ -1,0 +1,209 @@
+.slideshow {
+  @apply mx-auto;
+}
+
+.slideshow--research {
+  // Move the active dots centered under the image
+  // for research slides
+  @screen md {
+    .slick-dots {
+      max-width: 60%;
+    }
+  }
+  figcaption {
+    @apply bg-white;
+  }
+}
+
+.slideshow--top {
+  .slick-track {
+    padding-bottom: 20px; // Allows more room for 'read more' buttons that overlap the bottom
+  }
+  .slick-prev,
+  .slick-next {
+    bottom: 4.5rem;
+    &::before {
+      color: #ffe121;
+    }
+    &:hover::before {
+      color: white;
+    }    
+  }
+}
+
+.slideshow--detail {
+  .slick-prev,
+  .slick-next {
+    bottom: 4.5rem;
+    &::before {
+      color: #ffe121;
+    }
+    &:hover::before {
+      color: white;
+    }
+  }
+}
+
+.slideshow--presentation {
+  .slick-slide {
+    line-height: 0;
+  }
+}
+
+.slideshow--highlight {
+  .slick-slide {
+    line-height: 1.5;
+  }
+
+  .slick-prev,
+  .slick-next {
+    bottom: 3.125rem;
+    &::before {
+      @apply text-yellow;
+    }
+    &:hover::before {
+      @apply text-white;
+    }
+
+    @screen lg {
+      bottom: 10.5rem;
+      &::before {
+        @apply text-4xl text-white opacity-75;
+        @apply text-white;
+
+      }
+      &:hover::before {
+        @apply opacity-100;
+      }      
+    }
+  }
+
+  @screen lg {
+    .slick-dots {
+      position: absolute;
+      bottom: 4rem;
+      left: 16rem;
+      width: auto;
+    }
+  }
+}
+
+.slideshow--tabbed {
+
+  .slick-slide {
+    .slide {
+      @apply border-b-6 border-cyan;
+    }
+  }
+
+  .slick-prev,
+  .slick-next {
+    bottom: 3.25rem;
+    display: none !important;
+    &::before {
+      color: white;
+    }
+    @screen lg {
+      bottom: 7rem;
+      &::before {
+        @apply text-4xl;
+      }     
+    }
+  }
+
+  &:hover {
+    .slick-prev,
+    .slick-next {
+      display: inline-block !important;
+    }
+  }
+
+  /* Repurposed the dots in the slick container to be tabs
+     at the large breakpoint because the dots have all the of 
+     the interactions, aria states, and so forth that we'd need. */
+  @screen xl {
+    margin-bottom: 60px !important;
+
+    .slick-dots {
+      bottom: -24px;
+  
+      li {
+        width: auto;
+    
+        button {
+          @apply h-auto w-auto btn btn-cyan btn-uppercase btn-lg;
+          background: #057db0 !important;
+          &:hover {
+            background: #60a7d5 !important;
+          }
+          &:before {
+            display: none;
+          }
+        }
+    
+        &.slick-active button {
+          @apply btn-blue;
+          background: #20438f !important;
+          &:hover {
+            background: #20438f !important;
+          }
+        }    
+      }
+    }
+  }
+
+}
+
+.slideshow--highlight {
+  &.slick-slider {
+    &.slick-dotted {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.special {
+  .highlight-slideshow-container {
+    @apply mb-85;
+    .slideshow {
+      figcaption {
+        @apply hidden;
+      }
+      .slick-dots {
+        @apply hidden;
+      }
+    }
+  }
+}
+
+.highlight-slideshow-container {
+  @apply mb-30;
+  @screen lg {
+    @apply mb-0;
+  }
+}
+
+.highlight-slideshow-container + .c-container {
+  @screen lg {
+    @apply mt-30;
+  }
+}
+
+.homepage-slideshow {
+  figure {
+    @apply border-b-5 border-blue;
+    @screen lg {
+      margin-bottom: -6px;
+    }
+  }
+}
+
+#trumba-events-slideshow {
+  @screen lg {
+    .slide {
+      img {
+        height: 490px;
+      }
+    }
+  }
+}

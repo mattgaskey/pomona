@@ -1,0 +1,10 @@
+{% set width = width|default(1300) %}
+{% set height = height|default(750) %}
+{# Randomizing tag and image processing to try to reduce duplicates when several of the same size are loaded, like for a slideshow. #}
+{% set tag = random(['nature','music','cat','building','abstract','arts']) %}
+{% set process = random(['gray','blur','edge','emboss','negative','demean']) %}
+<picture>
+  <source srcset="https://magicyeti.us/{{ width }}/{{ height }}/{{ tag }}/{{ process }} 1x, https://magicyeti.us/{{ width * 2 }}/{{ height * 2 }}/{{ tag }}/{{ process }} 2x," media="all and (min-width: 1040px)" type="image/jpeg">
+  <source srcset="https://magicyeti.us/{{ width / 2}}/{{ height }}/{{ tag }}/{{ process }}, https://magicyeti.us/{{ width }}/{{ height }}/{{ tag }}/{{ process }} 2x",  media="all and (min-width: 640px)" type="image/jpeg">
+  <img class="{{ tailwind|default("block min-w-full") }}" src="https://magicyeti.us/{{ width / 2 }}/{{ height / 2 }}/{{ tag }}/{{ process }}" alt="FPO" typeof="foaf:Image">
+</picture>

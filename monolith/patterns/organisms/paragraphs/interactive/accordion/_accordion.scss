@@ -1,0 +1,77 @@
+/* purgecss start ignore */
+.accordion [type=button] {
+  @apply border-cyan;
+}
+
+.accordion__header {
+  @apply w-full p-10 pr-40 leading-relaxed text-lg text-left mb-10 bg-cyan text-white font-sansblack font-bold uppercase;
+  cursor: pointer;
+
+  &[aria-expanded="true"] {
+    @apply bg-blue;
+    border-color: #20438f !important;
+    &:hover {
+      background-color: #20438f !important;
+      border-color: #20438f !important;
+    }
+  }
+
+  &::after {
+    @apply text-yellow;
+  }
+
+  &:hover {
+    background-color: #3797c0 !important;
+    border-color: #3797c0 !important;
+  }
+}
+
+.accordion__title { 
+  position: absolute;
+  left: -99999em;
+}
+
+.accordion__panel {
+  max-height: 100em;
+  margin: 0;
+  transition: visibility 0s ease-in-out, max-height .3s ease-in-out, opacity .3s ease-in-out;
+  opacity: 1;
+  overflow: hidden;
+  visibility: visible;
+}
+
+[aria-hidden='true'].accordion__panel {
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  transition-delay: .3s, 0s, 0s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+button.accordion__header {
+  display: block;
+  position: relative;
+
+  &::after {
+    content: fa-content($fa-var-plus);
+    @extend %fa-icon;
+    @extend .fas;
+    @apply text-xl;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  &[aria-expanded='true']::after {
+    content: fa-content($fa-var-minus);
+  }
+
+  &::focus {
+    outline: 1px dotted !important;
+  }
+}
+
+/* purgecss end ignore */
+

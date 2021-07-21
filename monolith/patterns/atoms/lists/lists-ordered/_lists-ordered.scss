@@ -1,0 +1,33 @@
+ol {
+  counter-reset: listcounter;
+
+  li {
+    @apply my-5;
+    counter-increment: listcounter;
+  }
+  
+  &.numeric,
+  &[class*=upper],
+  &[class*=lower],
+  &[type*=upper],
+  &[type*=lower],
+  &[type='1'] {
+    margin-left: 2em;
+    > li::before {
+      @apply block float-left text-right font-bold text-cyan font-sans;
+      content: counter(listcounter) ".";
+      margin-top: .05em;
+      margin-left: -2em;
+      width: 1.5em;
+    }
+  }
+
+  @each $type in [upper-roman,lower-roman,upper-alpha,lower-alpha] {
+    &.#{$type},
+    &[type=#{$type}] {
+      > li::before {
+        content: counter(listcounter, #{$type}) ".";
+      }
+    }
+  }
+}

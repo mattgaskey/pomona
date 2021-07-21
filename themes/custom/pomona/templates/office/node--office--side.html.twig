@@ -1,0 +1,19 @@
+{%if content.field_primary_contact|children is not empty %}
+  {{ content.field_primary_contact }}
+{% elseif content.field_location|children is not empty %}
+  <div class="sidebar-contact__details">
+    {{ content.field_location }}
+    {{ content.field_e_mail }}<br />
+    {{ content.field_phone }}
+  </div>
+  <div class="sidebar-contact__social">
+    {{ content.field_facebook_url }}
+    {{ content.field_twitter_url }}
+    {{ content.field_youtube_url }}
+    {{ content.field_instagram_url }}
+    {{ content.field_linkedin_url }}
+  </div>
+{% endif %}
+
+
+

@@ -1,0 +1,7 @@
+{% embed '@fractal/slideshow.twig' with { variant: 'research', pattern: '@fractal/research-slide.twig' } %}
+  {% block slides %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

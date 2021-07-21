@@ -1,0 +1,18 @@
+.breadcrumb {
+  li.inline {
+    a {
+      @apply text-blue;
+
+      &:hover {
+        @apply text-blue-300;
+      }
+    }
+    &::after {
+      content: '/';
+      @apply mx-10 text-cyan-100;
+    }
+    &:last-child::after {
+      display: none;
+    }
+  }
+}

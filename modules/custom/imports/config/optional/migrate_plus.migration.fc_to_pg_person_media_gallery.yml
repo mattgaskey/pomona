@@ -1,0 +1,32 @@
+id: fc_to_pg_person_media_gallery
+label: Preson Media Gallery
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/fc_to_pg_person_media_gallery_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'fc_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      MEDIA: 'media'
+    3:
+      CAPTION: 'caption'
+process:
+  field_media/target_id:
+    plugin: migration_lookup
+    migration:
+      - yt_video
+      - vimeo_video
+      - image_to_media
+    source: MEDIA
+  field_caption: CAPTION
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: person_media_gallery

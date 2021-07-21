@@ -1,0 +1,11 @@
+{% set tracking_code = paragraph.getParentEntity().get('field_link_tracking_code').value %}
+{% embed "@fractal/sagehen-report-img.twig" with { link: (content.field_link[0]['#url']|render|striptags|trim ~ "?" ~ tracking_code) } %}
+  {% block image %}{{ content.field_media }}{% endblock %}
+  {% block title_link %}
+    {% include '@fractal/title-with-link.twig' with {
+      link: content.field_link[0]['#url']|render|striptags|trim ~ "?" ~ tracking_code,
+      sentence: content.field_title
+    } %}
+  {% endblock %}
+  {% block description %}{{ content.field_details }}{% endblock %}
+{% endembed %}

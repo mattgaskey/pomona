@@ -1,0 +1,21 @@
+{% set tabTitle = content.field_tab_title|field_value %}
+{% embed '@fractal/tab-pane.twig' with { tab_label: tabTitle[0]['#context']['value'] } %}
+  {% block tab_pane_content %}
+    {% if has_sidebar_items %}
+      {% embed '@fractal/with-sidebar.twig' with { major: '3/4', minor: '1/4' } %}
+        {% block with_sidebar_main %}
+        {{ content.field_tab_title }}
+        {{ content.field_other_information }}
+        {% endblock %}
+        {% block with_sidebar_aside %}
+        {{ content.field_sidebar_blocks }}
+        {% endblock %}
+      {% endembed %}
+    {% else %}
+      <div class="c-container">
+        {{ content.field_tab_title }}
+        {{ content.field_other_information }}      
+      </div>
+    {% endif %}
+  {% endblock %}
+{% endembed %}

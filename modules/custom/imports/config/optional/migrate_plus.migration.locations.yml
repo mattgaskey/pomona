@@ -1,0 +1,44 @@
+id: locations
+label: Import Locations
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/location-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      ONCAMPUS: 'On Campus'
+    3:
+      STREET: 'Street Address'
+    4:
+      CITY: 'City'
+    5:
+      STATE: 'State'
+    6:
+      ZIP: 'Zip'
+    7:
+      MAPID: 'Campus Location Reference'
+process:
+  title: TITLE
+  field_directions_parking/uri: MAPID
+  field_on_campus: ONCAMPUS
+  field_imported_nid: NID
+  field_address/country_code:
+    plugin: default_value
+    default_value: us
+  field_address/locality: CITY
+  field_address/address_line1: STREET
+  field_address/administrative_area: STATE
+  field_address/postal_code: ZIP
+
+destination:
+  plugin: entity:node
+  default_bundle: location

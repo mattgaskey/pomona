@@ -1,0 +1,33 @@
+name: accordion
+status: wip
+context:
+  accordion:
+    headline: Accordions
+    p: 
+        content: Introduction for accordion content. Posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet magna. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel.
+    panes:
+      - heading:
+          tag: 3
+          headline: Accordion Panel One
+          variant: js-accordion__header
+      - heading:
+          level: 3
+          headline: Accordion Panel Two
+          variant: js-accordion__header
+      - heading:
+          level: 3
+          headline: Accordion Panel Three
+          variant: js-accordion__header
+      - heading:
+          level: 3
+          headline: Accordion Panel Four
+          variant: js-accordion__header
+      - heading:
+          level: 3
+          headline: Accordion Panel Five
+          variant: js-accordion__header
+      - heading:
+          level: 3
+          headline: Accordion Panel Six
+          variant: js-accordion__header
+        

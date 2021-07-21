@@ -1,0 +1,16 @@
+{# this probably needs a preprocessor function to set a variable, then an if statement #}
+{% embed '@fractal/accordion-pane.twig' with { headline: content.field_title|field_value } %}
+  {% block accordion_content %}
+    {% if (paragraph.field_media.getvalue|length > 0) %}
+      {% embed '@fractal/figure.twig' with { figure_classes:'inset inset--right' } %}
+        {% block figure_media %}
+        {{ content.field_media }}
+        {% endblock %}
+        {% block figure_caption %}
+        {{ content.field_caption }}
+        {% endblock %}
+      {% endembed %}
+    {% endif %}
+    {{ content.field_body }}
+  {% endblock %}
+{% endembed %}

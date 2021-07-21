@@ -1,0 +1,124 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+{% embed "@fractal/sagehen-header.twig" %}
+  {% block logo %}
+    <a href="http://www.pomona.edu/?{{ content.field_link_tracking_code|render|striptags|trim }}" style="Margin: 0; color: #20438f; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 150%; margin: 0; padding: 0; text-align: left; text-decoration: none; border: none;"><img class="pom-small-logo" src="/sites/default/files/mailchimp-pomona-logo-400.png" alt="Pomona College" width="200" border="0" style="-ms-interpolation-mode: bicubic; clear: both; display: inline-block; width: 100%; height: auto; max-width: 200px; outline: none; text-decoration: none;"></a>
+  {% endblock %}
+  {% block publish_date %}
+    {{ content.field_publish_date }}
+  {% endblock %}
+{% endembed %}
+{{ content.content_moderation_control }}
+<div class="paragraphs-items paragraphs-items-field-headlines-with-images paragraphs-items-field-headlines-with-images-full paragraphs-items-full">
+  <div class="field field-name-field-headlines-with-images field-type-paragraphs field-label-hidden quickedit-processed quickedit-field" {{ attributes }}>
+    {{ content.field_headlines_with_images }}
+  </div>
+</div>
+{% include "@fractal/sagehen-spacer.twig" %}
+{% embed "@fractal/sagehen-headlines.twig" %}
+  {% block headlines %}
+    {{ content.field_headlines_without_images }}
+  {% endblock %}
+{% endembed %}
+<table class="row" role="presentation" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%;">
+  <tbody>
+    <tr style="padding: 0; text-align: left; vertical-align: top;">
+      <th class="small-12 large-7 columns first" valign="top" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 30px; padding-right: 15px; text-align: left; width: 390px;">
+        {% include '@fractal/sagehen-section-head.twig' with { title: "Accomplishments" } only %}
+        {{ content.field_accomplishments }}
+        {% include "@fractal/sagehen-more.twig" with {
+          link: "https://www.pomona.edu/accomplishments?" ~ content.field_link_tracking_code|render|striptags|trim,
+          title: 'Faculty & Staff Accomplishments'
+        } %}
+        {% include '@fractal/sagehen-spacer.twig' with { height: '14px' } %}
+      </th>
+      <th class="small-12 large-5 columns last" valign="top" style="Margin: 0 auto; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 150%; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 15px; padding-right: 30px; text-align: left; width: 300px;">
+        {% include '@fractal/sagehen-section-head.twig' with { title: "Events" } only %}
+        {{ content.field_events }}
+        {% include "@fractal/sagehen-more.twig" with {
+          link: "https://www.pomona.edu/events?" ~ content.field_link_tracking_code|render|striptags|trim,
+          title: 'Calendar'
+        } %}
+        {% include "@fractal/sagehen-spacer.twig" with { height: '30px' } %}
+        {% include '@fractal/sagehen-section-head.twig' with { title: content.field_title } only %}
+        {{ content.field_details }}
+        {{ content.field_titles_and_links	}}
+        {% include "@fractal/sagehen-more.twig" with {
+          link: content.field_link[0]['#url']|render|striptags|trim ~ "?" ~ content.field_link_tracking_code|render|striptags|trim,
+          title: content.field_link[0]['#title']
+        } %}
+      </th>
+    </tr>
+  </tbody>		
+</table>
+{% include "@fractal/sagehen-footer.twig" with { campaign: content.field_link_tracking_code|render|striptags|trim } %}

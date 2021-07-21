@@ -1,0 +1,19 @@
+<div class="item {{ item.classes }}">
+  {% block item_media %}
+    {% if item.media %}
+    <div class="item__media {{ item.media_classes }}">
+      <a href="http://www.example.com"><img src="{{ item.media }}" alt="FPO"></a>
+    </div>
+    {% endif %}
+  {% endblock %}
+  <div class="item__content underline-links {{ item.content_classes }}">
+    {% block item_content %}
+      {% if item.link %}
+      <div><a href="http://www.example.com" class="{{ item.link_classes }}">{{ item.link }}</a></div>
+      {% endif %}
+      {% if item.description %}
+        {{ paragraphs }}
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

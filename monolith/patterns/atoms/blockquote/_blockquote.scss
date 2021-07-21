@@ -1,0 +1,18 @@
+blockquote {
+  @apply text-brown-300 font-sans text-3xl mb-40 relative;
+  p {
+    @apply px-85;
+    &:before {
+      @apply bg-quote-open absolute left-0 top-0;
+      content: "";
+      height: 51px;
+      width: 65px;
+    }
+    &:after {
+      @apply bg-quote-close absolute bottom-0 right-0;
+      content: "";
+      height: 50px;
+      width: 65px;
+    }
+  }
+}

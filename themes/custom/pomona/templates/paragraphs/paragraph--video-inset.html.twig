@@ -1,0 +1,16 @@
+{{ attach_library('pomona/fancybox') }}
+{% embed '@fractal/figure.twig' %}
+  {% block figure_media %}
+    {% if remotevideouri %}
+      <a data-fancybox href="{{ remotevideouri }}"><span class="sr-only">Open video in overlay</span>{{ content.field_media }}</a>
+    {% else %}
+      <div class="relative">
+        {{ content.field_media }}
+      </div>
+    {% endif %}
+  {% endblock %}
+  {% block figure_caption %}
+    {{ content.field_media_caption }}
+    {{ content.field_link }}
+  {% endblock %}
+{% endembed %}

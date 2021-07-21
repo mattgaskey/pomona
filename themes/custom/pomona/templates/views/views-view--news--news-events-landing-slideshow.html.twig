@@ -1,0 +1,11 @@
+{{ attach_library('pomona/slideshows') }}
+{% embed "@fractal/slideshow.twig" with { 
+  variant: 'detail',
+  wrapper_variant: 'mb-30' 
+} %}
+  {% block slides %}
+    {% for row in rows %}
+      {{ row }}
+    {% endfor %}
+  {% endblock %}
+{% endembed %}

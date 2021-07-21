@@ -1,0 +1,9 @@
+<div class="sidebar-contact__details">
+  {% if content.field_position|children is not empty %}
+    <a href="{{ url }}">{{ label }}</a>
+    <div class="text-lg font-sans text-brown-300 mb-5">{{ content.field_position }}</div>
+  {% endif %}
+  {{ content.field_location }}
+  {{ content.field_e_mail|injectclass('lowercase') }}
+  {{ content.field_office_phone }}
+</div>

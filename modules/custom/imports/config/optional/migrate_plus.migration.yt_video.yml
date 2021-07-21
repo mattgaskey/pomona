@@ -1,0 +1,26 @@
+id: yt_video
+label: YT Video
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/yt_video_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - FID
+  column_names:
+    0:
+      FID: 'id'
+    1:
+      PATH: 'filepath'
+    2:
+      NAME: 'filename'
+process:
+  name: NAME
+  field_media_oembed_video:
+    plugin: youtube_uri
+    source: PATH
+destination:
+  plugin: entity:media
+  default_bundle: remote_video

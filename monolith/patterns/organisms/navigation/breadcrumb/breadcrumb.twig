@@ -1,0 +1,13 @@
+<nav class="breadcrumb" aria-label="breadcrumb navigation">
+  <h2 class="sr-only">You are here</h2>
+  {% block breadcrumb_list %}
+  <ol class="font-sans">
+    <li class="inline"><a href="/" aria-label="Home"><span class="fa fa-home"></span><span class="sr-only">Home</span></a></li>
+    {% for page in pages %}
+    <li class="inline"><a href="http://www.example.com">{{ page }}</a></li>
+    {% endfor %}
+    <li class="inline">{{ current }}</li>
+  </ol>
+  {% endblock %}
+</nav>
+

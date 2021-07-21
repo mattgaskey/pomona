@@ -1,0 +1,14 @@
+{% set color = "" %}
+{% if content.field_color|render|striptags|trim == 'Purple' %}
+  {% set color = 'lavender' %}
+{% elseif content.field_color|render|striptags|trim == 'Orange' %}
+  {% set color = 'orange' %}
+{% elseif content.field_color|render|striptags|trim == 'Green' %}
+  {% set color = 'green' %}
+{% elseif content.field_color|render|striptags|trim == 'Red' %}
+  {% set color = 'red' %}
+{% endif %}
+<div class="stat-block stat-block--vertical bg-{{color}} border-{{color}}-100">
+    <div class="stat-block__stat text-white">{{ content.field_stat_figure }}</div>
+    <div class="stat-block__caption ">{{ content.field_stat_caption }}</div>
+</div>

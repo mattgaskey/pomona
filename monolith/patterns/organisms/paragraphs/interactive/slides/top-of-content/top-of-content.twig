@@ -1,0 +1,17 @@
+<figure class="slide slide--top-of-content {% if has_caption %}pb-100 {% endif %}mb-20 relative">
+  <div>
+      {% block slide_media %}
+        {% include "@picture" with { width: 850, height: 478 } only  %}
+      {% endblock %}
+  </div>
+  {% block slide_caption %}
+    <figcaption class="text-2xl px-60 py-20 bg-blue text-white flex items-center min-h-100 inset-x-0 bottom-0 bg-simple-content-slide bg-repeat-x">
+      <p>{{ random([paragraph,words,sentence,catchPhrase,bs])|striptags|capitalize }}</p>
+      {% if linked %}
+        <a href="{{ url }}" class="btn btn-uppercase btn-lavender btn-more btn-sm block bottom-0 absolute right-75">
+            {{ label }} 
+        </a>
+      {% endif %}
+    </figcaption>
+  {% endblock %}
+</figure>

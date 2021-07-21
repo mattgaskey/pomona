@@ -1,0 +1,50 @@
+id: wikis
+label: Wikis
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/wiki-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      BODY: 'Body'
+    3:
+      PATH: 'Path'
+    4:
+      POSTED: 'Post date'
+    5:
+      UPDATED: 'Updated date'
+    6:
+      PUBLISHED: 'Published'
+process:
+  title: TITLE
+  body/value: BODY
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  created: 
+  - 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+  -
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  status: PUBLISHED
+destination:
+  plugin: entity:node
+  default_bundle: wiki

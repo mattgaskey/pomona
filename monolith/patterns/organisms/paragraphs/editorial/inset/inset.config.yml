@@ -1,0 +1,8 @@
+name: inset
+default: Inset Right
+context:
+  variant: inset--right
+variants:
+  - name: Inset Left
+    context:
+      variant: inset--left

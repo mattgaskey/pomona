@@ -1,0 +1,17 @@
+{% embed '@fractal/two-sections-landing-page.twig' %}
+  {% block two_sections_landing_page_aside %} 
+    <!-- Landing Page Aside -->
+    {{ drupal_region('content_sidebar') }}
+    <!-- End Landing Page Aside -->
+  {% endblock %}
+  {% block two_sections_landing_page_alert %}
+    <!-- Landing Page Alert -->
+    {{ drupal_region('in_page_alert') }}
+    <!-- End Page Alert -->
+  {% endblock %}
+  {% block two_sections_landing_page_main %}
+    <!-- Landing Page Main -->
+    {{ content.body }}
+    <!-- End Landing Page Main -->
+  {% endblock %}
+{% endembed %}

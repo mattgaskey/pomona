@@ -1,0 +1,11 @@
+collated: true
+default: standard
+context:
+  variant: c-container
+variants:
+  - name: small
+    context:
+      variant: c-container-sm
+  - name: large
+    context:
+      variant: c-container-lg

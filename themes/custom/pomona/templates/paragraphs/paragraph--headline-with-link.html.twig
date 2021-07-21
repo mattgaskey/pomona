@@ -1,0 +1,6 @@
+{% set tracking_code = paragraph.getParentEntity().get('field_link_tracking_code').value %}
+  {% include '@fractal/title-with-link.twig' with {
+    link: content.field_link[0]['#url']|render|striptags|trim ~ "?" ~ tracking_code,
+    sentence: content.field_link[0]['#title']
+  } %}
+{% include "@fractal/sagehen-spacer.twig" %}

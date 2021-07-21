@@ -1,0 +1,8 @@
+<div class="js-accordion__panel" data-accordion-opened="{{ accordion_pane_open|default('false') }}">
+  <h3 class="js-accordion__header font-sans {{ accordion_pane_header_classes }}">{{ headline }}</h3>
+  <div class="p-10 lg:p-20 {{ accordion_pane_classes }}">
+  {% block accordion_content %}  
+    {{ paragraphs_long }}
+  {% endblock %}
+  </div>
+</div>

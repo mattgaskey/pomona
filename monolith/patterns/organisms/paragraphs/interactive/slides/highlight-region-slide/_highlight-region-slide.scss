@@ -1,0 +1,57 @@
+/* 
+ * Since this is a relatively finicky component I've
+ * placed the bulk of the tailwind classes in apply 
+ * statements, leaving font and color utility classes
+ * in place. 
+ */
+
+.slide--highlight-region {
+  @apply relative;
+  
+  @screen lg {
+    @apply pb-0;
+  }
+
+  figcaption {
+    line-height: 1.2;
+
+    @apply 
+      px-60
+      py-20
+      min-h-100 
+      text-white;
+    
+    @screen lg {
+      @apply 
+        py-10  
+        px-25
+        block
+        text-6xl        
+        absolute 
+        inset-x-0
+        bottom-0  
+        min-h-0;        
+
+      /* There appears to be a difference between slideshows on the front and the interior,
+         where the interior slideshows are set at ~105 and the home is set at ~160 or so.
+         Ideally these styles would be aligned. 
+         At the moment I am finding it difficult to impossible to set the front page
+         slideshow. -- JHW 10/23/20
+      */
+      left: 160px;
+      right: auto;
+      bottom: 120px;
+      max-width: calc(100% - 320px);
+      min-width: 48%;
+
+      a {
+        @apply 
+          absolute
+          bottom-0
+          left-60
+        ;
+        transform: translateY(80%);
+      }
+    }
+  }
+}

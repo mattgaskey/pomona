@@ -1,0 +1,36 @@
+id: paragraphs_by_the_numbers
+label: By the Numbers
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_by_the_numbers_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      CAPTION: 'caption'
+    3:
+      COLOR: 'color'
+    4:
+      FIGURE: 'figure'
+process:
+  field_stat_caption: CAPTION
+  field_color: 
+    plugin: entity_lookup
+    source: COLOR
+    value_key: name
+    bundle_key: vid
+    bundle: color
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_stat_figure: FIGURE
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: by_the_numbers

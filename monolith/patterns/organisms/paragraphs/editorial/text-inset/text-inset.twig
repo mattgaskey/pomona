@@ -1,0 +1,8 @@
+<div class="border-b-2 py-10 border-yellow-100">
+  <h4 class="{{ headline_classes|default('font-sans text-xl border-blue border-b-3 pb-10 mb-15 ') }} ">{{ headline|default(sentence) }}</h4>
+  <div class="editorial {{ content_classes|default('bg-white') }}">
+  {% block inset_text_content %}
+    {{ paragraphs_mid }}
+  {% endblock inset_text_content %}
+  </div>
+</div>

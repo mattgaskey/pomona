@@ -1,0 +1,12 @@
+<div class="editorial font-sans mb-20 clearfix text-base md:text-lg md:flex">
+  <div class="text-brown-300 md:mx-40 w-full leading-loose">
+    <a href="{{ url }}">{{ label }}</a><br />
+    {{ content.field_position }}
+    {{ content.field_location|injectclass("inline") }}
+    {{ content.field_office_number|injectclass("inline") }}
+    {{ content.field_e_mail }}
+  </div>
+  <div class="whitespace-no-wrap mt-10 md:mt-0">
+    {{ content.field_office_phone }}
+  </div>
+</div>

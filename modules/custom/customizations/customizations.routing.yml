@@ -1,0 +1,14 @@
+customizations.claremontnews:
+  path: '/claremont-news-story-export.xml'
+  defaults:
+    _controller: '\Drupal\customizations\Controller\NewsController::claremontnews'
+    _title: 'Claremont News Export'
+  requirements: 
+    _permission: 'access content'
+customizations.newsstoryexport:
+  path: '/news-story-xml-to-rss-export.xml'
+  defaults:
+    _controller: '\Drupal\customizations\Controller\NewsController::newsstoryexport'
+    _title: 'News Story Export'
+  requirements: 
+    _permission: 'access content'

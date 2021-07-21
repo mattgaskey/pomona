@@ -1,0 +1,5 @@
+name: 'pomona_blog'
+type: module
+description: 'Sets the path for blog posts based on a parent node path'
+core: 8.x
+package: 'Pomona Blog'

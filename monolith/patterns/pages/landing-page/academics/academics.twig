@@ -1,0 +1,86 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+
+{% include '@content-header' with { pages: [], title: 'Academics' } %}
+
+<div class="c-container-lg  mx-auto">
+  {% include '@slideshow' with { variant: 'tabbed', pattern: "@detail-slide" }  %}
+</div>
+<div class="c-container text-xl font-serif">
+  <div class="editorial">
+    <h2 class="text-4xl md:text-6xl my-20 lg:my-40">Majors & Minors</h2>
+    <ul class="text-xl md:col-2 lg:col-3">
+      <li><a href="http://www.example.com">Africana Studies</a></li>
+      <li><a href="http://www.example.com">American Studies</a></li>
+      <li><a href="http://www.example.com">Anthropology</a></li>
+      <li><a href="http://www.example.com">Art</a></li>
+      <li><a href="http://www.example.com">Art History</a></li>
+      <li><a href="http://www.example.com">Asian American Studies</a></li>
+      <li><a href="http://www.example.com">Asian Studies</a></li>
+      <li><a href="http://www.example.com">Astronomy**</a></li>
+      <li><a href="http://www.example.com">Biology</a></li>
+      <li><a href="http://www.example.com">Chemistry</a></li>
+      <li><a href="http://www.example.com">Chicana/o-Latina/o Studies</a></li>
+      <li><a href="http://www.example.com">Chinese</a></li>
+      <li><a href="http://www.example.com">Classics</a></li>
+      <li><a href="http://www.example.com">Cognitive Science</a></li>
+      <li><a href="http://www.example.com">Computer Science</a></li>
+      <li><a href="http://www.example.com">Dance</a></li>
+      <li><a href="http://www.example.com">Economics</a></li>
+      <li><a href="http://www.example.com">English</a></li>
+      <li><a href="http://www.example.com">Environmental Analysis*</a></li>
+      <li><a href="http://www.example.com">French</a></li>
+      <li><a href="http://www.example.com">Gender & Women's Studies</a></li>
+      <li><a href="http://www.example.com">Geology</a></li>
+      <li><a href="http://www.example.com">German Studies</a></li>
+      <li><a href="http://www.example.com">History</a></li>
+      <li><a href="http://www.example.com">International Relations*</a></li>
+      <li><a href="http://www.example.com">Japanese</a></li>
+      <li><a href="http://www.example.com">Late Antique-Medieval Studies</a></li>
+      <li><a href="http://www.example.com">Latin American Studies</a></li>
+      <li><a href="http://www.example.com">Linguistics</a></li>
+      <li><a href="http://www.example.com">Mathematics</a></li>
+      <li><a href="http://www.example.com">Media Studies</a></li>
+      <li><a href="http://www.example.com">Middle Eastern Studies</a></li>
+      <li><a href="http://www.example.com">Molecular Biology*</a></li>
+      <li><a href="http://www.example.com">Music</a></li>
+      <li><a href="http://www.example.com">Neuroscience*</a></li>
+      <li><a href="http://www.example.com">Philosophy</a></li>
+      <li><a href="http://www.example.com">Philosophy, Politics & Economics*</a></li>
+      <li><a href="http://www.example.com">Physics & Astronomy</a></li>
+      <li><a href="http://www.example.com">Politics</a></li>
+      <li><a href="http://www.example.com">Psychological Science</a></li>
+      <li><a href="http://www.example.com">Public Policy Analysis*</a></li>
+      <li><a href="http://www.example.com">Religious Studies</a></li>
+      <li><a href="http://www.example.com">Romance Languages & Literatures*</a></li>
+      <li><a href="http://www.example.com">Russian</a></li>
+      <li><a href="http://www.example.com">Russian & Eastern European Studies*</a></li>
+      <li><a href="http://www.example.com">Science, Technology & Society</a></li>
+      <li><a href="http://www.example.com">Sociology</a></li>
+      <li><a href="http://www.example.com">Spanish</a></li>
+      <li><a href="http://www.example.com">Theatre</a></li>
+    </ul>
+    <p>All disciplines offer a minor, except those denoted by an asterisk. The links below lead to more information about each major; visit our departments page to go directly to department websites.</p>
+  </div>
+  <div class="editorial editorial-sans text-brown-300 italic my-40">
+    <p>*Disciplines that only offer a major and not a minor.</p>
+
+    <p>**Astronomy is offered via three tracks within the Physics major and is not a separate major.</p>
+
+    <h3 class="text-3xl mt-20 mb-15 text-orange">Pre-Professional Preparation</h3>
+
+    <p>While Pomona College does not offer majors in Pre-Health, Pre-Law or Pre-Engineering, we do provide guidance for students interested in these paths.</p>
+
+    <p>Information on our <a href="http://www.example.com">Pre-Health</a> site outlines the range of health professions (including medical, veterinary, dental, etc.), how to prepare (including which courses to take), how to apply to health profession programs, and how to reach out for one-on-one advising appointments. Our Pre-Law page offers information on resources and advisors whom you can speak with.</p>
+
+    <p>Pomona offers two combined Pre-Engineering programs with other universities: the 3-2 Plan in Engineering: California Institute of Technology and Washington University in St. Louis, and the 2-1-1-1 Dual Degree in Engineering with the Thayer School of Engineering at Dartmouth.  </p>
+  </div>
+</div>
+<div class="bg-gray-200 bg-pttrn-lt-grey pt-50 pb-100">
+  <div class="c-container">
+    <h2 class="text-3xl my-20 lg:my-40 font-bold text-center italic text-orange font-serif">By the Numbers</h2>
+    {% include '@by-the-numbers' with { variant: numbers_variant, block_variant: numbers_block_variant, items: items } %}
+  </div>
+</div>
+{% endblock %}
+{% endembed %}

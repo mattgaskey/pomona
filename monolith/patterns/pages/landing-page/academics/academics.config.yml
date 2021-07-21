@@ -1,0 +1,36 @@
+order: 20
+context:
+  buttonsets:
+    - 
+      - Lorem
+      - Ipusm
+      - Dolor Sit
+    - 
+      - Global Pomona
+      - Study Abroad
+      - Community Engagement
+      - The Arts
+    - 
+      - Argument Clinic
+      - Cheese Shoppe
+      - How Not to Be Seen
+      - The Ministry of Silly Walks
+  numbers_variant: by-the-numbers--row
+  numbers_block_variant: stat-block--vertical
+  items:
+    - stat: 8:1
+      stat_caption: Student-to-faculty ratio
+      stat_number_classes: text-white
+      stat_classes: bg-lavender border-lavender-100
+    - stat: '600+'
+      stat_caption: Classes offered at Pomona each year
+      stat_number_classes: text-white
+      stat_classes: bg-orange border-orange-100
+    - stat: '52<span>%</span>'
+      stat_caption: Students who conduct research with faculty
+      stat_number_classes: text-white
+      stat_classes: bg-green border-green-100
+    - stat: '48'
+      stat_caption: Majors offered at Pomona College
+      stat_number_classes: text-white
+      stat_classes: bg-red border-red-100      

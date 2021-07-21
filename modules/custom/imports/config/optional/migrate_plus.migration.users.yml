@@ -1,0 +1,49 @@
+id: users
+label: Users
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/user_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NAME
+  column_names:
+    0:
+      NAME: 'Name'
+    1:
+      STATUS: 'Active'
+    2:
+      CREATED: 'Created date'
+    3:
+      EMAIL: 'E-mail'
+    4:
+      ROLES: 'Roles'
+process:
+  name: NAME
+  status: STATUS
+  created: CREATED
+  roles:
+    - plugin: explode
+      source: ROLES
+      delimiter: ','
+    - plugin: callback
+      callable: trim
+    - plugin: static_map
+      map:
+        'Administrator': administrator
+        'News Editor': news_editor
+        'Blog Editor': blog_editor
+        'Content Editor': content_editor
+        'Content Administrator': content_ad
+        'Emergency Editor': emergency_editor
+        'pomstaff': pomstaff
+        'pomfaculty': pomfaculty
+        'pomalumni': poma
+        'pomonastudent': pomonastudent
+        'Sagecast': sagecast
+  mail: EMAIL
+destination:
+  plugin: entity:user
+  default_bundle: basic

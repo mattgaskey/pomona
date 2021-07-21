@@ -1,0 +1,10 @@
+<div class="c-container editorial min-h-200">
+  {% if can_redirect %}
+    <ul class="bullets mb-20">
+      <li>
+        <a href="/admin/config/search/redirect/add?source={{ current_path }}&destination={{ current_path }}" class="text-2xl text-cyan font-serif">Add URL redirect from this page to another location</a>
+      </li>
+    </ul>
+  {% endif %}
+  {{ content.body }}
+</div>

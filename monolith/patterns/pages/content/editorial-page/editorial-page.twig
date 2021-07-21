@@ -1,0 +1,15 @@
+{% embed '@clamp' with { variant: 'content' } %}
+{% block main_content %}
+  {% include '@content-header' with { pages: ['Academics'], title: 'About our Liberal Arts Education', variant: '' } %}  
+
+  {% embed '@with-sidebar' %}
+    {% block with_sidebar_main %}
+      <aside class="md:float-right md:max-w-1/2 md:pl-20 md:pb-20">
+        {% include '@figure' %}
+      </aside>
+      {% include '@editorial' %}
+    {% endblock %}
+  {% endembed %}
+
+{% endblock %}
+{% endembed %}

@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * This is a template file for a banner prompting user to give their consent for
+ * the website to set cookies.
+ *
+ * When overriding this template it is important to note that jQuery will use
+ * the following classes to assign actions to buttons:
+ *
+ * agree-button      - agree to setting cookies
+ * find-more-button  - link to an information page
+ *
+ * Variables available:
+ * - message:  Contains the text that will be display whithin the banner
+ * - agree_button: Label for the primary/agree button. Note that this is the
+ *   primary button. For backwards compatibility, the name remains agree_button.
+ * - disagree_button: Contains Cookie policy button title. (Note: for historical
+ *   reasons, this label is called "disagree" even though it just displays the
+ *   privacy policy.)
+ * - secondary_button_label: Contains the secondary button label. The current
+ *   action depends on whether you're running the module in Opt-out or Opt-in
+ *   mode.
+ * - primary_button_class: Contains class names for the primary button.
+ * - secondary_button_class: Contains class names for the secondary button
+ *   (if visible).
+ * - cookie_categories: Contains a array with cookie categories that can be
+ *   agreed or disagreed to separately.
+ * - save_preferences_button_label: Label text for a button to save the consent
+ *   preferences.
+ *   category cannot be unchecked.
+ * - privacy_settings_tab_label: Label text for the Privacy settings tab.
+ * - withdraw_button_on_info_popup: Show the withdraw button on this popup.
+ * - method: Chosen consent method.
+ */
+#}
+{% set classes = [
+  'eu-cookie-compliance-banner',
+  'eu-cookie-compliance-banner-info',
+  'eu-cookie-compliance-banner--' ~ method|clean_class,
+  'bg-white border-t-6 border-blue py-40 px-20'
+] %}
+<div role="alertdialog" aria-labelledby="popup-text" {{ attributes.addClass(classes) }}>
+  <div class="popup-content info eu-cookie-compliance-content flex flex-row justify-between md:justify-center items-center">
+    <div id="popup-text" class="eu-cookie-compliance-message md:mr-10 font-sans">
+      {{ message }}
+    </div>
+    <div id="popup-buttons" class="eu-cookie-compliance-buttons{% if cookie_categories %} eu-cookie-compliance-has-categories{% endif %}">
+      <button id="cookie-policy-accepted" type="button" class="{{ primary_button_class }} btn btn-more btn-cyan btn-uppercase">{{ agree_button }}</button>
+      <span class="mx-10 text-xl">|</span>
+      <button type="button" class="find-more-button eu-cookie-compliance-more-button ln font-sans">{{ more_info_button }}</button>
+    </div>
+  </div>
+</div>

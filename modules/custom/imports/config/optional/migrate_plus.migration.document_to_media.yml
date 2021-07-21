@@ -1,0 +1,43 @@
+id: document_to_media
+label: Document to Media
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/document_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - FID
+  column_names:
+    0:
+      FID: 'id'
+    1:
+      PATH: 'filepath'
+process:
+  pseudo_destination_filename:
+    -
+      plugin: callback
+      callable: basename
+      source: PATH
+    -
+      plugin: skip_on_empty
+      method: row
+      message: 'Cannot import empty image filename.'
+  pseudo_destination_path:
+    -
+      plugin: concat
+      source:
+        - '@pseudo_destination_filename'
+  name: '@pseudo_destination_filename'
+  field_media_file/target_id:
+    plugin: migration_lookup
+    migration: document
+    source: FID
+destination:
+  plugin: 'entity:media'
+  default_bundle: file
+migration_dependencies:
+  required:
+    - document
+  optional: []

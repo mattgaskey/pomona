@@ -1,0 +1,67 @@
+id: paragraphs_detailed_slide
+label: Detailed Slide
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/paragraphs_detailed_slide_export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'paragraphs_item_id'
+    1:
+      REVID: 'revision_id'
+    2:
+      CAPTION: 'caption'
+    3:
+      TABTITLE: 'tab_title'
+    4:
+      CAPTIONTITLE: 'caption_title'
+    5:
+      IMAGE: 'image'
+    6:
+      SLIDEURL: 'slide_url'
+    7:
+      IMAGEALT: 'image_alt'
+    8:
+      SLIDEURLTITLE: 'slide_url_text'
+process:
+  field_caption/value: CAPTION
+  field_caption/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_caption_title: CAPTIONTITLE
+  field_slide_urls:
+    - plugin: explode
+      source: SLIDEURL
+      delimiter: '|'
+    - plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_slide_labels:
+    plugin: explode
+    source: SLIDEURLTITLE
+    delimiter: '|'
+  field_slide_url:
+    -
+      plugin: field_link_generate
+      source: '@field_slide_urls'
+      title_source: '@field_slide_labels'
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_tab_title: TABTITLE
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+destination:
+  plugin: entity_reference_revisions:paragraph
+  default_bundle: detailed_slide

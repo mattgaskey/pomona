@@ -1,0 +1,7 @@
+<div class="js-accordion" data-accordion-multiselectable="none">
+	{% block accordion_panes %}
+		{% for pane in accordion.panes %}
+			{% include '@accordion-pane' with {headline: pane.heading.headline } %}
+		{% endfor %}
+	{% endblock %}
+</div>

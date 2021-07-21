@@ -1,0 +1,204 @@
+id: news
+label: News Stories
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/news-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      PHOTOCAPTION: 'Photo Caption'
+    3:
+      BODY: 'Body'
+    4:
+      ARTICLECATEGORY: 'Article Category'
+    5:
+      REDIRECT: 'Redirect'
+    6:
+      FEATUREONCLAREMONT: 'Feature on Claremont'
+    7:
+      FEATUREONHOMEPAGE: 'Feature on Homepage'
+    8:
+      FEATURED: 'Featured on News'
+    9:
+      PHOTOBY: 'Photo By'
+    10:
+      STORYBY: 'Story By'
+    11:
+      PUBLISHDATE: 'Publish Date'
+    12:
+      TAGS: 'Tags'
+    13:
+      SUMMARY: 'Summary'
+    14:
+      POSTED: 'Post date'
+    15:
+      UPDATED: 'Updated'
+    16: 
+      PUBLISHED: 'Published'
+    17: 
+      STICKY: 'Sticky'
+    18:
+      PROMOTE: 'Promote'
+    19:
+      VIDEODESC: 'Video Description'
+    20:
+      IMAGE: 'Image'
+    21:
+      IMAGEALT: 'Image Alt'
+    22:
+      THUMB: 'Thumb'
+    23:
+      THUMBALT: 'Thumb Alt'
+    24:
+      INSETS: 'Insets'
+process:
+  title: TITLE
+  status: PUBLISHED
+  moderation_state:
+   plugin: static_map
+   source: PUBLISHED
+   map:
+     0: draft
+     1: published
+  created: 
+  - 
+    plugin: format_date
+    source: POSTED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  changed:
+  -
+    plugin: format_date
+    source: UPDATED
+    from_format: 'U'
+    to_format: 'U'
+    timezone: 'MST'
+  sticky: STICKY
+  promote: PROMOTE
+  field_photo_caption: PHOTOCAPTION
+  body/value: BODY
+  body/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_article_category:
+  -
+    plugin: explode
+    source: ARTICLECATEGORY
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: article_categories
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_redirect/uri: REDIRECT
+  field_featured: FEATURED
+  field_feature_on_claremont_edu: FEATUREONCLAREMONT
+  field_feature_on_homepage_news: FEATUREONHOMEPAGE
+  field_photo_by: PHOTOBY
+  field_author: STORYBY
+  field_publish_date:
+  -
+    plugin: format_date
+    source: PUBLISHDATE
+    from_format: 'Y-m-d'
+    to_format: 'Y-m-d'
+    timezone: 'MST'
+  field_summary/value: SUMMARY
+  field_summary/format:
+    plugin: default_value
+    default_value: 'full_html'
+  field_tags:
+  -
+    plugin: explode
+    source: TAGS
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: tags
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_slide_video_description: VIDEODESC
+  field_legacy_nid: NID
+  field_media/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: IMAGE
+    no_stub: true
+  field_thumbnail_image/target_id:
+    plugin: migration_lookup
+    migration: 
+     - image_to_media
+     - yt_video
+     - vimeo_video
+    source: THUMB
+    no_stub: true
+  field_insets:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: INSETS
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - paragraphs_plain_inset
+              - paragraphs_image_inset
+              - paragraphs_twitter_inset
+              - paragraphs_video_inset
+              - paragraphs_audio_inset
+              - paragraphs_news_inset
+              - paragraphs_blog_inset
+              - paragraphs_events_inset
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+destination:
+  plugin: entity:node
+  default_bundle: article
+migration_dependencies:
+  required: []
+  optional: 
+    - paragraphs_plain_inset
+    - paragraphs_image_inset
+    - paragraphs_twitter_inset
+    - paragraphs_video_inset
+    - paragraphs_audio_inset
+    - paragraphs_news_inset
+    - paragraphs_blog_inset
+    - paragraphs_events_inset

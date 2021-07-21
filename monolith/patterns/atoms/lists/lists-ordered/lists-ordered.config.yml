@@ -1,0 +1,22 @@
+collated: true
+default: Numeric
+context:
+  variant: numeric
+  secondary: upper-roman
+variants:
+  - name: Upper Roman
+    context:
+      variant: upper-roman
+      secondary: lower-roman
+  - name: Lower Roman
+    context:
+      variant: lower-roman
+      secondary: lower-alpha
+  - name: Upper Alpha
+    context:
+      variant: upper-alpha
+      secondary: upper-roman
+  - name: Lower Alpha
+    context:
+      variant: lower-alpha
+      secondary: 1

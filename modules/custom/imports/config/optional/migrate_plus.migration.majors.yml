@@ -1,0 +1,326 @@
+id: majors
+label: Majors
+migration_group: default
+source:
+  plugin: csv
+  path: 'public://import-data/majors-export.csv'
+  delimiter: ','
+  enclosure: '"'
+  header_row_count: 1
+  keys:
+    - NID
+  column_names:
+    0:
+      NID: 'Nid'
+    1:
+      TITLE: 'Title'
+    2:
+      AZLISTINGTITLE: 'A-Z Listing Title'
+    3:
+      AZLETTERLISTING: 'Alphabetical Letter Listing'
+    4:
+      STUDYBACKGROUND: 'Study Background'
+    5:
+      BODY: 'Body'
+    6:
+      FACTDETAIL: 'Fact Detail'
+    7:
+      FACTNUMBER: 'Fact Number'
+    8:
+      FACULTYBODY: 'Faculty Body'
+    9:
+      FACULTYLINKS: 'Faculty Links'
+    10:
+      RESEARCHLABEL: 'Research Projects Label'
+    11:
+      RESEARCHLINKS: 'Research Projects Links'
+    12:
+      STUDY: 'Study'
+    13:
+      STUDYLINKS: 'Study Links'
+    14:
+      SUBHEADER: 'Subheader'
+    15:
+      FACULTYLINKSLABELS: 'Faculty Links Labels'
+    16:
+      RESEARCHLINKSLABELS: 'Research Projects Links Labels'
+    17:
+      STUDYLINKSLABELS: 'Study Links Labels'
+    18:
+      DIRECTORY: 'Directory'
+    19:
+      PUBLISHED: 'Published'
+    20:
+      BODYSLIDESHOW: 'Body Slideshow'
+    21:
+      RESEARCHSLIDESHOW: 'Research Slideshow'
+    22:
+      RESEARCHQUOTE: 'Research Quote'
+    23:
+      FACULTYQUOTE: 'Faculty Quote'
+    24:
+      PATH: 'Path'
+process:
+  title: TITLE
+  status: PUBLISHED
+  moderation_state:
+   plugin: static_map
+   source: PUBLISHED
+   map:
+     0: draft
+     1: published
+  path/pathauto: 
+   plugin: default_value
+   default_value: 0 # Disable pathauto
+  path/alias: PATH
+  field_glossary_listing_title: AZLISTINGTITLE
+  field_glossary: AZLETTERLISTING
+  field_study_background: 
+    plugin: static_map
+    source: STUDYBACKGROUND
+    map:
+      study-bicycle: major-undergrad-research
+      study-beaker: major-undergrad-research-beaker
+      study-book: major-undergrad-research-book
+      study-mask: major-undergrad-research-mask
+      study-brush: major-undergrad-research-brush
+      study-music-note: major-undergrad-research-musicnote
+      study-atom: major-atom
+      study-binary: major-binary
+      study-brain: major-brain
+      study-earth: major-earth
+      study-pi: major-pi
+  field_body_content/value: BODY
+  field_body_content/format: 
+    plugin: default_value
+    default_value: full_html
+  field_fact_detail: FACTDETAIL
+  field_fact_number: FACTNUMBER
+  field_faculty_body/value: FACULTYBODY
+  field_faculty_body/format: 
+    plugin: default_value
+    default_value: full_html
+  field_faculty_urls:
+    -
+      plugin: explode
+      source: FACULTYLINKS
+      delimiter: '|'
+    -
+      plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_faculty_labels:
+    plugin: explode
+    source: FACULTYLINKSLABELS
+    delimiter: '|'
+  field_faculty_links:
+    -
+      plugin: field_link_generate
+      source: '@field_faculty_urls'
+      title_source: '@field_faculty_labels'
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_research_urls:
+    -
+      plugin: explode
+      source: RESEARCHLINKS
+      delimiter: '|'
+    -
+      plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_research_labels:
+    plugin: explode
+    source: RESEARCHLINKSLABELS
+    delimiter: '|'
+  field_research_links:
+    -
+      plugin: field_link_generate
+      source: '@field_research_urls'
+      title_source: '@field_research_labels'
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_research_label: RESEARCHLABEL
+  field_study/value: STUDY
+  field_study/format: 
+    plugin: default_value
+    default_value: full_html
+  field_study_urls:
+    -
+      plugin: explode
+      source: STUDYLINKS
+      delimiter: '|'
+    -
+      plugin: str_replace
+      search: 'd7-pomona.lndo.site'
+      replace: 'www.pomona.edu'
+  field_study_labels:
+    plugin: explode
+    source: STUDYLINKSLABELS
+    delimiter: '|'
+  field_study_links:
+    -
+      plugin: field_link_generate
+      source: '@field_study_urls'
+      title_source: '@field_study_labels'
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_subheader/value: SUBHEADER
+  field_subheader/format: 
+    plugin: default_value
+    default_value: full_html
+  field_legacy_nid: NID
+  field_directory: 
+  -
+    plugin: explode
+    source: DIRECTORY
+    delimiter: '|'
+  - 
+    plugin: entity_lookup
+    value_key: name
+    bundle_key: vid
+    bundle: a_z_directory
+    entity_type: taxonomy_term
+    ignore_case: true
+  field_faculty_quote:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: FACULTYQUOTE
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_faculty_quote
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_body_slideshow:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: BODYSLIDESHOW
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_body_slideshow
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_research_quotes:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: RESEARCHQUOTE
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_research_quote
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+  field_research_slideshow:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: RESEARCHSLIDESHOW
+    - 
+      plugin: explode
+      delimiter: '|'
+    -
+      plugin: key_wrapper
+    -
+      plugin: sub_process
+      process:
+        foo:
+          -
+            plugin: migration_lookup
+            migration: 
+              - fc_to_pg_research_slideshow
+            no_stub: true
+            source: value
+        target_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 0
+        target_revision_id:
+          -
+            plugin: extract
+            source: '@foo'
+            index:
+              - 1
+destination:
+  plugin: entity:node
+  default_bundle: program
+migration_dependencies:
+  required:
+    - fc_to_pg_faculty_quote
+    - fc_to_pg_body_slideshow
+    - fc_to_pg_research_quote
+    - fc_to_pg_research_slideshow
+  optional: []
+
